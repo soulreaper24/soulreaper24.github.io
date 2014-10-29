@@ -25,11 +25,20 @@
     <script src="scripts/vendor/modernizr.js"></script>    
 
     <script src="scripts/app/app.js"></script>
-    <title>Civ-Web</title>
+
+    <script>
+        //if we are not inside the state machine, go to the home state
+        console.log(window.location.href);
+        console.log(window.location.href.search('#'));
+        if (window.location.href.search('#') < 0) {            
+            window.location = "/#/home";
+        }
+    </script>
+
+    <title>Game</title>
 </head>
-<body ng-app="civweb" ng-controller="MainCtrl">
-{{test}}
-<div ui-view>
-</div>
+<body ng-app="game" ng-controller="MainCtrl">    
+    <div ui-view>
+    </div>
 </body>
 </html>
