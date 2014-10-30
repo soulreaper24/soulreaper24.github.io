@@ -1,0 +1,14 @@
+<div class="row">
+	<table>
+		<tr ng-repeat="building in availableBuildings">
+			<td>{{building.name}}</td>
+			<td>{{building.description}}</td>
+			<td>{{building.cost}} <i class="fa fa-gavel"></i></td>
+			<td>
+				<span ng-show="building.productionPerTurn">{{building.productionPerTurn}} <i class="fa fa-gavel"></i> per Turn</span>
+				<span ng-show="building.sciencePerTurn">{{building.sciencePerTurn}} <i class="fa fa-flask"></i> per Turn</span>
+			</td>
+			<td><button ng-disabled="getProduction() < building.cost" ng-click="buy(building);">Buy</button></td>
+		</tr>
+	</table>
+</div>

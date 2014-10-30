@@ -2,12 +2,35 @@
 
 angular.module('game')  
 .controller('GameCtrl', function ($scope, GameService) {
+    $scope.getYear = function() {
+      if (GameService.year < 0) {
+        return (0 - GameService.year) + 'BC';
+      } else {
+        return GameService.year + 'AD';
+      }
+    };
+
     $scope.getProduction = function() {
       return GameService.getProduction();
-    }
+    };
 
-    $scope.science = GameService.science;
-    
+    $scope.getProductionPerTurn = function() {
+      return GameService.getProductionPerTurn();
+    };
+
+    $scope.getScience = function() {
+      return GameService.getScience();
+    };
+
+    $scope.getSciencePerTurn = function() {
+      return GameService.getSciencePerTurn();
+    };
+
+    $scope.endTurn = function() {
+      GameService.setScience(GameService.getScience() + GameService.getSciencePerTurn());
+      GameService.setProduction(GameService.getProduction() + GameService.getProductionPerTurn());
+      GameService.year += 4;
+    };
   }
 )
 .config(function($stateProvider) {
@@ -16,38 +39,10 @@ angular.module('game')
       url: '/game',
       templateUrl: 'scripts/app/game.html',      
       controller: 'GameCtrl'
-    })
-    .state('game.buildings', {
-      url: '/buildings',
-      templateUrl: 'scripts/app/buildings.html',
-      resolve: {
-        availableBuildings : function($q, $http) {
-          var defer = $q.defer();
-          return $http.get('scripts/app/buildings.json').success (function(data){
-            defer.resolve(data.buildings);
-          });
-          return defer.promise;
-        }
-      },
-      controller : function($scope, GameService, availableBuildings) {
-        $scope.availableBuildings = availableBuildings.data.buildings;
-        $scope.getProduction = function() {
-          return GameService.getProduction();
-        }
-
-        $scope.buy = function(building) {
-          GameService.setProduction(GameService.getProduction() - building.cost);
-          building.cost *= 2;
-        }
-      }
-    })
+    })    
     .state('game.wonders', {
       url: '/wonders',
       templateUrl: 'scripts/app/wonders.html'
-    })
-    .state('game.techs', {
-      url: '/techs',
-      templateUrl: 'scripts/app/techs.html'
     })
     .state('game.units', {
       url: '/units',

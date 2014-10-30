@@ -1,11 +1,22 @@
 <div class="grey-background">
 	<div class="row">	
-		<div class="small-6 columns">
+		<div class="small-12 columns">
+			Year: {{getYear()}}
+		</div>
+	</div>
+	<div class="row">	
+		<div class="small-3 columns">
 			Production {{getProduction()}} <i class="fa fa-gavel"></i>
 		</div>
-		<div class="small-6 columns">
-			Science {{science}} <i class="fa fa-flask"></i>
+		<div class="small-3 columns">
+			Production per Turn {{getProductionPerTurn()}} <i class="fa fa-gavel"></i>
+		</div>
+		<div class="small-3 columns">
+			Science {{getScience()}} <i class="fa fa-flask"></i>
 		</div>	
+		<div class="small-3 columns">
+			Science per Turn {{getSciencePerTurn()}} <i class="fa fa-flask"></i>
+		</div>
 	</div>
 	<div class="row">
 		<ul class="button-group even-4">
@@ -17,5 +28,9 @@
 	</div>
 
 	<div ui-view>
+	</div>
+
+	<div class="row">
+		<button ng-click="endTurn();">End Turn</button>
 	</div>
 </div>
