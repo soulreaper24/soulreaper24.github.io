@@ -1,0 +1,4 @@
+{"buildings":
+	[{"name" : "Mine", "description" : "Produces Production every turn", "cost" : 5},
+	{"name" : "Forum", "description" : "Produces Science every turn", "cost" : 5}]
+}
