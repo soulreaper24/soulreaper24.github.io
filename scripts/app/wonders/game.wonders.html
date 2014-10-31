@@ -1,0 +1,17 @@
+<div class="row">
+	<table>
+		<tr ng-repeat="wonder in availableWonders | filter:ageFilter">
+			<td>{{wonder.name}}</td>
+			<td>{{wonder.description}}</td>
+			<td>{{wonder.cost | number}} <i class="fa fa-gavel"></i></td>			
+			<td>
+				<div ng-hide="notBuiltWonder(wonder.name)">
+					<button ng-disabled="getProduction() < wonder.cost" ng-click="build(wonder);">Build</button>
+				</div>
+				<div ng-show="notBuiltWonder(wonder.name)">
+					Built
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>

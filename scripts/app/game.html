@@ -5,18 +5,12 @@
 		</div>
 	</div>
 	<div class="row">	
-		<div class="small-3 columns">
-			Production {{getProduction()}} <i class="fa fa-gavel"></i>
-		</div>
-		<div class="small-3 columns">
-			Production per Turn {{getProductionPerTurn()}} <i class="fa fa-gavel"></i>
-		</div>
-		<div class="small-3 columns">
-			Science {{getScience()}} <i class="fa fa-flask"></i>
+		<div class="small-6 columns">
+			{{getProduction()}} <i class="fa fa-gavel"></i> ({{getProductionPerTurn()}} per Turn)
 		</div>	
-		<div class="small-3 columns">
-			Science per Turn {{getSciencePerTurn()}} <i class="fa fa-flask"></i>
-		</div>
+		<div class="small-6 columns">
+			{{getScience()}} <i class="fa fa-flask"></i> ({{getSciencePerTurn()}} per Turn)
+		</div>			
 	</div>
 	<div class="row">
 		<ul class="button-group even-4">

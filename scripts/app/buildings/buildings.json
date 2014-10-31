@@ -1,4 +1,8 @@
 {"buildings":
-	[{"name" : "Mine", "description" : "Produces Production every turn", "cost" : 5, "productionPerTurn" : 10},
-	{"name" : "Forum", "description" : "Produces Science every turn", "cost" : 5, "sciencePerTurn" : 10}]
+	[
+	 {"age": 0, "name": "Mine", "productionPerTurn" : 10, "cost": 5},
+	 {"age": 0, "name": "Forum", "sciencePerTurn" : 10, "cost": 5},
+	 {"age": 1, "name": "Workshop", "productionPerTurn" : 100, "cost": 125},
+	 {"age": 1, "name": "Temple", "sciencePerTurn" : 100, "cost": 125}
+	 ]
 }

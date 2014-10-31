@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('game')
-.controller('TechsCtrl', function($scope, GameService, availableTechs) {
-	GameService.availableTechs = availableTechs;
-	$scope.availableTechs = availableTechs.data.techs;
+.controller('TechsCtrl', function($scope, GameService) {	
+	$scope.availableTechs = GameService.availableTechs;
+
+	$scope.ageFilter = function(building) {
+		return building.age <= GameService.age;
+	};
+
 	$scope.getScience = function() {
 	  return GameService.getScience();
 	}
@@ -22,19 +26,6 @@ angular.module('game')
     .state('game.techs', {
       url: '/techs',
       templateUrl: 'scripts/app/techs/game.techs.html',
-      resolve: {
-        availableTechs : function($q, $http, GameService) {
-          if (!GameService.availableTechs) {
-	          var defer = $q.defer();
-	          return $http.get('scripts/app/techs/techs.json').success (function(data){
-	            defer.resolve(data);
-	          });
-	          return defer.promise;
-	      } else {
-	      	return GameService.availableTechs;
-	      }
-        }
-      },
       controller: 'TechsCtrl'
     });
 });

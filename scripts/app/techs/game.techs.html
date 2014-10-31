@@ -1,15 +1,15 @@
 <div class="row">
 	<table>
-		<tr ng-repeat="tech in availableTechs">
+		<tr ng-repeat="tech in availableTechs | filter:ageFilter">
 			<td>{{tech.name}}</td>
 			<td>{{tech.description}}</td>
-			<td>{{tech.cost}} <i class="fa fa-flask"></i></td>			
+			<td>{{tech.cost | number}} <i class="fa fa-flask"></i></td>			
 			<td>
 				<div ng-hide="notResearchedTech(tech.name)">
 					<button ng-disabled="getScience() < tech.cost" ng-click="research(tech);">Research</button>
 				</div>
 				<div ng-show="notResearchedTech(tech.name)">
-					Researched.
+					Researched
 				</div>
 			</td>
 		</tr>
