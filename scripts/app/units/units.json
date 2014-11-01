@@ -1,0 +1,7 @@
+{"units":
+	[
+		{"age": -1, "name": "Wolf", "hp": 5, "damage": 2, "cost" : 1},
+		{"age": 0, "name": "Warrior", "hp": 10, "damage": 5, "cost" : 50},
+		{"age": 1, "name": "Swordman", "hp": 100, "damage": 15, "cost" : 500}
+	]
+}

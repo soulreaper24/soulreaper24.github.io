@@ -1,5 +1,15 @@
+html, body {
+  height: 100%; 
+}
+
 .grey-background {
 	background-color: #c1c1c1;
+	height: 100%;	
+}
+
+input[type="text"] {
+	margin: 0;
+	padding: 20px 10px;
 }
 
 button, .button {
@@ -16,4 +26,8 @@ table {
 
 .red {
 	color: red;
+}
+
+.log {		
+
 }

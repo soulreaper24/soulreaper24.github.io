@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('game', [ 'ui.router', 'mm.foundation'])  
+angular.module('game', [ 'ui.router', 'mm.foundation', 'ngSanitize'])  
   .config(function($stateProvider) {
     $stateProvider
       .state('home', {

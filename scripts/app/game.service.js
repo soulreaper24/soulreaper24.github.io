@@ -14,7 +14,8 @@ angular.module('game')
 		scienceMultiplier: 1.0,
 		techs: [],
 		wonders: [],
-		negatives: [/* {name, turns, loosPerTurn}*/]
+		negatives: [/* {name, turns, loosPerTurn}*/],
+		enemy: {}
 	};
 
 	service.setResearchedTech = function(techName) {
@@ -46,6 +47,15 @@ angular.module('game')
 			buildings[i].count = 0;
 		}
 		service.availableBuildings = buildings;
+	};
+
+	service.setAvailableUnits = function(units) {
+		for (var i = 0; i < units.length; i++) {			
+			units[i].count = 0;
+		}
+		service.availableUnits = units;
+		service.enemy = service.availableUnits[0];
+		service.enemy.count = 10;
 	};
 
 	service.getProduction = function() {

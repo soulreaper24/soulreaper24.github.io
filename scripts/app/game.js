@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('game')  
-.controller('GameCtrl', function ($scope, GameService, availableBuildings, availableTechs, availableWonders) {
+.controller('GameCtrl', function ($scope, $state, GameService, LogService, availableBuildings, availableTechs, availableWonders, availableUnits) {   
     if (availableBuildings.data) {
       GameService.setAvailableBuildings(availableBuildings.data.buildings);
     }
@@ -13,6 +13,14 @@ angular.module('game')
     if (availableWonders.data) {
       GameService.availableWonders = availableWonders.data.wonders;
     }
+
+    if (availableUnits.data) {
+      GameService.setAvailableUnits(availableUnits.data.units);
+    }
+
+    $scope.getStateName = function() {
+      return $state.$current.name;
+    };
 
     $scope.getYear = function() {
       if (GameService.year < 0) {
@@ -66,10 +74,14 @@ angular.module('game')
     $scope.endTurn = function() {
       GameService.setScience(GameService.getScience() + GameService.getSciencePerTurn());
       GameService.setProduction(GameService.getProduction() + GameService.getProductionPerTurn());
-
       GameService.handleNegatives();
 
+      if (GameService.getProduction() < 0) {
+        LogService.logAlert('Your <i class="fa fa-gavel"></i> is negative. <i class="fa fa-gavel"></i> and <i class="fa fa-flask"></i> per Turn are reduced by 15%.');
+      }
+
       GameService.year += 4;
+      LogService.log('--- Turn End ---');
     };
   }
 )
@@ -99,12 +111,23 @@ angular.module('game')
               defer.resolve(data);
             });
             return defer.promise;          
+        },
+        availableUnits : function($q, $http) {            
+            var defer = $q.defer();
+            return $http.get('scripts/app/units/units.json').success (function(data){
+              defer.resolve(data);
+            });
+            return defer.promise;          
         }
       },
       controller: 'GameCtrl'
-    })        
-    .state('game.units', {
-      url: '/units',
-      templateUrl: 'scripts/app/units.html'
+    }).state('game.log', {
+      url: '/log',
+      templateUrl: 'scripts/app/log.html',
+      controller: function($scope, LogService) {
+        $scope.getLog = function() {
+          return LogService.getLog();
+        };
+      }
     });
 });
