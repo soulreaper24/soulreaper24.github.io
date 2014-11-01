@@ -17,7 +17,7 @@ angular.module('game')
 	  GameService.setResearchedTech(tech.name);
 	}
 
-	$scope.notResearchedTech = function(techName) {
+	$scope.techResearched = function(techName) {
 		return GameService.techs.indexOf(techName) > -1;
 	}
 })

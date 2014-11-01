@@ -5,18 +5,46 @@ angular.module('game')
     if (availableBuildings.data) {
       GameService.setAvailableBuildings(availableBuildings.data.buildings);
     }
+
     if (availableTechs.data) {
       GameService.availableTechs = availableTechs.data.techs;
     }
+
     if (availableWonders.data) {
       GameService.availableWonders = availableWonders.data.wonders;
     }
+
     $scope.getYear = function() {
       if (GameService.year < 0) {
         return (0 - GameService.year) + 'BC';
       } else {
         return GameService.year + 'AD';
       }
+    };
+
+    $scope.getAge = function() {
+      var age;
+      switch (GameService.age) {
+        case 0: age = 'Ancient Age';
+                break;
+        case 1: age = 'Classical Age';
+                break;
+        case 2: age = 'Medieval Age';
+                break;
+        case 3: age = 'Renaissance Age';
+                break;
+        case 4: age = 'Industrial Age';
+                break;
+        case 5: age = 'Modern Age';
+                break;
+        case 6: age = 'Atomic Age';
+                break;
+        case 7: age = 'Infomrmation Age';
+                break;
+        case 8: age = 'Future Age';
+                break;      
+      }
+      return age;
     };
 
     $scope.getProduction = function() {
@@ -38,6 +66,9 @@ angular.module('game')
     $scope.endTurn = function() {
       GameService.setScience(GameService.getScience() + GameService.getSciencePerTurn());
       GameService.setProduction(GameService.getProduction() + GameService.getProductionPerTurn());
+
+      GameService.handleNegatives();
+
       GameService.year += 4;
     };
   }
@@ -48,38 +79,26 @@ angular.module('game')
       url: '/game',
       templateUrl: 'scripts/app/game.html',      
       resolve: {
-        availableBuildings : function($q, $http, GameService) {
-            if (!GameService.availableBuildings) {
-              var defer = $q.defer();
-              return $http.get('scripts/app/buildings/buildings.json').success (function(data){
-                defer.resolve(data.buildings);
-              });
-              return defer.promise;
-          } else {
-            return GameService.availableBuildings;
-          }
+        availableBuildings : function($q, $http) {
+            var defer = $q.defer();
+            return $http.get('scripts/app/buildings/buildings.json').success (function(data){
+              defer.resolve(data.buildings);
+            });
+            return defer.promise;
         },
-        availableTechs : function($q, $http, GameService) {
-            if (!GameService.availableTechs) {
-              var defer = $q.defer();
-              return $http.get('scripts/app/techs/techs.json').success (function(data){
-                defer.resolve(data);
-              });
-              return defer.promise;
-          } else {
-            return GameService.availableTechs;
-          }
+        availableTechs : function($q, $http) {
+            var defer = $q.defer();
+            return $http.get('scripts/app/techs/techs.json').success (function(data){
+              defer.resolve(data);
+            });
+            return defer.promise;
         },
-        availableWonders : function($q, $http, GameService) {
-            if (!GameService.availableWonders) {
-              var defer = $q.defer();
-              return $http.get('scripts/app/wonders/wonders.json').success (function(data){
-                defer.resolve(data);
-              });
-              return defer.promise;
-          } else {
-            return GameService.availableWonders;
-          }
+        availableWonders : function($q, $http) {            
+            var defer = $q.defer();
+            return $http.get('scripts/app/wonders/wonders.json').success (function(data){
+              defer.resolve(data);
+            });
+            return defer.promise;          
         }
       },
       controller: 'GameCtrl'

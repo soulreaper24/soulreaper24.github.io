@@ -1,25 +1,30 @@
-<div class="grey-background">
-	<div class="row">	
-		<div class="small-12 columns">
-			Year: {{getYear()}}
-		</div>
-	</div>
-	<div class="row">	
-		<div class="small-6 columns">
-			{{getProduction()}} <i class="fa fa-gavel"></i> ({{getProductionPerTurn()}} per Turn)
-		</div>	
-		<div class="small-6 columns">
-			{{getScience()}} <i class="fa fa-flask"></i> ({{getSciencePerTurn()}} per Turn)
-		</div>			
-	</div>
-	<div class="row">
-		<ul class="button-group even-4">
-	  		<li><a ui-sref="game.buildings" ui-sref-active="alert" class="button">Buildings</a></li>
-	  		<li><a ui-sref="game.wonders" ui-sref-active="alert" class="button">Wonders</a></li>
-	  		<li><a ui-sref="game.techs" ui-sref-active="alert" class="button">Techs</a></li>
-	  		<li><a ui-sref="game.units" ui-sref-active="alert" class="button">Units</a></li>  
-		</ul>	
-	</div>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1>
+      	<a>
+	      	<ul class="inline-list">
+	      		<li><a>{{getYear()}}</a></li>
+	      		<li><a>{{getAge()}}</a></li>
+	      		<li><a><span ng-class="{red: getProduction() < 0}">{{getProduction() | number}}</span> <i class="fa fa-gavel"></i> (<span ng-show="getProductionPerTurn() >= 0">+</span><span ng-class="{red: getProductionPerTurn() < 0}">{{getProductionPerTurn() | number}}</span>)</a></li>
+	      		<li><a>{{getScience() | number}} <i class="fa fa-flask"></i> (+{{getSciencePerTurn() | number}})</a></li>
+	  		</ul>
+      	  </a>
+  	  </h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">    
+    <ul class="right">
+      	<li ui-sref-active="active"><a ui-sref="game.buildings">Buildings</a></li>
+		<li ui-sref-active="active"><a ui-sref="game.wonders">Wonders</a></li>
+		<li ui-sref-active="active"><a ui-sref="game.techs">Techs</a></li>
+		<li ui-sref-active="active"><a ui-sref="game.units">Units</a></li>  
+    </ul>
+  </section>
+</nav>
+
+<div class="grey-background">		
 
 	<div ui-view>
 	</div>

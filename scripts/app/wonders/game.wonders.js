@@ -13,11 +13,19 @@ angular.module('game')
 	}
 
 	$scope.build = function(wonder) {
-	  GameService.setProduction(GameService.getProduction() - wonder.cost);
-	  GameService.setBuiltWonder(wonder.name);
+	  GameService.negatives.push({name : wonder.name, type: 'Wonder', turns: wonder.turns, lossPerTurn: wonder.lossPerTurn});	  
 	}
 
-	$scope.notBuiltWonder = function(wonderName) {
+	$scope.wonderBuilding = function(wonder) {
+		for (var i = 0; i < GameService.negatives.length; i++) {
+			if (GameService.negatives[i].name === wonder.name) {
+				return Math.ceil((wonder.turns - GameService.negatives[i].turns) / wonder.turns * 100);
+			}
+		}
+		return -1;
+	}
+
+	$scope.wonderBuilt = function(wonderName) {
 		return GameService.wonders.indexOf(wonderName) > -1;
 	}
 })

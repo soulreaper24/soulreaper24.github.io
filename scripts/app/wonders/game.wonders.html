@@ -1,17 +1,21 @@
 <div class="row">
 	<table>
 		<tr ng-repeat="wonder in availableWonders | filter:ageFilter">
-			<td>{{wonder.name}}</td>
-			<td>{{wonder.description}}</td>
-			<td>{{wonder.cost | number}} <i class="fa fa-gavel"></i></td>			
 			<td>
-				<div ng-hide="notBuiltWonder(wonder.name)">
-					<button ng-disabled="getProduction() < wonder.cost" ng-click="build(wonder);">Build</button>
-				</div>
-				<div ng-show="notBuiltWonder(wonder.name)">
-					Built
-				</div>
+				<h3>{{wonder.name}} <small> {{wonder.description}} </small>
+				</h3>
 			</td>
+			<td width="300">
+				<div ng-show="wonderBuilding(wonder) >= 0">
+					<progressbar max="100" class="expand" value="wonderBuilding(wonder)" type="success"></progressbar>
+				</div>
+				<div ng-show="!wonderBuilt(wonder.name) && wonderBuilding(wonder) < 0">
+					<button class="right expand small" ng-click="build(wonder);">Build ({{wonder.lossPerTurn | number}}<i class="fa fa-gavel"></i> per Turn for {{wonder.turns}} Turns)</button>
+				</div>
+				<div ng-show="wonderBuilt(wonder.name)">
+					<h3>Constructed</h3>
+				</div>
+			</td>			
 		</tr>
 	</table>
 </div>

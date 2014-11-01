@@ -1,8 +1,9 @@
 {"buildings":
 	[
-	 {"age": 0, "name": "Mine", "productionPerTurn" : 10, "cost": 5},
-	 {"age": 0, "name": "Forum", "sciencePerTurn" : 10, "cost": 5},
-	 {"age": 1, "name": "Workshop", "productionPerTurn" : 100, "cost": 125},
-	 {"age": 1, "name": "Temple", "sciencePerTurn" : 100, "cost": 125}
+	 {"age": 0, "name": "Mine", "productionPerTurn" : 1, "cost": 15},
+	 {"age": 1, "name": "Workshop", "productionPerTurn" : 5, "cost": 100},
+
+	 {"age": 0, "name": "Forum", "sciencePerTurn" : 1, "cost": 15},
+	 {"age": 1, "name": "Temple", "sciencePerTurn" : 5, "cost": 100}
 	 ]
 }

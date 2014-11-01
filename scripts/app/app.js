@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('game', [ 'ui.router'])  
+angular.module('game', [ 'ui.router', 'mm.foundation'])  
   .config(function($stateProvider) {
     $stateProvider
       .state('home', {

@@ -14,7 +14,7 @@ angular.module('game')
 
 	$scope.build = function(building) {
 	  GameService.setProduction(GameService.getProduction() - building.cost);
-	  building.cost *= 2;
+	  building.cost = Math.ceil(building.cost * 1.15);
 	  building.count ++;
 	  if (building.productionPerTurn) {
 	  	GameService.setProductionPerTurn(building);

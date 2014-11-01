@@ -1,14 +1,16 @@
 <div class="row">
 	<table>
 		<tr ng-repeat="building in availableBuildings | filter:ageFilter ">
-			<td>{{building.name}}</td>			
-			<td>{{building.count}}</td>
-			<td>{{building.cost}} <i class="fa fa-gavel"></i></td>
+			<td width="100"><h3>{{building.count}}</h3></td>
 			<td>
-				<span ng-show="building.productionPerTurn">{{building.productionPerTurn * building.multiplier | number}} <i class="fa fa-gavel"></i> per Turn</span>
-				<span ng-show="building.sciencePerTurn">{{building.sciencePerTurn * building.multiplier | number}} <i class="fa fa-flask"></i> per Turn</span>
-			</td>
-			<td><button ng-disabled="getProduction() < building.cost" ng-click="build(building);">Build</button></td>
+				<h3>{{building.name}}
+					<small>
+						<span ng-show="building.productionPerTurn">+{{building.productionPerTurn * building.multiplier | number}} <i class="fa fa-gavel"></i> per Turn</span>
+						<span ng-show="building.sciencePerTurn">+{{building.sciencePerTurn * building.multiplier | number}} <i class="fa fa-flask"></i> per Turn</span>
+					</small>
+				</h3>
+			</td>			
+			<td width="300"><button class="small right expand" ng-disabled="getProduction() < building.cost" ng-click="build(building);">Build ({{building.cost | number}} <i class="fa fa-gavel"></i>)</button></td>
 		</tr>
 	</table>
 </div>

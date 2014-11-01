@@ -1,6 +1,6 @@
 {"techs":
 	[
-		{"age": 0, "name" : "Mining", "description" : "Mines are twice as effective", "cost" : 2000},
-		{"age": 1, "name" : "Engineering", "description" : "Workshops produces 150 more Production per Turn", "cost" : 20000}
+		{"age": 0, "name" : "Mining", "description" : "x2 Mine Production per Turn", "cost" : 500},
+		{"age": 1, "name" : "Engineering", "description" : "x2 Workshop Production per Turn ", "cost" : 2000}
 	]
 }

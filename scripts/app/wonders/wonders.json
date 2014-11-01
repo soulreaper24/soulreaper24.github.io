@@ -1,6 +1,6 @@
 {"wonders":
 	[
-		{"age": 0, "name" : "Pyramids", "description" : "Mines are twice as effective. +20% Production per Turn.", "cost" : 10000},
-		{"age": 1, "name" : "Hanging Gardens", "description" : "+50% Production per Turn", "cost" : 20000}
+		{"age": 0, "name" : "Pyramids", "description" : "x2 Mine Production per Turn. +20% Production per Turn.", "turns": 20 , "lossPerTurn": 50},
+		{"age": 1, "name" : "Hanging Gardens", "description" : "+50% Production per Turn", "turns": 20 , "lossPerTurn": 300}
 	]
 }
