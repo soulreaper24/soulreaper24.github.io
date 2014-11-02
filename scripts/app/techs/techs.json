@@ -1,6 +1,6 @@
 {"techs":
 	[
-		{"age": 0, "name" : "Mining", "description" : "x2 Mine Production per Turn", "cost" : 500},
-		{"age": 1, "name" : "Engineering", "description" : "x2 Workshop Production per Turn ", "cost" : 2000}
+		{"age": 0, "name" : "Mining", "description" : "x2 Mine <i class='fa fa-gavel'></i> per Turn", "cost" : 500},
+		{"age": 1, "name" : "Engineering", "description" : "x2 Workshop <i class='fa fa-gavel'></i> per Turn", "cost" : 2000}
 	]
 }

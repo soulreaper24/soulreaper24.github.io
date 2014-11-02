@@ -1,9 +1,11 @@
 <div class="row">
 	<table>
 		<tr ng-repeat="wonder in availableWonders | filter:ageFilter">
+			<td width="150">
+				<h3>{{wonder.name}}</h3>
+			</td>
 			<td>
-				<h3>{{wonder.name}} <small> {{wonder.description}} </small>
-				</h3>
+				<p ng-bind-html="wonder.description"></p>
 			</td>
 			<td width="300">
 				<div ng-show="wonderBuilding(wonder) >= 0">

@@ -72,16 +72,7 @@ angular.module('game')
     };
 
     $scope.endTurn = function() {
-      GameService.setScience(GameService.getScience() + GameService.getSciencePerTurn());
-      GameService.setProduction(GameService.getProduction() + GameService.getProductionPerTurn());
-      GameService.handleNegatives();
-
-      if (GameService.getProduction() < 0) {
-        LogService.logAlert('Your <i class="fa fa-gavel"></i> is negative. <i class="fa fa-gavel"></i> and <i class="fa fa-flask"></i> per Turn are reduced by 15%.');
-      }
-
-      GameService.year += 4;
-      LogService.log('--- Turn End ---');
+      GameService.endTurn();
     };
   }
 )

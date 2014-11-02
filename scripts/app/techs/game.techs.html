@@ -1,9 +1,11 @@
 <div class="row">
 	<table>
 		<tr ng-repeat="tech in availableTechs | filter:ageFilter">			
+			<td width="150">
+				<h3>{{tech.name}}</h3>
+			</td>
 			<td>
-				<h3>{{tech.name}} <small> {{tech.description}} </small>
-				</h3>
+				<p ng-bind-html="tech.description"></p>
 			</td>
 			<td width="300">
 				<div ng-hide="techResearched(tech.name)">

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('game')
-.controller('UnitsCtrl', function($scope, GameService) {
+.controller('UnitsCtrl', function($scope, GameService, CombatService) {
 	$scope.availableUnits = GameService.availableUnits;	
 	$scope.enemy = GameService.enemy;
 	$scope.toTrain = 1;
@@ -30,7 +30,11 @@ angular.module('game')
 	};
 
 	$scope.conquest = function() {
-
+		if (CombatService.conquest()) {
+			GameService.conquestWon();
+		} else {
+			GameService.conquestLost();
+		}
 	};
 })
 .config(function($stateProvider) {

@@ -26,5 +26,10 @@ angular.module('game')
 		service.log(msg);
 	};
 
+	service.logSuccess = function(msg) {
+		msg = '<span class="green">' + msg + '</span>';
+		service.log(msg);
+	};
+
 	return service;
 });

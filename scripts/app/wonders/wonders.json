@@ -1,6 +1,6 @@
 {"wonders":
 	[
-		{"age": 0, "name" : "Pyramids", "description" : "x2 Mine Production per Turn. +20% Production per Turn.", "turns": 20 , "lossPerTurn": 50},
-		{"age": 1, "name" : "Hanging Gardens", "description" : "+50% Production per Turn", "turns": 20 , "lossPerTurn": 300}
+		{"age": 0, "name" : "Pyramids", "description" : "x2 Mine <i class='fa fa-gavel'></i> per Turn. +20% <i class='fa fa-gavel'></i> per Turn.", "turns": 20 , "lossPerTurn": 50},
+		{"age": 1, "name" : "Hanging Gardens", "description" : "+50% <i class='fa fa-gavel'></i> per Turn", "turns": 20 , "lossPerTurn": 300}
 	]
 }

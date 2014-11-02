@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('game')
-.controller('TechsCtrl', function($scope, GameService) {	
+.controller('TechsCtrl', function($scope, GameService, TechsService) {	
 	$scope.availableTechs = GameService.availableTechs;
 
 	$scope.ageFilter = function(building) {
@@ -14,7 +14,7 @@ angular.module('game')
 
 	$scope.research = function(tech) {
 	  GameService.setScience(GameService.getScience() - tech.cost);
-	  GameService.setResearchedTech(tech.name);
+	  TechsService.setTechResearched(GameService, tech.name);
 	}
 
 	$scope.techResearched = function(techName) {
