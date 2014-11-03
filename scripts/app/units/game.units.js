@@ -6,6 +6,14 @@ angular.module('game')
 	$scope.enemy = GameService.enemy;
 	$scope.toTrain = 1;
 
+	$scope.getRemainingConquestsThisTurn = function() {
+		return GameService.maxConquests - GameService.currentTurn.numConquests;
+	};
+
+	$scope.previousAgeFilter = function(unit) {
+		return unit.age > -1 && unit.count > 0 && unit.age < GameService.age;
+	};
+
 	$scope.ageFilter = function(unit) {
 		return unit.age === GameService.age;
 	};
@@ -23,13 +31,14 @@ angular.module('game')
 		// 0 is neutral unit Wolf
 		for (var i = 1; i < GameService.availableUnits.length; i++) {
 			if (GameService.availableUnits[i].count > 0) {
-				return true;
+				return $scope.getRemainingConquestsThisTurn() > 0;
 			}
 		}
 		return false;
 	};
 
 	$scope.conquest = function() {
+		GameService.currentTurn.numConquests += 1;
 		if (CombatService.conquest()) {
 			GameService.conquestWon();
 		} else {

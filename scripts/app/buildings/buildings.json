@@ -1,9 +1,25 @@
 {"buildings":
 	[
-	 {"age": 0, "name": "Mine", "productionPerTurn" : 1, "cost": 15},
-	 {"age": 1, "name": "Workshop", "productionPerTurn" : 5, "cost": 100},
+	 {"age": 0, "name": "Mine", 			 "productionPerTurn" : 1, 		"cost": 15},
+	 {"age": 1, "name": "Workshop", 		 "productionPerTurn" : 3, 		"cost": 30},
+	 {"age": 2, "name": "Forge", 			 "productionPerTurn" : 10, 		"cost": 60},
+	 {"age": 3, "name": "Windmill", 		 "productionPerTurn" : 32, 		"cost": 120},
+	 {"age": 4, "name": "Factory", 			 "productionPerTurn" : 100,		"cost": 240},
+	 {"age": 5, "name": "Assembly Line", 	 "productionPerTurn" : 320,		"cost": 480},
+	 {"age": 6, "name": "Nuclear Plant", 	 "productionPerTurn" : 1000,	"cost": 960},
+	 {"age": 7, "name": "Robotic Factory",   "productionPerTurn" : 3200,	"cost": 1920},
+	 {"age": 8, "name": "Biofactory", 		 "productionPerTurn" : 10000,	"cost": 3840},
 
-	 {"age": 0, "name": "Forum", "sciencePerTurn" : 1, "cost": 15},
-	 {"age": 1, "name": "Temple", "sciencePerTurn" : 5, "cost": 100}
+
+	 {"age": 0, "name": "Library", 			 "sciencePerTurn" : 1, 		"cost": 15},
+	 {"age": 1, "name": "Temple", 			 "sciencePerTurn" : 3, 		"cost": 30},
+	 {"age": 2, "name": "University", 		 "sciencePerTurn" : 10,		"cost": 60},
+	 {"age": 3, "name": "Observatory", 		 "sciencePerTurn" : 32,		"cost": 120},
+	 {"age": 4, "name": "Public School", 	 "sciencePerTurn" : 100,	"cost": 240},
+	 {"age": 5, "name": "Research Lab", 	 "sciencePerTurn" : 320,	"cost": 480},
+	 {"age": 6, "name": "Medical Lab", 		 "sciencePerTurn" : 1000,	"cost": 960},
+	 {"age": 7, "name": "Biotech Lab", 		 "sciencePerTurn" : 3200,	"cost": 1920},
+	 {"age": 8, "name": "Genetics Lab", 	 "sciencePerTurn" : 10000,	"cost": 3840}
+
 	 ]
 }

@@ -4,8 +4,12 @@ angular.module('game')
 .controller('BuildingsCtrl', function($scope, GameService) {
 	$scope.availableBuildings = GameService.availableBuildings;	
 
-	$scope.ageFilter = function(building) {
-		return building.age <= GameService.age;
+	$scope.production = function(building) {
+		return building.age <= GameService.age && building.productionPerTurn;
+	};
+
+	$scope.science = function(building) {
+		return building.age <= GameService.age && building.sciencePerTurn;
 	};
 
 	$scope.getProduction = function() {

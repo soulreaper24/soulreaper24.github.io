@@ -1,13 +1,25 @@
 <div class="row">
 	<table>
-		<tr ng-repeat="unit in availableUnits | filter:ageFilter ">
+		<tr ng-repeat="unit in availableUnits | filter:previousAgeFilter ">
 			<td width="100"><h3>{{unit.count}}</h3></td>
 			<td>
-				<h3>{{unit.name}}
+				<h4>{{unit.name}}
 					<small>
 						{{unit.damage}} <i class="fa fa-bolt"></i> {{unit.hp}} <i class="fa fa-heart"></i>
 					</small>
-				</h3>				
+				</h4>				
+			</td>
+			<td width="100"></td>
+			<td width="300"></td>
+		</tr>
+		<tr ng-repeat="unit in availableUnits | filter:ageFilter ">
+			<td width="100"><h3>{{unit.count}}</h3></td>
+			<td>
+				<h4>{{unit.name}}
+					<small>
+						{{unit.damage}} <i class="fa fa-bolt"></i> {{unit.hp}} <i class="fa fa-heart"></i>
+					</small>
+				</h4>				
 			</td>
 			<td width="100"><input type="text" ng-model="toTrain"></input></td>
 			<td width="300"><button class="small right expand" ng-disabled="getProduction() < toTrain * unit.cost" ng-click="train(unit, toTrain);">Train ({{toTrain * unit.cost | number}} <i class="fa fa-gavel"></i>)</button></td>
@@ -20,13 +32,13 @@
 		<tr>
 			<td width="100"><h3>{{enemy.count}}</h3></td>
 			<td>
-				<h3>{{enemy.name}}
+				<h4>{{enemy.name}}
 					<small>
 						{{enemy.damage}} <i class="fa fa-bolt"></i> {{enemy.hp}} <i class="fa fa-heart"></i>
 					</small>
-				</h3>				
+				</h4>				
 			</td>			
-			<td width="300"><button ng-disabled="!canConquest()" class="small right expand" ng-click="conquest()">Conquest</button></td>
+			<td width="300"><button ng-disabled="!canConquest()" class="small right expand" ng-click="conquest()">Conquest ({{getRemainingConquestsThisTurn()}})</button></td>
 		</tr>
 	</table>
 </div>

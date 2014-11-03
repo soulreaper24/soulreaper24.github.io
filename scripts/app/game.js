@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('game')  
-.controller('GameCtrl', function ($scope, $state, GameService, LogService, availableBuildings, availableTechs, availableWonders, availableUnits) {   
+.controller('GameCtrl', function ($scope, $state, $modal, GameService, LogService, availableBuildings, availableTechs, availableWonders, availableUnits) {   
     if (availableBuildings.data) {
       GameService.setAvailableBuildings(availableBuildings.data.buildings);
     }
@@ -71,8 +71,42 @@ angular.module('game')
       return GameService.getSciencePerTurn();
     };
 
+    var numberOfAvailableTechs = function() {
+      var count = 0;
+      for (var i = 0; i < GameService.availableTechs.length; i++) {
+        if (GameService.availableTechs[i].age <= GameService.age) {
+          count ++;
+        }
+      }
+      return count - GameService.techs.length;
+    }
+
     $scope.endTurn = function() {
       GameService.endTurn();
+      if (numberOfAvailableTechs() === 0) {
+        $scope.openModal();
+      }
+    };
+
+    $scope.openModal = function () {
+        
+        var modalInstance = $modal.open({
+            templateUrl: 'scripts/app/newAge.html',
+            controller: function ($scope, $modalInstance) {
+              $scope.entity = {};
+              $scope.ok = function () {
+                  $modalInstance.close($scope.entity);
+              };
+
+              $scope.cancel = function () {
+                  $modalInstance.dismiss('cancel');
+              };
+            }
+        });
+
+        modalInstance.result.then(function (entity) {
+            GameService.newAge();
+        });
     };
   }
 )

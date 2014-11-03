@@ -6,8 +6,8 @@ angular.module('game')
 	var MINIMUM_CONQUEST_REWARD = 200;
 
 	var service = { 
-		turn: {},
-		age : 0, /* 0 Ancient Age, 1 Classical Age, 2 Medieval Age, 3 Renaissance Age,  4 Industrial Age, 5 Modern Age, 6 Atomic Age, 7 Information Age, 8 Future Age */
+		currentTurn: {numConquests : 0},
+		age : 0, /* 0 Ancient Age, 1 Classical Age, 2 Medieval Age, 3 Renaissance Age,  4 Industrial Age, 5 Modern Age, 6 Atomic Age, 7 Information Age, 8 Future Age */		
 		year: -4000, 
 		production: 1000, 
 		productionPerTurn: 0, 
@@ -17,6 +17,8 @@ angular.module('game')
 		scienceMultiplier: 1.0,
 		techs: [],
 		wonders: [],
+
+		maxConquests: 1,
 		negatives: [/* {name, type, turns, lossPerTurn}*/],
 		positives: [/* {name, type, turns, gainPerTurn}*/],
 		enemy: {}
@@ -43,7 +45,7 @@ angular.module('game')
 			units[i].count = 0;
 		}
 		service.availableUnits = units;
-		service.enemy = service.availableUnits[0];
+		service.enemy = angular.copy(service.availableUnits[0]);
 		service.enemy.baseCount = 10;
 		service.enemy.count = 10;
 	};
@@ -196,8 +198,20 @@ angular.module('game')
         }
 
         service.handleYear();        
+        service.currentTurn.numConquests = 0;
         LogService.log('--- Turn End ---');
 	};
+
+	service.newAge = function() {		
+		service.age += 1;
+
+		//combat
+		var oldBaseCount = service.enemy.baseCount;
+		service.enemy = angular.copy(service.availableUnits[service.age]);
+		service.enemy.baseCount = oldBaseCount * 5;
+		service.enemy.count = service.enemy.baseCount;
+		service.maxConquests += 1;
+	}
 
 	return service;
 });

@@ -1,8 +1,8 @@
 <div class="row">
 	<table>
 		<tr ng-repeat="wonder in availableWonders | filter:ageFilter">
-			<td width="150">
-				<h3>{{wonder.name}}</h3>
+			<td width="250">
+				<h4>{{wonder.name}}</h4>
 			</td>
 			<td>
 				<p ng-bind-html="wonder.description"></p>
