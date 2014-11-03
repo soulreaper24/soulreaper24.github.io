@@ -6,6 +6,7 @@ angular.module('game')
 	var MINIMUM_CONQUEST_REWARD = 200;
 
 	var service = { 
+		turn: {},
 		age : 0, /* 0 Ancient Age, 1 Classical Age, 2 Medieval Age, 3 Renaissance Age,  4 Industrial Age, 5 Modern Age, 6 Atomic Age, 7 Information Age, 8 Future Age */
 		year: -4000, 
 		production: 1000, 
@@ -164,6 +165,26 @@ angular.module('game')
 	    }
 	};
 
+	service.handleYear = function() {
+		if (service.year < -1000) {
+			service.year += 40;
+		} else if (service.year < 500) {
+			service.year += 25;
+		} else if (service.year < 1000) {
+			service.year += 20;
+		} else if (service.year < 1500) {
+			service.year += 10;
+		} else if (service.year < 1800) {
+			service.year += 5;
+		} else if (service.year < 1900) {
+			service.year += 2;
+		} else if (service.year < 2020) {
+			service.year += 1;
+		} else {
+			service.year += 0.5;
+		}
+	};
+
 	service.endTurn = function() {
 	    service.setScience(service.getScience() + service.getSciencePerTurn());
         service.setProduction(service.getProduction() + service.getProductionPerTurn());
@@ -174,7 +195,7 @@ angular.module('game')
             LogService.logAlert('Your <i class="fa fa-gavel"></i> is negative. <i class="fa fa-gavel"></i> and <i class="fa fa-flask"></i> per Turn are reduced by 15%.');
         }
 
-        service.year += 4;
+        service.handleYear();        
         LogService.log('--- Turn End ---');
 	};
 

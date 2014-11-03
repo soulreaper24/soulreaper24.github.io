@@ -1,4 +1,4 @@
-<div class="grey-background">		
+<div class="grey-background">
 	<nav class="top-bar" data-topbar role="navigation">
 	  <ul class="title-area">
 	    <li class="name">
@@ -29,7 +29,7 @@
 	<div class="content-block" ui-view>
 	</div>
 
-	<div ng-hide="getStateName() === 'game.log'" class="row">
+	<div ng-hide="getStateName() === 'game' || getStateName() === 'game.log'" class="row">
 		<button class="right" ng-click="endTurn();">End Turn</button>
 	</div>
 	<br />	
