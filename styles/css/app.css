@@ -4,8 +4,14 @@ html, body {
   background-color: #c1c1c1;
 }
 
+.log {
+	max-height: 10rem;
+	height: 10rem;
+	overflow-y: auto;
+}
+
 .sub-nav {
-	margin-bottom: 0.3rem;
+	margin: 0 auto;
 }
 
 .sub-nav dt, .sub-nav dd, .sub-nav li {
@@ -21,7 +27,8 @@ html, body {
 }
 
 .white-button {
-	padding: 10px 40px !important;
+	padding: 8px 40px !important;
+	margin-top: 2px !important;
 	color: white !important;
 }
 

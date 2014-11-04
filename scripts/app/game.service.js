@@ -2,11 +2,16 @@
 
 angular.module('game')  
 .service('GameService', function(ChanceService, LogService, WondersService, TechsService) {
+	
 	var NEGATIVE_PPT_COEFF = 0.85;
 	var MINIMUM_CONQUEST_REWARD = 50;
 	var ENEMY_MULTIPLIER = 3;
 
 	var service = { 
+		GROWTH_COEFF: 1.15,
+
+		conquestsThisAge: 0,
+		techsThisAge: 0,
 		currentTurn: {numConquests : 0},
 		age : 0, 
 		year: -4000, 
@@ -152,11 +157,11 @@ angular.module('game')
 		LogService.logSuccess('Your army won.');
 
 		//handout rewards
-		var productionWon = getPositiveProductionPerTurn();
+		var productionWon = getPositiveProductionPerTurn() * service.productionMultiplier;
 		if (ChanceService.tinyChance()) {
-			productionWon *= 10;
+			productionWon *= 3;
 		} else if (ChanceService.mediumChance()) {
-			productionWon *= 2;
+			productionWon *= servce.GROWTH_COEFF;
 		} 
 
 		productionWon = Math.max(productionWon, MINIMUM_CONQUEST_REWARD);
@@ -165,8 +170,9 @@ angular.module('game')
 		LogService.logSuccess('Your army salvaged ' + productionWon + '<i class="fa fa-gavel"></i>.');
 		service.setProduction(service.getProduction() + productionWon);
 
-		// increase enemy strength		
-		service.enemy.count = Math.ceil(service.enemy.count * 1.1);
+		// increase enemy strength
+		service.conquestsThisAge++;
+		service.enemy.count = Math.ceil(service.enemy.baseCount * Math.pow(service.GROWTH_COEFF, service.conquestsThisAge));
 	};
 
 	service.conquestLost = function() {
@@ -252,6 +258,9 @@ angular.module('game')
 			service.availableUnits[service.age + 1].name = service.availableUnits[service.age + 1].eliteName;
 			service.availableUnits[service.age + 1].damage = Math.ceil(1.5 * service.availableUnits[service.age + 1].damage);
 		}
+
+		service.conquestsThisAge = 0;
+		service.techsThisAge = 0;
 	}
 
 	return service;

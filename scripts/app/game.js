@@ -58,14 +58,14 @@ angular.module('game')
         }
       }
       return count - GameService.techs.length;
-    }
+    };
 
     $scope.endTurn = function() {
       GameService.endTurn();
       if (numberOfAvailableTechs() === 0) {
         $scope.openModal();
       }
-    };
+    };    
 
     $scope.openModal = function () {        
         var modalInstance = $modal.open({
@@ -89,6 +89,10 @@ angular.module('game')
         modalInstance.result.then(function (options) {
             GameService.newAge(options);
         });
+    };
+
+    $scope.getLog = function() {      
+      return LogService.getLog();
     };
   }
 )
@@ -128,13 +132,5 @@ angular.module('game')
         }
       },
       controller: 'GameCtrl'
-    }).state('game.log', {
-      url: '/log',
-      templateUrl: 'scripts/app/log.html',
-      controller: function($scope, LogService) {
-        $scope.getLog = function() {
-          return LogService.getLog();
-        };
-      }
     });
 });

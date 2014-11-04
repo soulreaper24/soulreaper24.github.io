@@ -36,7 +36,7 @@ angular.module('game')
 	};
 
 	var weAttack = function(ourDamage) {
-		var enemyLoss = Math.floor(ourDamage / GameService.enemy.hp);
+		var enemyLoss = Math.ceil(ourDamage / GameService.enemy.hp);
 		if (enemyLoss > GameService.enemy.count) {
 			enemyLoss = GameService.enemy.count;			
 		} 
@@ -45,16 +45,18 @@ angular.module('game')
 	};
 
 	var enemyAttack = function(enemyDamage) {
-		while (enemyDamage > 0 && getOurHp() > 0) {
+		while (enemyDamage > 0 && getOurHp() > 0) {			
 			for (var i = 1; i < GameService.availableUnits.length; i++) {
+				var dmgDealt = enemyDamage;
 				if (GameService.availableUnits[i].count > 0) {
-					var unitLoss = Math.floor(enemyDamage / GameService.availableUnits[i].hp);
+					var unitLoss = Math.ceil(enemyDamage / GameService.availableUnits[i].hp);
 					if (unitLoss > GameService.availableUnits[i].count) {
 						unitLoss = GameService.availableUnits[i].count;
-						enemyDamage -= GameService.availableUnits[i].count * GameService.availableUnits[i].hp;						
+						enemyDamage -= GameService.availableUnits[i].count * GameService.availableUnits[i].hp;
+						dmgDealt = GameService.availableUnits[i].count * GameService.availableUnits[i].hp;
 					} 
 					GameService.availableUnits[i].count -= unitLoss;
-					LogService.log('Enemy dealt ' + enemyDamage +' damage. You lost ' + unitLoss + ' ' + GameService.availableUnits[i].name + ' units.');
+					LogService.log('Enemy dealt ' + dmgDealt +' damage. Your army lost ' + unitLoss + ' ' + GameService.availableUnits[i].name + ' units.');
 					if (GameService.availableUnits[i].count > 0) {
 						return;
 					}

@@ -2,14 +2,14 @@
 
 angular.module('game')  
 .service('LogService', function($filter) {
-	var MAX_MESSAGES  = 30;
+	var MAX_MESSAGES  = 100;
 
 	var service = {logMessages : []};
 
 	service.getLog = function() {
 		var logMsg = '';
 		for (var i = 0; i < service.logMessages.length; i++) {
-			logMsg += '[' + $filter('date')(new Date(), 'dd-MM-yyyy hh:mm:ss') + '] ' + service.logMessages[i] + '<br/>';
+			logMsg += service.logMessages[i] + '<br/>';
 		}
 		return logMsg;
 	}	
@@ -18,7 +18,7 @@ angular.module('game')
 		if (service.logMessages.length > MAX_MESSAGES) {			
 			service.logMessages.splice(0, 1);
 		}	
-		service.logMessages.push(msg);	
+		service.logMessages.push('[' + $filter('date')(new Date(), 'HH:mm:ss') + '] ' + msg);	
 	};
 
 	service.logAlert = function(msg) {

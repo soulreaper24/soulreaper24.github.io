@@ -8,12 +8,7 @@
 				<p ng-bind-html="tech.description"></p>
 			</td>
 			<td width="250">
-				<div ng-hide="techResearched(tech.name)">
-					<button class="small right expand" ng-disabled="getScience() < tech.cost" ng-click="research(tech);">Research ({{tech.cost | number}} <i class="fa fa-flask"></i>)</button>			
-				</div>
-				<div class="right" ng-show="techResearched(tech.name)">
-					<h4>Researched</h4>
-				</div>
+				<button class="small right expand" ng-disabled="getScience() < getTechCost(tech)" ng-click="research(tech);">Research ({{getTechCost(tech) | number}} <i class="fa fa-flask"></i>)</button>			
 			</td>
 		</tr>
 		<tr ng-repeat="tech in availableTechs | filter:researched">			
@@ -23,11 +18,8 @@
 			<td>
 				<p ng-bind-html="tech.description"></p>
 			</td>
-			<td width="250">
-				<div ng-hide="techResearched(tech.name)">
-					<button class="small right expand" ng-disabled="getScience() < tech.cost" ng-click="research(tech);">Research ({{tech.cost | number}} <i class="fa fa-flask"></i>)</button>			
-				</div>
-				<div class="right" ng-show="techResearched(tech.name)">
+			<td width="250">				
+				<div class="right">
 					<h4>Researched</h4>
 				</div>
 			</td>

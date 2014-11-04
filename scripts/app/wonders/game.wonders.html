@@ -9,7 +9,7 @@
 			</td>
 			<td width="300">
 				<div ng-show="wonderBuilding(wonder) >= 0">
-					<progressbar max="100" class="expand" value="wonderBuilding(wonder)" type="success"></progressbar>
+					<progressbar max="100" class="expand" value="wonderBuilding(wonder)" type="success">&nbsp;Constructing</progressbar>
 				</div>
 				<div ng-show="wonderBuilding(wonder) < 0">
 					<button class="right expand small" ng-click="build(wonder);">Build ({{wonder.lossPerTurn | number}}<i class="fa fa-gavel"></i> per Turn for {{wonder.turns}} Turns)</button>
