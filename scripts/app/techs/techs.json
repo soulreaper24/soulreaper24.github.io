@@ -1,11 +1,11 @@
 {"techs":
 	[
-		{"age": 0, "name" : "Mining", "description" : "x2 <b>Mine</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
-		{"age": 0, "name" : "Agriculture", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
-		{"age": 0, "name" : "Animal Husbandry", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
-		{"age": 0, "name" : "Bronze Works", "description" : "x2 <b>Mine</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
-		{"age": 0, "name" : "Writing", "description" : "x2 <b>Library</b> <i class='fa fa-flask'></i> per Turn", "cost" : 200},
-		{"age": 0, "name" : "Calendar", "description" : "x2 <b>Library</b> <i class='fa fa-flask'></i> per Turn", "cost" : 200},
+		{"age": 0, "name" : "Mining", "description" : "x2 <b>Mine</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 100},
+		{"age": 0, "name" : "Agriculture", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 100},
+		{"age": 0, "name" : "Animal Husbandry", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 100},
+		{"age": 0, "name" : "Bronze Works", "description" : "x2 <b>Mine</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 100},
+		{"age": 0, "name" : "Writing", "description" : "x2 <b>Library</b> <i class='fa fa-flask'></i> per Turn", "cost" : 100},
+		{"age": 0, "name" : "Calendar", "description" : "x2 <b>Library</b> <i class='fa fa-flask'></i> per Turn", "cost" : 100},
 
 		{"age": 1, "name" : "Engineering", "description" : "x2 <b>Workshop</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 500},
 		{"age": 1, "name" : "Currency", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 500},

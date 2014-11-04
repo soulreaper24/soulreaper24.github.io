@@ -3,24 +3,24 @@
 angular.module('game')  
 .service('GameService', function(ChanceService, LogService, WondersService, TechsService) {
 	var NEGATIVE_PPT_COEFF = 0.85;
-	var MINIMUM_CONQUEST_REWARD = 100;
+	var MINIMUM_CONQUEST_REWARD = 50;
 	var ENEMY_MULTIPLIER = 3;
 
 	var service = { 
 		currentTurn: {numConquests : 0},
 		age : 0, 
 		year: -4000, 
-		production: 5, 
+		production: 100, 
 		productionPerTurn: 0, 
 		productionMultiplier: 1.0,
-		science: 5, 
+		science: 100, 
 		sciencePerTurn: 0, 
 		scienceMultiplier: 1.0,
 		techs: [],
 		wonders: [],
 
 		maxConquests: 1,
-		damageMultiplier : 2.0,
+		damageMultiplier : 1.0,
 		negatives: [/* {name, type, turns, lossPerTurn}*/],
 		positives: [/* {name, type, turns, gainPerTurn}*/],
 		enemy: {}
@@ -74,8 +74,8 @@ angular.module('game')
 		}
 		service.availableUnits = units;
 		service.enemy = angular.copy(service.availableUnits[0]);
-		service.enemy.baseCount = 10;
-		service.enemy.count = 10;
+		service.enemy.baseCount = 5;
+		service.enemy.count = 5;
 	};
 
 	service.getProduction = function() {
@@ -165,9 +165,8 @@ angular.module('game')
 		LogService.logSuccess('Your army salvaged ' + productionWon + '<i class="fa fa-gavel"></i>.');
 		service.setProduction(service.getProduction() + productionWon);
 
-		// increase enemy strength
-		service.enemy.baseCount = Math.ceil(service.enemy.baseCount * 1.1);
-		service.enemy.count = service.enemy.baseCount;
+		// increase enemy strength		
+		service.enemy.count = Math.ceil(service.enemy.count * 1.1);
 	};
 
 	service.conquestLost = function() {

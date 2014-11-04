@@ -1,13 +1,13 @@
 {"units":
 	[
 		{"age": -1, "name": "Wolf", 	    "eliteName": "", 				 "hp": 3,       "damage": 1, 		"cost" : 1},
-		{"age": 0,  "name": "Warrior",      "eliteName": "", 			 	 "hp": 5, 		"damage": 2, 		"cost" : 20},
-		{"age": 1,  "name": "Swordman",     "eliteName": "Legion", 		 	 "hp": 8, 		"damage": 5, 		"cost" : 36},
-		{"age": 2,  "name": "Knight",       "eliteName": "Conquistador", 	 "hp": 14,		"damage": 11, 		"cost" : 68},
-		{"age": 3,  "name": "Musketman",    "eliteName": "Musketeer",    	 "hp": 22,		"damage": 25, 		"cost" : 124},
-		{"age": 4,  "name": "Cavalry",      "eliteName": "Cossack", 	 	 "hp": 32, 		"damage": 55, 		"cost" : 230},
-		{"age": 5,  "name": "Infantry",     "eliteName": "Marine", 		 	 "hp": 44, 	    "damage": 120, 		"cost" : 450},
-		{"age": 6,  "name": "Tank",         "eliteName": "Panzer", 		 	 "hp": 156,		"damage": 256, 		"cost" : 860},
+		{"age": 0,  "name": "Warrior",      "eliteName": "", 			 	 "hp": 5, 		"damage": 2, 		"cost" : 10},
+		{"age": 1,  "name": "Swordman",     "eliteName": "Legion", 		 	 "hp": 8, 		"damage": 5, 		"cost" : 21},
+		{"age": 2,  "name": "Knight",       "eliteName": "Conquistador", 	 "hp": 14,		"damage": 11, 		"cost" : 58},
+		{"age": 3,  "name": "Musketman",    "eliteName": "Musketeer",    	 "hp": 22,		"damage": 25, 		"cost" : 114},
+		{"age": 4,  "name": "Cavalry",      "eliteName": "Cossack", 	 	 "hp": 32, 		"damage": 55, 		"cost" : 210},
+		{"age": 5,  "name": "Infantry",     "eliteName": "Marine", 		 	 "hp": 44, 	    "damage": 120, 		"cost" : 410},
+		{"age": 6,  "name": "Tank",         "eliteName": "Panzer", 		 	 "hp": 156,		"damage": 256, 		"cost" : 820},
 		{"age": 7,  "name": "Modern Armor", "eliteName": "K2 Black Panther", "hp": 250, 	"damage": 550, 		"cost" : 1600},
 		{"age": 8,  "name": "Battlesuit",   "eliteName": "Gundam", 			 "hp": 600, 	"damage": 1500, 	"cost" : 3500}
 	]

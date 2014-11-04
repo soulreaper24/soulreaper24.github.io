@@ -2,7 +2,7 @@
 
 angular.module('game')  
 .service('LogService', function($filter) {
-	var MAX_MESSAGES  = 50;
+	var MAX_MESSAGES  = 30;
 
 	var service = {logMessages : []};
 
