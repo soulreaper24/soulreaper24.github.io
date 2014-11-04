@@ -31,28 +31,7 @@ angular.module('game')
     };
 
     $scope.getAge = function() {
-      var age;
-      switch (GameService.age) {
-        case 0: age = 'Ancient Age';
-                break;
-        case 1: age = 'Classical Age';
-                break;
-        case 2: age = 'Medieval Age';
-                break;
-        case 3: age = 'Renaissance Age';
-                break;
-        case 4: age = 'Industrial Age';
-                break;
-        case 5: age = 'Modern Age';
-                break;
-        case 6: age = 'Atomic Age';
-                break;
-        case 7: age = 'Infomrmation Age';
-                break;
-        case 8: age = 'Future Age';
-                break;      
-      }
-      return age;
+      return GameService.getAgeName(GameService.age);
     };
 
     $scope.getProduction = function() {
@@ -88,14 +67,17 @@ angular.module('game')
       }
     };
 
-    $scope.openModal = function () {
-        
+    $scope.openModal = function () {        
         var modalInstance = $modal.open({
             templateUrl: 'scripts/app/newAge.html',
-            controller: function ($scope, $modalInstance) {
-              $scope.entity = {};
+            controller: function ($scope, $modalInstance, GameService) {
+              $scope.options = {production: false, science: false, units: false};
+              $scope.nextAge = GameService.getAgeName(GameService.age + 1);
+              $scope.unitName = GameService.availableUnits[GameService.age + 2].name;
+              $scope.enemyName = GameService.availableUnits[GameService.age + 1].name;
+
               $scope.ok = function () {
-                  $modalInstance.close($scope.entity);
+                  $modalInstance.close($scope.options);
               };
 
               $scope.cancel = function () {
@@ -104,8 +86,8 @@ angular.module('game')
             }
         });
 
-        modalInstance.result.then(function (entity) {
-            GameService.newAge();
+        modalInstance.result.then(function (options) {
+            GameService.newAge(options);
         });
     };
   }

@@ -1,10 +1,23 @@
 html, body {
   height: 100%; 
+  max-height: 100%;  
+  background-color: #c1c1c1;
 }
 
-.grey-background {
-	background-color: #c1c1c1;
-	height: 100%;	
+.sub-nav {
+	margin-bottom: 0.3rem;
+}
+
+.sub-nav dt, .sub-nav dd, .sub-nav li {
+	font-size: 1.4rem;
+}
+
+.sub-nav dt a, .sub-nav dd a, .sub-nav li a {
+	color: #008cba;
+}
+
+.sub-nav dt a:hover, .sub-nav dd a:hover, .sub-nav li a:hover {
+	color: white;
 }
 
 .inline-list > li {

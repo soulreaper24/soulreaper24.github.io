@@ -3,7 +3,8 @@
 angular.module('game')  
 .service('GameService', function(ChanceService, LogService, WondersService, TechsService) {
 	var NEGATIVE_PPT_COEFF = 0.85;
-	var MINIMUM_CONQUEST_REWARD = 200;
+	var MINIMUM_CONQUEST_REWARD = 100;
+	var ENEMY_MULTIPLIER = 3;
 
 	var service = { 
 		currentTurn: {numConquests : 0},
@@ -12,7 +13,7 @@ angular.module('game')
 		production: 1000, 
 		productionPerTurn: 0, 
 		productionMultiplier: 1.0,
-		science: 1000, 
+		science: 10000, 
 		sciencePerTurn: 0, 
 		scienceMultiplier: 1.0,
 		techs: [],
@@ -23,6 +24,31 @@ angular.module('game')
 		positives: [/* {name, type, turns, gainPerTurn}*/],
 		enemy: {}
 	};
+
+	service.getAgeName = function(age) {
+	  var ageName;
+      switch (age) {
+        case 0: ageName = 'Ancient Age';
+                break;
+        case 1: ageName = 'Classical Age';
+                break;
+        case 2: ageName = 'Medieval Age';
+                break;
+        case 3: ageName = 'Renaissance Age';
+                break;
+        case 4: ageName = 'Industrial Age';
+                break;
+        case 5: ageName = 'Modern Age';
+                break;
+        case 6: ageName = 'Atomic Age';
+                break;
+        case 7: ageName = 'Infomrmation Age';
+                break;
+        case 8: ageName = 'Future Age';
+                break;      
+      }
+      return ageName;
+	}
 
 	service.findBuildingWithName = function(name) {
 		for (var i = 0; i < service.availableBuildings.length; i++) {
@@ -43,6 +69,7 @@ angular.module('game')
 	service.setAvailableUnits = function(units) {
 		for (var i = 0; i < units.length; i++) {			
 			units[i].count = 0;
+			units[i].normalName = units[i].name;
 		}
 		service.availableUnits = units;
 		service.enemy = angular.copy(service.availableUnits[0]);
@@ -202,15 +229,29 @@ angular.module('game')
         LogService.log('--- Turn End ---');
 	};
 
-	service.newAge = function() {		
-		service.age += 1;
+	service.newAge = function(options) {		
+		service.age += 1;		
 
 		//combat
 		var oldBaseCount = service.enemy.baseCount;
+		if (service.availableUnits[service.age].name === service.availableUnits[service.age].eliteName) {
+			service.availableUnits[service.age].name = service.availableUnits[service.age].normalName;
+			service.availableUnits[service.age].damage = Math.floor(service.availableUnits[service.age].damage / 1.5);
+		}
 		service.enemy = angular.copy(service.availableUnits[service.age]);
-		service.enemy.baseCount = oldBaseCount * 5;
+		service.enemy.baseCount = oldBaseCount * ENEMY_MULTIPLIER;
 		service.enemy.count = service.enemy.baseCount;
 		service.maxConquests += 1;
+
+		if (options.production) {
+			service.productionMultiplier *= 1.1;
+		} else if (options.science) {
+			service.scienceMultiplier *= 1.1;
+		} else {
+			service.maxConquests += 1;
+			service.availableUnits[service.age + 1].name = service.availableUnits[service.age + 1].eliteName;
+			service.availableUnits[service.age + 1].damage = Math.ceil(1.5 * service.availableUnits[service.age + 1].damage);
+		}
 	}
 
 	return service;

@@ -3,7 +3,9 @@
 angular.module('game')
 .controller('UnitsCtrl', function($scope, GameService, CombatService) {
 	$scope.availableUnits = GameService.availableUnits;	
-	$scope.enemy = GameService.enemy;
+	$scope.getEnemy = function () {
+		return GameService.enemy;
+	}
 	$scope.toTrain = 1;
 
 	$scope.getRemainingConquestsThisTurn = function() {

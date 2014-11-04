@@ -29,9 +29,15 @@ angular.module('game')
 })
 .config(function($stateProvider) {
   $stateProvider          
-    .state('game.buildings', {
-      url: '/buildings',
-      templateUrl: 'scripts/app/buildings/game.buildings.html',      
+    .state('game.productionBuildings', {
+      url: '/productionBuildings',
+      templateUrl: 'scripts/app/buildings/game.productionBuildings.html',      
       controller: 'BuildingsCtrl'
-    });
+    })
+    .state('game.scienceBuildings', {
+      url: '/scienceBuildings',
+      templateUrl: 'scripts/app/buildings/game.scienceBuildings.html',      
+      controller: 'BuildingsCtrl'
+    })
+    ;
 });

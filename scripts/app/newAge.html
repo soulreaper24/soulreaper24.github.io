@@ -1,13 +1,15 @@
 <div class="row">
-	<h3>Congratulations! You have reached a new Age</h3>
+	<h3>Congratulations! You have reached {{nextAge}}</h3>
 	<ul>
-		<li>a</li>
-		<li>b</li>
-		<li>c</li>
+		<li>Age Unit is <b>{{unitName}}</b></li>
+		<li>Enemy Unit is <b>{{enemyName}}</b></li>
+		<li>Number of Conquests per Turn increased by <b>1</b></li>
 	</ul>
 </div>
 <div class="row">
 	<div class="right">
-	    <button class="strong" ng-click="ok()">Continue</button>
+	    <button class="strong" ng-click="options.production=true; ok()">Permanent +10% <i class="fa fa-gavel"></i></button>
+	    <button class="strong" ng-click="options.science=true; ok()">Permanent +10% <i class="fa fa-flask"></i></button>
+	    <button class="strong" ng-click="options.units=true; ok()">Elite Unit for Age, +1 Conquest per Turn</button>
 	</div>
 </div>
