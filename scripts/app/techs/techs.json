@@ -1,6 +1,75 @@
 {"techs":
 	[
-		{"age": 0, "name" : "Mining", "description" : "x2 Mine <i class='fa fa-gavel'></i> per Turn", "cost" : 500},
-		{"age": 1, "name" : "Engineering", "description" : "x2 Workshop <i class='fa fa-gavel'></i> per Turn", "cost" : 2000}
-	]
+		{"age": 0, "name" : "Mining", "description" : "x2 <b>Mine</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
+		{"age": 0, "name" : "Agriculture", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
+		{"age": 0, "name" : "Animal Husbandry", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
+		{"age": 0, "name" : "Bronze Works", "description" : "x2 <b>Mine</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 200},
+		{"age": 0, "name" : "Writing", "description" : "x2 <b>Library</b> <i class='fa fa-flask'></i> per Turn", "cost" : 200},
+		{"age": 0, "name" : "Calendar", "description" : "x2 <b>Library</b> <i class='fa fa-flask'></i> per Turn", "cost" : 200},
+
+		{"age": 1, "name" : "Engineering", "description" : "x2 <b>Workshop</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 500},
+		{"age": 1, "name" : "Currency", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 500},
+		{"age": 1, "name" : "Iron Works", "description" : "x2 <b>Workshop</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 500},
+		{"age": 1, "name" : "Mathematics", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "cost" : 500},
+		{"age": 1, "name" : "Philosophy", "description" : "x4 <b>Temple</b> <i class='fa fa-flask'></i> per Turn", "cost" : 900},
+
+		{"age": 2, "name" : "Steel Works", "description" : "x2 <b>Forge</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 1200},
+		{"age": 2, "name" : "Machinery", "description" : "x2 <b>Forge</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 1200},
+		{"age": 2, "name" : "Metal Casting", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 1200},
+		{"age": 2, "name" : "Physics", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "cost" : 1200},
+		{"age": 2, "name" : "Education", "description" : "x2 <b>University</b> <i class='fa fa-flask'></i> per Turn", "cost" : 1200},
+		{"age": 2, "name" : "Theology", "description" : "x2 <b>University</b> <i class='fa fa-flask'></i> per Turn", "cost" : 1200},
+		{"age": 2, "name" : "Chivalry", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 1200},
+
+		{"age": 3, "name" : "Banking", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 2700},
+		{"age": 3, "name" : "Archietecture", "description" : "x2 <b>Windmill</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 2700},
+		{"age": 3, "name" : "Economics", "description" : "x2 <b>Windmill</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 2700},
+		{"age": 3, "name" : "Chemistry", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "cost" : 2700},
+		{"age": 3, "name" : "Astronomy", "description" : "x2 <b>Observatory</b> <i class='fa fa-flask'></i> per Turn", "cost" : 2700},
+		{"age": 3, "name" : "Printing Press", "description" : "x2 <b>Observatory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 2700},
+		{"age": 3, "name" : "Metallurgy", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 2700},
+		{"age": 3, "name" : "Gunpowder", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 2700},
+
+		{"age": 4, "name" : "Fertilizer", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 5800},
+		{"age": 4, "name" : "Industrialization", "description" : "x2 <b>Fatory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 5800},
+		{"age": 4, "name" : "Electricity", "description" : "+20% <i class='fa fa-gavel'></i> per Turn<br/> +20% <i class='fa fa-flask'></i> per Turn", "cost" : 10500},		
+		{"age": 4, "name" : "Steam Power", "description" : "x2 <b>Fatory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 5800},		
+		{"age": 4, "name" : "Scientific Theory", "description" : "x4 <b>Public School</b> <i class='fa fa-flask'></i> per Turn", "cost" : 10500},
+		{"age": 4, "name" : "Biology", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "cost" : 5800},
+		{"age": 4, "name" : "Rifling", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 5800},
+		{"age": 4, "name" : "Dynamite", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 5800},
+		{"age": 4, "name" : "Military Science", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 5800},
+
+		{"age": 5, "name" : "Refrigeration", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 12100},
+		{"age": 5, "name" : "Railroad", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "cost" : 12100},
+		{"age": 5, "name" : "Eletronics", "description" : "+20% <i class='fa fa-gavel'></i> per Turn<br/> +20% <i class='fa fa-flask'></i> per Turn", "cost" : 22000},
+		{"age": 5, "name" : "Flight", "description" : "+20% <i class='fa fa-gavel'></i> per Turn<br/> +20% <i class='fa fa-flask'></i> per Turn", "cost" : 22000},
+		{"age": 5, "name" : "Replaceable Parts", "description" : "x2 <b>Assembly Line</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 12100},
+		{"age": 5, "name" : "Plastic", "description" : "x2 <b>Assembly Line</b> <i class='fa fa-gavel'></i> per Turn<br/> x2 <b>Research Lab</b> <i class='fa fa-flask'></i> per Turn", "cost" : 22000},
+		{"age": 5, "name" : "Combustion", "description" : "x2 <b>Research Lab</b> <i class='fa fa-flask'></i> per Turn<br/> +20% All Unit <i class='fa fa-bolt'></i>", "cost" : 22000},		
+		{"age": 5, "name" : "Ballistics", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 12100},
+
+		{"age": 6, "name" : "Computers", "description" : "+20% <i class='fa fa-gavel'></i> per Turn<br/> +20% <i class='fa fa-flask'></i> per Turn", "cost" : 46000},
+		{"age": 6, "name" : "Penicillin", "description" : "x2 <b>Medical Lab</b> <i class='fa fa-flask'></i> per Turn", "cost" : 24800},
+		{"age": 6, "name" : "Atomic Theory", "description" : "x4 <b>Nuclear Plant</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 46000},
+		{"age": 6, "name" : "Radar", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "cost" : 24800},
+		{"age": 6, "name" : "Ecology", "description" : "x2 <b>Medical Lab</b><i class='fa fa-flask'></i> per Turn", "cost" : 24800},
+		{"age": 6, "name" : "Nuclear Fission", "description" : "+20% <i class='fa fa-flask'></i> per Turn<br/> +20% All Unit <i class='fa fa-bolt'></i>", "cost" : 46000},
+		{"age": 6, "name" : "Rocketry", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 24800},
+		{"age": 6, "name" : "Combined Arms", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 24800},
+
+		{"age": 7, "name" : "Robotics", "description" : "x2 <b>Robotic Factory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 50500},
+		{"age": 7, "name" : "The Internet", "description" : "+20% <i class='fa fa-gavel'></i> per Turn<br/> +20% <i class='fa fa-flask'></i> per Turn", "cost" : 98000},
+		{"age": 7, "name" : "Nanotechnology", "description" : "x2 <b>Biotech Lab</b> <i class='fa fa-flask'></i> per Turn", "cost" : 50500},
+		{"age": 7, "name" : "Particle Physics", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "cost" : 50500},
+		{"age": 7, "name" : "Globalization", "description" : "x2 <b>Robotic Factory</b> <i class='fa fa-gavel'></i> per Turn<br/> x2 <b>Biotech Lab</b> <i class='fa fa-flask'></i> per Turn", "cost" : 98000},
+		{"age": 7, "name" : "Telecommunications", "description" : "+20% <i class='fa fa-flask'></i> per Turn<br/> +20% All Unit <i class='fa fa-bolt'></i>", "cost" : 98000},
+		{"age": 7, "name" : "Satellites", "description" : "+20% <i class='fa fa-flask'></i> per Turn<br/> +20% All Unit <i class='fa fa-bolt'></i>", "cost" : 98000},
+		{"age": 7, "name" : "Lasers", "description" : "+20% <i class='fa fa-flask'></i> per Turn<br/> +20% All Unit <i class='fa fa-bolt'></i>", "cost" : 98000},
+		{"age": 7, "name" : "Mobile Tactics", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 50500},
+		{"age": 7, "name" : "Advanced Ballistics", "description" : "+20% All Unit <i class='fa fa-bolt'></i>", "cost" : 50500},
+
+	    {"age": 8, "name" : "Genetic Engineering", "description" : "x4 <b>Genetic Lab</b> <i class='fa fa-flask'></i> per Turn", "cost" : 205000},
+	    {"age": 8, "name" : "Sentient AI", "description" : "x4 <b>Biofactory</b> <i class='fa fa-gavel'></i> per Turn<br />", "cost" : 205000}
+   ]
 }

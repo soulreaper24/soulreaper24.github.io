@@ -1,6 +1,6 @@
 <div class="row">
 	<table>
-		<tr ng-repeat="wonder in availableWonders | filter:ageFilter">
+		<tr ng-repeat="wonder in availableWonders | filter:notConstructed">
 			<td width="250">
 				<h4>{{wonder.name}}</h4>
 			</td>
@@ -11,12 +11,20 @@
 				<div ng-show="wonderBuilding(wonder) >= 0">
 					<progressbar max="100" class="expand" value="wonderBuilding(wonder)" type="success"></progressbar>
 				</div>
-				<div ng-show="!wonderBuilt(wonder.name) && wonderBuilding(wonder) < 0">
+				<div ng-show="wonderBuilding(wonder) < 0">
 					<button class="right expand small" ng-click="build(wonder);">Build ({{wonder.lossPerTurn | number}}<i class="fa fa-gavel"></i> per Turn for {{wonder.turns}} Turns)</button>
-				</div>
-				<div ng-show="wonderBuilt(wonder.name)">
-					<h4>Constructed</h4>
-				</div>
+				</div>				
+			</td>			
+		</tr>
+		<tr ng-repeat="wonder in availableWonders | filter:constructed">
+			<td width="250">
+				<h4>{{wonder.name}}</h4>
+			</td>
+			<td>
+				<p ng-bind-html="wonder.description"></p>
+			</td>
+			<td width="300">								
+				<h4>Constructed</h4>
 			</td>			
 		</tr>
 	</table>

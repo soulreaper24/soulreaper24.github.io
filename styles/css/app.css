@@ -20,6 +20,11 @@ html, body {
 	color: white;
 }
 
+.white-button {
+	padding: 10px 40px !important;
+	color: white !important;
+}
+
 .inline-list > li {
 	margin-right: -0.8rem;
 	margin-left: 0.8rem;

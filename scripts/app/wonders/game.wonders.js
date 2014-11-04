@@ -2,10 +2,14 @@
 
 angular.module('game')
 .controller('WondersCtrl', function($scope, GameService) {	
-	$scope.availableWonders = GameService.availableWonders;
+	$scope.availableWonders = GameService.availableWonders;	
 
-	$scope.ageFilter = function(building) {
-		return building.age <= GameService.age;
+	$scope.constructed = function(wonder) {
+		return wonder.age <= GameService.age && GameService.wonders.indexOf(wonder.name) > -1;
+	};
+
+	$scope.notConstructed = function(wonder) {
+		return wonder.age <= GameService.age && GameService.wonders.indexOf(wonder.name) === -1;
 	};
 
 	$scope.getProduction = function() {
@@ -23,10 +27,6 @@ angular.module('game')
 			}
 		}
 		return -1;
-	}
-
-	$scope.wonderBuilt = function(wonderName) {
-		return GameService.wonders.indexOf(wonderName) > -1;
 	}
 })
 .config(function($stateProvider) {

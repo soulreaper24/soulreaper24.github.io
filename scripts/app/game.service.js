@@ -8,7 +8,7 @@ angular.module('game')
 
 	var service = { 
 		currentTurn: {numConquests : 0},
-		age : 0, /* 0 Ancient Age, 1 Classical Age, 2 Medieval Age, 3 Renaissance Age,  4 Industrial Age, 5 Modern Age, 6 Atomic Age, 7 Information Age, 8 Future Age */		
+		age : 0, 
 		year: -4000, 
 		production: 1000, 
 		productionPerTurn: 0, 
@@ -20,6 +20,7 @@ angular.module('game')
 		wonders: [],
 
 		maxConquests: 1,
+		damageMultiplier : 2.0,
 		negatives: [/* {name, type, turns, lossPerTurn}*/],
 		positives: [/* {name, type, turns, gainPerTurn}*/],
 		enemy: {}
@@ -136,7 +137,7 @@ angular.module('game')
 				total += service.availableBuildings[i].count * service.availableBuildings[i].sciencePerTurn * service.availableBuildings[i].multiplier;
 			}
 		}
-		if (service.getProductionPerTurn() > 0) {
+		if (service.getProductionPerTurn() >= 0) {
 			return Math.ceil(total * service.scienceMultiplier);
 		} else {
 			return Math.ceil(total * service.scienceMultiplier * NEGATIVE_PPT_COEFF);

@@ -3,6 +3,11 @@
 angular.module('game')
 .controller('UnitsCtrl', function($scope, GameService, CombatService) {
 	$scope.availableUnits = GameService.availableUnits;	
+
+	$scope.getUnitDamage = function(unit) {
+		return Math.ceil(unit.damage * GameService.damageMultiplier);
+	}
+
 	$scope.getEnemy = function () {
 		return GameService.enemy;
 	}

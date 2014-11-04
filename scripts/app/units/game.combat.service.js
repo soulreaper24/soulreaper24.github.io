@@ -9,7 +9,7 @@ angular.module('game')
 		var damage = 0;
 		for (var i = 1; i < GameService.availableUnits.length; i++) {
 			if (GameService.availableUnits[i].count > 0) {
-				damage += GameService.availableUnits[i].count * GameService.availableUnits[i].damage;
+				damage += GameService.availableUnits[i].count * GameService.availableUnits[i].damage * GameService.damageMultiplier;
 			}
 		}
 		return Math.ceil(ChanceService.getRandomInRange(damage * 0.9, damage * 1.1));
