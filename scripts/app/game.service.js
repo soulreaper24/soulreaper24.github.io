@@ -26,7 +26,7 @@ angular.module('game')
 		wonders: [],
 
 		maxConquests: 1,
-		damageMultiplier : 7.5,
+		damageMultiplier : 1.0,
 		negatives: [/* {name, type, turns, lossPerTurn}*/],
 		positives: [/* {name, type, turns, gainPerTurn}*/],
 		enemy: [],
