@@ -5,7 +5,10 @@ angular.module('game')
 	var service = {};
 
 	service.setTechResearched = function(gameService, techName) {
-		gameService.techs.push(techName);
+		if ('Advanced Lasers Weaponry' !== techName) {
+			gameService.techs.push(techName);
+		}
+
 		if (techName === 'Mining' || techName === 'Bronze Works') {
 			gameService.findBuildingWithName('Mine').multiplier *= 2;
 		}
@@ -66,7 +69,7 @@ angular.module('game')
 			gameService.findBuildingWithName('Biofactory').multiplier *= 4;
 		}
 		if (techName === 'Genetic Engineering') {
-			gameService.findBuildingWithName('Genetic Lab').multiplier *= 4;
+			gameService.findBuildingWithName('Genetics Lab').multiplier *= 4;
 		}		
 
 		if (techName === 'Agriculture' || techName === 'Animal Husbandry'
@@ -97,6 +100,10 @@ angular.module('game')
 			|| techName === 'Rocketry' || techName === 'Nuclear Fission'
 			|| techName === 'Combined Arms' || techName === 'Nuclear Fission') {
 			gameService.damageMultiplier *= 1.2;
+		}
+
+		if (techName === 'Advanced Lasers Weaponry') {
+			gameService.damageMultiplier *= 1.5;	
 		}
 	};
 

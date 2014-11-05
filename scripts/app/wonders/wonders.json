@@ -36,6 +36,6 @@
 		{"age": 7, "name" : "International Space Station", "description" : "+50% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 6400},
 		{"age": 7, "name" : "The Pentagon", "description" : "+50% All Unit <i class='fa fa-bolt'></i>", "turns": 5 , "lossPerTurn": 6400},
 
-		{"age": 8, "name" : "Earth Defense Grid", "description" : "+500% All Unit <i class='fa fa-bolt'></i>", "turns": 10 , "lossPerTurn": 12800}
+		{"age": 8, "name" : "Global Defense Grid", "description" : "+50% All Unit <i class='fa fa-heart'></i>. <b>Repeatable</b>", "turns": 2 , "lossPerTurn": 12800}
 	]
 }

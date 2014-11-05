@@ -1,0 +1,13 @@
+<div ng-show="!won" class="row">
+	<h3>Game over! You lasted <span class="green"><b>{{turns}}</b></span> in Future Age.</h3>
+	<div class="right">
+	    <button class="strong" ng-click="ok(false);">Go Home</button>	    
+	</div>
+</div>
+<div ng-show="won" class="row">
+	<h3>Congratulations! You have won the game.</h3>
+	<div class="right">
+	    <button class="strong" ng-click="ok(false);">Go Home</button>
+	    <button class="strong" ng-click="ok(true);">Endless Mode</button>	    
+	</div>
+</div>

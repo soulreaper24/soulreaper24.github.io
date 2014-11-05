@@ -9,7 +9,7 @@ angular.module('game')
 	}
 
 	$scope.getEnemy = function () {
-		return GameService.enemy;
+		return GameService.enemy[0];
 	}
 	$scope.toTrain = 1;
 
@@ -46,7 +46,7 @@ angular.module('game')
 
 	$scope.conquest = function() {
 		GameService.currentTurn.numConquests += 1;
-		if (CombatService.conquest()) {
+		if (CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.getEnemy())) {
 			GameService.conquestWon();
 		} else {
 			GameService.conquestLost();

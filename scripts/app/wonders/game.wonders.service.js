@@ -5,7 +5,9 @@ angular.module('game')
 	var service = {};
 
 	service.setWonderBuilt = function(gameService, wonderName) {
-		gameService.wonders.push(wonderName);
+		if (wonderName !== 'Global Defense Grid') {
+			gameService.wonders.push(wonderName);
+		}
 		if (wonderName === 'Pyramids' || wonderName === 'Hanging Gardens'
 			|| wonderName === 'Angkor Wat' || wonderName === 'Taj Mahal'
 			|| wonderName === 'Leaning Tower of Pisa' || wonderName === 'Big Ben'
@@ -29,8 +31,12 @@ angular.module('game')
 			gameService.damageMultiplier *= 1.5;
 		}
 
-		if (wonderName === 'Earth Defense Grid') {
-			gameService.damageMultiplier *= 5.0;
+		if (wonderName === 'Global Defense Grid') {
+			for (var i = 1; i < gameService.availableUnits.length; i++) {
+				gameService.availableUnits[i].hp = Math.ceil(gameService.availableUnits[i] * 1.5);
+			}
+			var wonder = gameService.findWonderWithName('Global Defense Grid');
+			wonder.lossPerTurn = Math.ceil(wonder.lossPerTurn * gameService.GROWTH_COEFF);
 		}
 	};
 

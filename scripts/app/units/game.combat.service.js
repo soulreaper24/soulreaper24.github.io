@@ -1,63 +1,87 @@
 'use strict';
 
 angular.module('game')  
-.service('CombatService', function(GameService, ChanceService, LogService) {
+.service('CombatService', function($filter, ChanceService, LogService) {
 	var service = {};
 
-	var getOurDamage = function() {
+	var getOurDamage = function(ourUnits, ourDamageMultiplier) {
 		// 0 is neutral unit Wolf
 		var damage = 0;
-		for (var i = 1; i < GameService.availableUnits.length; i++) {
-			if (GameService.availableUnits[i].count > 0) {
-				damage += GameService.availableUnits[i].count * GameService.availableUnits[i].damage * GameService.damageMultiplier;
+		for (var i = 1; i < ourUnits.length; i++) {
+			if (ourUnits[i].count > 0) {
+				damage += ourUnits[i].count * ourUnits[i].damage * ourDamageMultiplier;
 			}
 		}
 		return Math.ceil(ChanceService.getRandomInRange(damage * 0.9, damage * 1.1));
 	};
 
-	var getOurHp = function() {
+	var getOurHp = function(ourUnits) {
 		// 0 is neutral unit Wolf
 		var hp = 0;
-		for (var i = 1; i < GameService.availableUnits.length; i++) {
-			if (GameService.availableUnits[i].count > 0) {
-				hp += GameService.availableUnits[i].count * GameService.availableUnits[i].hp;
+		for (var i = 1; i < ourUnits.length; i++) {
+			if (ourUnits[i].count > 0) {
+				hp += ourUnits[i].count * ourUnits[i].hp;
 			}
 		}
 		return Math.ceil(hp);
 	};
 
-	var getEnemyDamage = function() {
-		var damage = GameService.enemy.count * GameService.enemy.damage;
+	var getEnemyDamage = function(enemy) {
+		var damage = 0;
+		for (var i = 0; i < enemy.length; i++) {
+			if (enemy[i].count > 0) {
+				damage += enemy[i].count * enemy[i].damage;
+			}
+		}
 		return Math.ceil(ChanceService.getRandomInRange(damage * 0.9, damage * 1.1));
 	};
 
-	var getEnemyHp = function() {	
-		return Math.ceil(GameService.enemy.count * GameService.enemy.hp);
+	var getEnemyHp = function(enemy) {
+		var hp = 0;
+		for (var i = 0; i < enemy.length; i++) {
+			if (enemy[i].count > 0) {
+				hp += enemy[i].count * enemy[i].hp;
+			}
+		}
+		return Math.ceil(hp);		
 	};
 
-	var weAttack = function(ourDamage) {
-		var enemyLoss = Math.ceil(ourDamage / GameService.enemy.hp);
-		if (enemyLoss > GameService.enemy.count) {
-			enemyLoss = GameService.enemy.count;			
-		} 
-		GameService.enemy.count -= enemyLoss;		
-		LogService.log('Your army dealt ' + ourDamage +' damage. Enemy lost ' + enemyLoss + ' ' + GameService.enemy.name + ' units.');
-	};
-
-	var enemyAttack = function(enemyDamage) {
-		while (enemyDamage > 0 && getOurHp() > 0) {			
-			for (var i = 1; i < GameService.availableUnits.length; i++) {
-				var dmgDealt = enemyDamage;
-				if (GameService.availableUnits[i].count > 0) {
-					var unitLoss = Math.ceil(enemyDamage / GameService.availableUnits[i].hp);
-					if (unitLoss > GameService.availableUnits[i].count) {
-						unitLoss = GameService.availableUnits[i].count;
-						enemyDamage -= GameService.availableUnits[i].count * GameService.availableUnits[i].hp;
-						dmgDealt = GameService.availableUnits[i].count * GameService.availableUnits[i].hp;
+	var weAttack = function(ourDamage, enemy) {
+		while (ourDamage > 0 && getEnemyHp(enemy) > 0) {			
+			for (var i = 0; i < enemy.length; i++) {
+				var dmgDealt = ourDamage;
+				if (enemy[i].count > 0) {
+					var unitLoss = Math.ceil(ourDamage / enemy[i].hp);
+					if (unitLoss > enemy[i].count) {
+						unitLoss = enemy[i].count;
 					} 
-					GameService.availableUnits[i].count -= unitLoss;
-					LogService.log('Enemy dealt ' + dmgDealt +' damage. Your army lost ' + unitLoss + ' ' + GameService.availableUnits[i].name + ' units.');
-					if (GameService.availableUnits[i].count > 0) {
+					ourDamage -= enemy[i].count * enemy[i].hp;
+					dmgDealt = enemy[i].count * enemy[i].hp;
+					enemy[i].count -= unitLoss;
+					LogService.log('Your army dealt ' + $filter('number')(dmgDealt) +' damage. Enemy lost ' + $filter('number')(unitLoss) + ' ' + enemy[i].name + ' units.');
+					if (ourDamage <= 0) {
+						break;
+					}
+
+				}
+			}
+		}
+	};
+
+	var enemyAttack = function(enemyDamage, ourUnits) {
+		while (enemyDamage > 0 && getOurHp(ourUnits) > 0) {			
+			for (var i = 1; i < ourUnits.length; i++) {
+				var dmgDealt = enemyDamage;
+				if (ourUnits[i].count > 0) {
+					var unitLoss = Math.ceil(enemyDamage / ourUnits[i].hp);
+					if (unitLoss > ourUnits[i].count) {
+						unitLoss = ourUnits[i].count;
+					} 
+					enemyDamage -= ourUnits[i].count * ourUnits[i].hp;
+					dmgDealt = ourUnits[i].count * ourUnits[i].hp;
+					ourUnits[i].count -= unitLoss;
+					LogService.log('Enemy dealt ' + $filter('number')(dmgDealt) +' damage. Your army lost ' + $filter('number')(unitLoss) + ' ' + ourUnits[i].name + ' units.');
+					if (ourUnits[i].count > 0) {
 						return;
 					}
 				}
@@ -65,17 +89,17 @@ angular.module('game')
 		}
 	};
 
-	service.conquest = function() {
-		var ourDamage = getOurDamage(), ourHp = getOurHp(), enemyDamage = getEnemyDamage(), enemyHp = getEnemyHp();
+	service.conquest = function(ourUnits, ourDamageMultiplier, enemy) {
+		var ourDamage = getOurDamage(ourUnits, ourDamageMultiplier), ourHp = getOurHp(ourUnits), enemyDamage = getEnemyDamage(enemy), enemyHp = getEnemyHp(enemy);
 
 		while (ourHp > 0 && enemyHp > 0) {
-			weAttack(ourDamage);
-			enemyAttack(enemyDamage);
+			weAttack(ourDamage, enemy);
+			enemyAttack(enemyDamage, ourUnits);
 
-			ourDamage = getOurDamage(); 
-			ourHp = getOurHp(); 
-			enemyDamage = getEnemyDamage(); 
-			enemyHp = getEnemyHp();
+			ourDamage = getOurDamage(ourUnits, ourDamageMultiplier); 
+			ourHp = getOurHp(ourUnits); 
+			enemyDamage = getEnemyDamage(enemy); 
+			enemyHp = getEnemyHp(enemy);
 		}
 
 		return enemyHp === 0;

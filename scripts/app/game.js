@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('game')  
-.controller('GameCtrl', function ($scope, $state, $modal, GameService, LogService, availableBuildings, availableTechs, availableWonders, availableUnits) {   
+.controller('GameCtrl', function ($scope, $state, $location, $route, $modal, GameService, CombatService, LogService, availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {
     if (availableBuildings.data) {
       GameService.setAvailableBuildings(availableBuildings.data.buildings);
     }
@@ -16,6 +16,10 @@ angular.module('game')
 
     if (availableUnits.data) {
       GameService.setAvailableUnits(availableUnits.data.units);
+    }
+
+    if (aliens.data) {
+      GameService.aliens = aliens.data.aliens;
     }
 
     $scope.getStateName = function() {
@@ -50,24 +54,33 @@ angular.module('game')
       return GameService.getSciencePerTurn();
     };
 
-    var numberOfAvailableTechs = function() {
-      var count = 0;
-      for (var i = 0; i < GameService.availableTechs.length; i++) {
-        if (GameService.availableTechs[i].age <= GameService.age) {
-          count ++;
-        }
-      }
-      return count - GameService.techs.length;
-    };
-
     $scope.endTurn = function() {
       GameService.endTurn();
-      if (numberOfAvailableTechs() === 0) {
-        $scope.openModal();
+      if (GameService.age < 8 && GameService.numberOfAvailableTechs() === 0) {
+        $scope.openNewAgeModal();
       }
-    };    
 
-    $scope.openModal = function () {        
+      if (GameService.age === 8) {
+          GameService.turnsSinceFutureAgeStarts++;
+          if (GameService.turnsSinceFutureAgeStarts === 10) {
+            GameService.won = true;
+            $scope.openGameEndModal();
+          }
+
+          if (!CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.aliens)) {
+            LogService.logAlert('Your army lost.');
+            GameService.won = false;
+            $scope.openGameEndModal();
+          } else {
+            for (var i = 0; i < GameService.aliens.length; i++) {
+              GameService.aliens[i].baseCount = Math.ceil(GameService.aliens[i].baseCount * GameService.GROWTH_COEFF);
+              GameService.aliens[i].count = GameService.aliens[i].baseCount;
+            }
+          }
+        }
+    };
+
+    $scope.openNewAgeModal = function () {        
         var modalInstance = $modal.open({
             templateUrl: 'scripts/app/newAge.html',
             controller: function ($scope, $modalInstance, GameService) {
@@ -88,6 +101,30 @@ angular.module('game')
 
         modalInstance.result.then(function (options) {
             GameService.newAge(options);
+        });
+    };
+
+    $scope.openGameEndModal = function () {        
+        var modalInstance = $modal.open({
+            templateUrl: 'scripts/app/gameEnd.html',
+            controller: function ($scope, $modalInstance, GameService) {
+                $scope.turns = GameService.turnsSinceFutureAgeStarts;
+                $scope.won = GameService.won;
+
+                $scope.ok = function (endless) {
+                    $modalInstance.close(endless);
+                };
+
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            }
+        });
+
+        modalInstance.result.then(function (endless) {
+            if (!endless) {
+                window.location = '/';
+            }
         });
     };
 
@@ -126,6 +163,13 @@ angular.module('game')
         availableUnits : function($q, $http) {            
             var defer = $q.defer();
             return $http.get('scripts/app/units/units.json').success (function(data){
+              defer.resolve(data);
+            });
+            return defer.promise;          
+        }, 
+        aliens : function($q, $http) {            
+            var defer = $q.defer();
+            return $http.get('scripts/app/units/aliens.json').success (function(data){
               defer.resolve(data);
             });
             return defer.promise;          

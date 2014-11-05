@@ -21,7 +21,7 @@
 					</small>
 				</h4>				
 			</td>
-			<td width="100"><input type="text" ng-model="toTrain"></input></td>
+			<td width="120"><input type="text" ng-model="toTrain"></input></td>
 			<td width="300"><button class="small right expand" ng-disabled="getProduction() < toTrain * unit.cost" ng-click="train(unit, toTrain);">Train ({{toTrain * unit.cost | number}} <i class="fa fa-gavel"></i>)</button></td>
 		</tr>
 	</table>
