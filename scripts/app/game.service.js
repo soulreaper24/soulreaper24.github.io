@@ -10,16 +10,18 @@ angular.module('game')
 
 	var service = { 
 		GROWTH_COEFF: 1.15,
+		totalProd: 0,
+		totalSci: 0,
 
 		conquestsThisAge: 0,
 		techsThisAge: 0,
 		currentTurn: {numConquests : 0},
 		age : 0, 
 		year: -4000, 
-		production: 100, 
+		production: 280000, 
 		productionPerTurn: 0, 
 		productionMultiplier: 1.0,
-		science: 100, 
+		science: 47000, 
 		sciencePerTurn: 0, 
 		scienceMultiplier: 1.0,
 		techs: [],
@@ -185,6 +187,7 @@ angular.module('game')
 
 		LogService.logSuccess('Your army salvaged ' + productionWon + '<i class="fa fa-gavel"></i>.');
 		service.setProduction(service.getProduction() + productionWon);
+		service.totalProd += productionWon;
 
 		// increase enemy strength
 		service.conquestsThisAge++;
@@ -247,6 +250,8 @@ angular.module('game')
     };
 
 	service.endTurn = function() {
+		service.totalProd += service.getProductionPerTurn();
+		service.totalSci += service.getSciencePerTurn();
 	    service.setScience(service.getScience() + service.getSciencePerTurn());
         service.setProduction(service.getProduction() + service.getProductionPerTurn());
         service.handleNegatives();

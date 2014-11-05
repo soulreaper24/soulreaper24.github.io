@@ -2,6 +2,9 @@
 
 angular.module('game')  
 .controller('GameCtrl', function ($scope, $state, $location, $route, $modal, GameService, CombatService, LogService, availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {
+    $scope.totalProd = function (){ return GameService.totalProd;};
+    $scope.totalSci = function (){ return GameService.totalSci;};
+
     if (availableBuildings.data) {
       GameService.setAvailableBuildings(availableBuildings.data.buildings);
     }

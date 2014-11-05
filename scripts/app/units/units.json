@@ -2,7 +2,7 @@
 	[
 		{"age": -1, "name": "Wolf", 	    "eliteName": "", 				 "hp": 3,       "damage": 1, 		"cost" : 1},
 		{"age": 0,  "name": "Warrior",      "eliteName": "", 			 	 "hp": 5, 		"damage": 2, 		"cost" : 10},
-		{"age": 1,  "name": "Swordman",     "eliteName": "Legion", 		 	 "hp": 8, 		"damage": 5, 		"cost" : 21},
+		{"age": 1,  "name": "Swordman",     "eliteName": "Legion", 		 	 "hp": 8, 		"damage": 5, 		"cost" : 30},
 		{"age": 2,  "name": "Knight",       "eliteName": "Conquistador", 	 "hp": 14,		"damage": 11, 		"cost" : 58},
 		{"age": 3,  "name": "Musketman",    "eliteName": "Musketeer",    	 "hp": 22,		"damage": 25, 		"cost" : 114},
 		{"age": 4,  "name": "Cavalry",      "eliteName": "Cossack", 	 	 "hp": 32, 		"damage": 55, 		"cost" : 210},
