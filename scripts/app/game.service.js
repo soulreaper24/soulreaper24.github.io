@@ -4,9 +4,9 @@ angular.module('game')
 .service('GameService', function(ChanceService, LogService, WondersService, TechsService, CombatService) {
 	
 	var NEGATIVE_PPT_COEFF = 0.85;
-	var MINIMUM_CONQUEST_REWARD = 50;
+	var MINIMUM_CONQUEST_REWARD = 20;
 	var ENEMY_MULTIPLIER = 3;
-	var CONQUEST_COEFF = 1.05;
+	var CONQUEST_COEFF = 1.01;
 
 	var service = { 
 		GROWTH_COEFF: 1.15,
@@ -95,8 +95,8 @@ angular.module('game')
 		}
 		service.availableUnits = units;
 		service.enemy[0] = angular.copy(service.availableUnits[0]);
-		service.enemy[0].baseCount = 5;
-		service.enemy[0].count = 5;
+		service.enemy[0].baseCount = 3;
+		service.enemy[0].count = 3;
 	};
 
 	service.getProduction = function() {

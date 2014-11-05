@@ -11,7 +11,7 @@ html, body {
 }
 
 .sub-nav {
-	margin: 0 auto;
+	margin-bottom: 0;
 }
 
 .sub-nav dt, .sub-nav dd, .sub-nav li {

@@ -55,10 +55,10 @@ angular.module('game')
 					if (unitLoss > enemy[i].count) {
 						unitLoss = enemy[i].count;
 					} 
-					ourDamage -= enemy[i].count * enemy[i].hp;
-					dmgDealt = enemy[i].count * enemy[i].hp;
+					ourDamage -= unitLoss * enemy[i].hp;
+					dmgDealt = unitLoss * enemy[i].hp;
 					enemy[i].count -= unitLoss;
-					LogService.log('Your army dealt ' + $filter('number')(dmgDealt) +' damage. Enemy lost ' + $filter('number')(unitLoss) + ' ' + enemy[i].name + ' units.');
+					LogService.logSuccess('Your army dealt ' + $filter('number')(dmgDealt) +' damage. Enemy lost ' + $filter('number')(unitLoss) + ' ' + enemy[i].name + ' units.');
 					if (ourDamage <= 0) {
 						break;
 					}
@@ -77,10 +77,10 @@ angular.module('game')
 					if (unitLoss > ourUnits[i].count) {
 						unitLoss = ourUnits[i].count;
 					} 
-					enemyDamage -= ourUnits[i].count * ourUnits[i].hp;
-					dmgDealt = ourUnits[i].count * ourUnits[i].hp;
+					enemyDamage -= unitLoss * ourUnits[i].hp;
+					dmgDealt = unitLoss * ourUnits[i].hp;
 					ourUnits[i].count -= unitLoss;
-					LogService.log('Enemy dealt ' + $filter('number')(dmgDealt) +' damage. Your army lost ' + $filter('number')(unitLoss) + ' ' + ourUnits[i].name + ' units.');
+					LogService.logAlert('Enemy dealt ' + $filter('number')(dmgDealt) +' damage. Your army lost ' + $filter('number')(unitLoss) + ' ' + ourUnits[i].name + ' units.');
 					if (ourUnits[i].count > 0) {
 						return;
 					}
