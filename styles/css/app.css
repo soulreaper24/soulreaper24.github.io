@@ -4,6 +4,12 @@ html, body {
   background-color: #c1c1c1;
 }
 
+.boxes {
+	margin-left: 3px;
+	margin-bottom: 3px;
+	display: inline;
+}
+
 .log {
 	max-height: 10rem;
 	height: 10rem;
@@ -52,7 +58,7 @@ input[type="text"] {
 }
 
 button, .button {
-	margin: 0;
+	margin: 2px;
 }
 
 table {

@@ -5,11 +5,11 @@ angular.module('game')
 	$scope.availableTechs = GameService.availableTechs;
 
 	$scope.getTechCost = function(tech) {
-		return Math.ceil(Math.pow(GameService.GROWTH_COEFF, GameService.techsThisAge) * tech.cost);
+		return Math.ceil(Math.pow(GameService.GROWTH_COEFF * GameService.age, GameService.techsThisAge) * tech.cost);
 	};
 
 	$scope.researched = function(tech) {
-		return tech.age === GameService.age && GameService.techs.indexOf(tech.name) > -1;
+		return tech.age <= GameService.age && GameService.techs.indexOf(tech.name) > -1;
 	};
 
 	$scope.notResearched = function(tech) {

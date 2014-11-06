@@ -89,10 +89,11 @@ angular.module('game')
     $scope.openNewAgeModal = function () {        
         var modalInstance = $modal.open({
             templateUrl: 'scripts/app/newAge.html',
+            backdrop : 'static',
             controller: function ($scope, $modalInstance, GameService) {
               $scope.options = {production: false, science: false, units: false};
               $scope.nextAge = GameService.getAgeName(GameService.age + 1);
-              $scope.unitName = GameService.availableUnits[GameService.age + 2].name;
+              $scope.unit = GameService.availableUnits[GameService.age + 2];
               $scope.enemyName = GameService.availableUnits[GameService.age + 1].name;
 
               $scope.ok = function () {
@@ -113,6 +114,7 @@ angular.module('game')
     $scope.openGameEndModal = function () {        
         var modalInstance = $modal.open({
             templateUrl: 'scripts/app/gameEnd.html',
+            backdrop : 'static',
             controller: function ($scope, $modalInstance, GameService) {
                 $scope.turns = GameService.turnsSinceFutureAgeStarts;
                 $scope.won = GameService.won;

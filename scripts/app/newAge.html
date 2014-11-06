@@ -1,15 +1,20 @@
 <div class="row">
 	<h3>Congratulations! You have reached {{nextAge}}</h3>
 	<ul>
-		<li>Age Unit is <b>{{unitName}}</b></li>
+		<li>Age Unit is <b>{{unit.name}}</b>. Elite Unit is <b>{{unit.eliteName}}</b> with <b>+50%</b> <i class="fa fa-bolt"></i></li>
 		<li>Enemy Unit is <b>{{enemyName}}</b></li>
 		<li>Number of Conquests per Turn increased by <b>1</b></li>
 	</ul>
+	<p ng-show="nextAge === 'Future Age'">
+		You have made contact with a hostile alien race. They will send attacks to Earth at the end of every turn, increasing their army size each time they lose.
+		Survive <b>10</b> turns and you will win the game. You now have access to <b>repeatable</b> Techs and Wonders to help you with defending Earth. Good luck!		
+	</p>
+	<br/>
 </div>
 <div class="row">
 	<div class="right">
 	    <button class="strong" ng-click="options.production=true; ok()">Permanent +10% <i class="fa fa-gavel"></i></button>
 	    <button class="strong" ng-click="options.science=true; ok()">Permanent +10% <i class="fa fa-flask"></i></button>
-	    <button class="strong" ng-click="options.units=true; ok()">Elite Unit for Age, +1 Conquest per Turn</button>
+	    <button class="strong" ng-click="options.units=true; ok()">Elite Unit, +1 Conquest per Turn</button>
 	</div>
 </div>

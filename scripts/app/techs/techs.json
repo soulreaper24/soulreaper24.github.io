@@ -71,6 +71,6 @@
 
 	    {"age": 8, "name" : "Sentient AI", "description" : "x4 <b>Biofactory</b> <i class='fa fa-gavel'></i> per Turn<br />", "cost" : 27000000},
 	    {"age": 8, "name" : "Genetic Engineering", "description" : "x4 <b>Genetic Lab</b> <i class='fa fa-flask'></i> per Turn", "cost" : 27000000},
-	    {"age": 8, "name" : "Advanced Lasers Weaponry", "description" : "+50% All Unit <i class='fa fa-bolt'></i>. <b>Repeatable.</b>", "cost" : 27000000}
+	    {"age": 8, "name" : "Advanced Weaponry", "description" : "+50% All Unit <i class='fa fa-bolt'></i>. <b>Repeatable.</b>", "cost" : 27000000}
    ]
 }

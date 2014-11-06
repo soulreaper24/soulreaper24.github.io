@@ -16,16 +16,8 @@
 				</div>				
 			</td>			
 		</tr>
-		<tr ng-repeat="wonder in availableWonders | filter:constructed">
-			<td width="250">
-				<h4>{{wonder.name}}</h4>
-			</td>
-			<td>
-				<p ng-bind-html="wonder.description"></p>
-			</td>
-			<td width="300">								
-				<h4>Constructed</h4>
-			</td>			
-		</tr>
 	</table>
+</div>
+<div class="row">
+	<span class="boxes" ng-repeat="wonder in availableWonders | filter:constructed"><a href="" disabled class="small radius success button">{{wonder.name}}</a></span>
 </div>

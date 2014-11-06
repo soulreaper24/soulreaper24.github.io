@@ -11,18 +11,8 @@
 				<button class="small right expand" ng-disabled="getScience() < getTechCost(tech)" ng-click="research(tech);">Research ({{getTechCost(tech) | number}} <i class="fa fa-flask"></i>)</button>			
 			</td>
 		</tr>
-		<tr ng-repeat="tech in availableTechs | filter:researched">			
-			<td width="250">
-				<h4>{{tech.name}}</h4>
-			</td>
-			<td>
-				<p ng-bind-html="tech.description"></p>
-			</td>
-			<td width="250">				
-				<div class="right">
-					<h4>Researched</h4>
-				</div>
-			</td>
-		</tr>
 	</table>
+</div>
+<div class="row">
+	<span class="boxes" ng-repeat="tech in availableTechs | filter:researched"><a href="" disabled class="tiny radius alert button">{{tech.name}}</a></span>
 </div>
