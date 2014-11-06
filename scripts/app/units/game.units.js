@@ -2,6 +2,7 @@
 
 angular.module('game')
 .controller('UnitsCtrl', function($scope, GameService, CombatService) {
+	$scope.toTrain = 1;
 	$scope.availableUnits = GameService.availableUnits;	
 
 	$scope.getUnitDamage = function(unit) {

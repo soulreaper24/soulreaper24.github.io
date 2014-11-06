@@ -78,7 +78,7 @@ angular.module('game')
 						unitLoss = ourUnits[i].count;
 					} 
 					enemyDamage -= unitLoss * (ourUnits[i].hp * hpMultiplier);
-					dmgDealt = unitLoss * (ourUnits[i].hp * hpMultiplier);
+					dmgDealt = Math.ceil(unitLoss * (ourUnits[i].hp * hpMultiplier));
 					ourUnits[i].count -= unitLoss;
 					LogService.logAlert('Enemy dealt ' + $filter('number')(dmgDealt) +' damage. Your army lost ' + $filter('number')(unitLoss) + ' ' + ourUnits[i].name + ' units.');
 					if (ourUnits[i].count > 0) {

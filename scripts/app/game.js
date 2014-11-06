@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('game')  
-.controller('GameCtrl', function ($scope, $state, $location, $route, $modal, GameService, CombatService, LogService, availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {
+.controller('GameCtrl', function ($scope, $state, $location, $route, $modal, GameService, CombatService, LogService, DebugService, 
+  availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {
     $scope.totalProd = function (){ return GameService.totalProd;};
     $scope.totalSci = function (){ return GameService.totalSci;};
 
@@ -24,6 +25,8 @@ angular.module('game')
     if (aliens.data) {
       GameService.aliens = aliens.data.aliens;
     }
+
+    //DebugService.setDebugAge(8);
 
     $scope.getStateName = function() {
       return $state.$current.name;
@@ -70,7 +73,7 @@ angular.module('game')
             $scope.openGameEndModal();
           }
 
-          if (!CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.aliens)) {
+          if (!CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.hpMultiplier, GameService.aliens)) {
             LogService.logAlert('Your army lost.');
             GameService.won = false;
             $scope.openGameEndModal();

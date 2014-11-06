@@ -13,7 +13,7 @@ angular.module('game')
 			|| wonderName === 'Leaning Tower of Pisa' || wonderName === 'Big Ben'
 			|| wonderName === 'Statue of Liberty' || wonderName === 'Cristo Redentor'
 			|| wonderName === 'Sydney Opera House' || wonderName === 'United Nations') {
-			gameService.productionMultiplier *= 1.5;
+			gameService.productionMultiplier *= 1.2;
 		}
 
 		if (wonderName === 'Stonehenge' || wonderName === 'Oracle'
@@ -21,7 +21,7 @@ angular.module('game')
 			|| wonderName === 'Porcelain Tower' || wonderName === 'The Louvre'
 			|| wonderName === 'Broadway' || wonderName === 'CN Tower'
 			|| wonderName === 'Apollo Program' || wonderName === 'International Space Station') {
-			gameService.scienceMultiplier *= 1.5;
+			gameService.scienceMultiplier *= 1.2;
 		}
 
 		if (wonderName === 'Great Wall' || wonderName === 'Forbidden Palace'

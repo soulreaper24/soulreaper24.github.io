@@ -79,7 +79,7 @@ angular.module('game')
 			|| techName === 'Railroad' || techName === 'Eletronics'
 			|| techName === 'Flight' || techName === 'Computers'
 			|| techName === 'The Internet') {
-			gameService.productionMultiplier *= 1.2;
+			gameService.productionMultiplier *= 1.1;
 		}
 
 		if (techName === 'Mathematics' || techName === 'Physics'
@@ -90,7 +90,7 @@ angular.module('game')
 			|| techName === 'The Internet' || techName === 'Particle Physics'
 			|| techName === 'Telecommunications' || techName === 'Satellites'
 			|| techName === 'Lasers') {
-			gameService.scienceMultiplier *= 1.2;
+			gameService.scienceMultiplier *= 1.1;
 		}
 
 		if (techName === 'Chivalry' || techName === 'Metallurgy'
@@ -99,7 +99,7 @@ angular.module('game')
 			|| techName === 'Combustion' || techName === 'Ballistics'
 			|| techName === 'Rocketry' || techName === 'Nuclear Fission'
 			|| techName === 'Combined Arms' || techName === 'Nuclear Fission') {
-			gameService.damageMultiplier *= 1.2;
+			gameService.damageMultiplier *= 1.1;
 		}
 
 		if (techName === 'Advanced Lasers Weaponry') {

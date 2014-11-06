@@ -1,7 +1,7 @@
 {"aliens":
 	[
-		{"age": 8,  "name": "Zergling",   "baseCount": 1500, "count": 1500,	 "hp": 100, 	"damage": 500},
-		{"age": 8,  "name": "Hydralisk",  "baseCount": 500,  "count": 500,     "hp": 600, 	"damage": 1000},
-		{"age": 8,  "name": "Ultralisk",  "baseCount": 100,  "count": 100,	 "hp": 2000, 	"damage": 500}
+		{"age": 8,  "name": "Zergling",   "baseCount": 20000, "count": 50000,	 "hp": 100, 	"damage": 500},
+		{"age": 8,  "name": "Hydralisk",  "baseCount": 10000,  "count": 20000,     "hp": 600, 	"damage": 1000},
+		{"age": 8,  "name": "Ultralisk",  "baseCount": 2000,  "count": 8000,	 "hp": 2000, 	"damage": 1500}
 	]
 }
