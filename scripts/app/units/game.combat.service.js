@@ -15,7 +15,7 @@ angular.module('game')
 		return Math.ceil(ChanceService.getRandomInRange(damage * 0.9, damage * 1.1));
 	};
 
-	var getOurHp = function(ourUnits) {
+	var getOurHp = function(ourUnits, hpMultiplier) {
 		// 0 is neutral unit Wolf
 		var hp = 0;
 		for (var i = 1; i < ourUnits.length; i++) {
@@ -23,7 +23,7 @@ angular.module('game')
 				hp += ourUnits[i].count * ourUnits[i].hp;
 			}
 		}
-		return Math.ceil(hp);
+		return Math.ceil(hp * hpMultiplier);
 	};
 
 	var getEnemyDamage = function(enemy) {
@@ -68,17 +68,17 @@ angular.module('game')
 		}
 	};
 
-	var enemyAttack = function(enemyDamage, ourUnits) {
-		while (enemyDamage > 0 && getOurHp(ourUnits) > 0) {			
+	var enemyAttack = function(enemyDamage, ourUnits, hpMultiplier) {
+		while (enemyDamage > 0 && getOurHp(ourUnits, hpMultiplier) > 0) {			
 			for (var i = 1; i < ourUnits.length; i++) {
 				var dmgDealt = enemyDamage;
 				if (ourUnits[i].count > 0) {
-					var unitLoss = Math.ceil(enemyDamage / ourUnits[i].hp);
+					var unitLoss = Math.ceil(enemyDamage / (ourUnits[i].hp * hpMultiplier));
 					if (unitLoss > ourUnits[i].count) {
 						unitLoss = ourUnits[i].count;
 					} 
-					enemyDamage -= unitLoss * ourUnits[i].hp;
-					dmgDealt = unitLoss * ourUnits[i].hp;
+					enemyDamage -= unitLoss * (ourUnits[i].hp * hpMultiplier);
+					dmgDealt = unitLoss * (ourUnits[i].hp * hpMultiplier);
 					ourUnits[i].count -= unitLoss;
 					LogService.logAlert('Enemy dealt ' + $filter('number')(dmgDealt) +' damage. Your army lost ' + $filter('number')(unitLoss) + ' ' + ourUnits[i].name + ' units.');
 					if (ourUnits[i].count > 0) {
@@ -89,15 +89,15 @@ angular.module('game')
 		}
 	};
 
-	service.conquest = function(ourUnits, ourDamageMultiplier, enemy) {
-		var ourDamage = getOurDamage(ourUnits, ourDamageMultiplier), ourHp = getOurHp(ourUnits), enemyDamage = getEnemyDamage(enemy), enemyHp = getEnemyHp(enemy);
+	service.conquest = function(ourUnits, ourDamageMultiplier, ourHpMultiplier, enemy) {
+		var ourDamage = getOurDamage(ourUnits, ourDamageMultiplier), ourHp = getOurHp(ourUnits, ourHpMultiplier), enemyDamage = getEnemyDamage(enemy), enemyHp = getEnemyHp(enemy);
 
 		while (ourHp > 0 && enemyHp > 0) {
 			weAttack(ourDamage, enemy);
-			enemyAttack(enemyDamage, ourUnits);
+			enemyAttack(enemyDamage, ourUnits, ourHpMultiplier);
 
 			ourDamage = getOurDamage(ourUnits, ourDamageMultiplier); 
-			ourHp = getOurHp(ourUnits); 
+			ourHp = getOurHp(ourUnits, ourHpMultiplier); 
 			enemyDamage = getEnemyDamage(enemy); 
 			enemyHp = getEnemyHp(enemy);
 		}

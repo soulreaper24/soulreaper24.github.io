@@ -5,7 +5,7 @@
 			<td>
 				<h4>{{unit.name}}
 					<small>
-						{{getUnitDamage(unit)}} <i class="fa fa-bolt"></i> {{unit.hp}} <i class="fa fa-heart"></i>
+						{{getUnitDamage(unit)}} <i class="fa fa-bolt"></i> {{getUnitHp(unit)}} <i class="fa fa-heart"></i>
 					</small>
 				</h4>				
 			</td>
@@ -17,11 +17,12 @@
 			<td>
 				<h4>{{unit.name}}
 					<small>
-						{{getUnitDamage(unit)}} <i class="fa fa-bolt"></i> {{unit.hp}} <i class="fa fa-heart"></i>
+						{{getUnitDamage(unit)}} <i class="fa fa-bolt"></i> {{getUnitHp(unit)}} <i class="fa fa-heart"></i>
 					</small>
 				</h4>				
 			</td>
 			<td width="120"><input type="text" ng-model="toTrain"></input></td>
+			<td width="50"><button title="Max" class="small right expand" ng-click="max(unit);"><i class="fa fa-step-forward fa-rotate-270"></i></button></td>
 			<td width="300"><button class="small right expand" ng-disabled="getProduction() < toTrain * unit.cost" ng-click="train(unit, toTrain);">Train ({{toTrain * unit.cost | number}} <i class="fa fa-gavel"></i>)</button></td>
 		</tr>
 	</table>

@@ -6,12 +6,15 @@ angular.module('game')
 
 	$scope.getUnitDamage = function(unit) {
 		return Math.ceil(unit.damage * GameService.damageMultiplier);
-	}
+	};
+
+	$scope.getUnitHp = function(unit) {
+		return Math.ceil(unit.hp * GameService.hpMultiplier);
+	};
 
 	$scope.getEnemy = function () {
 		return GameService.enemy[0];
-	}
-	$scope.toTrain = 1;
+	};
 
 	$scope.getRemainingConquestsThisTurn = function() {
 		return GameService.maxConquests - GameService.currentTurn.numConquests;
@@ -28,6 +31,10 @@ angular.module('game')
 	$scope.getProduction = function() {
 	  return GameService.getProduction();
 	};
+
+	$scope.max = function(unit) {
+		$scope.toTrain = Math.floor($scope.getProduction() / unit.cost);
+	};	
 
 	$scope.train = function(unit, toTrain) {
 	  GameService.setProduction(GameService.getProduction() - unit.cost * toTrain);
@@ -46,7 +53,7 @@ angular.module('game')
 
 	$scope.conquest = function() {
 		GameService.currentTurn.numConquests += 1;
-		if (CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.getEnemy())) {
+		if (CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.hpMultiplier, GameService.getEnemy())) {
 			GameService.conquestWon();
 		} else {
 			GameService.conquestLost();
