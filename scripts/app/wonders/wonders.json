@@ -1,15 +1,15 @@
 {"wonders":
 	[
-		{"age": 0, "name" : "Pyramids", "description" : "+20% <i class='fa fa-gavel'></i> per Turn.", "turns": 5, "lossPerTurn": 75},
-		{"age": 0, "name" : "Stonehenge", "description" : "+20% <i class='fa fa-flask'></i> per Turn.", "turns": 5, "lossPerTurn": 75},
+		{"age": 0, "name" : "Pyramids", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5, "lossPerTurn": 75},
+		{"age": 0, "name" : "Stonehenge", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5, "lossPerTurn": 75},
 
-		{"age": 1, "name" : "Hanging Gardens", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 200},
-		{"age": 1, "name" : "Oracle", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 200},
-		{"age": 1, "name" : "Great Wall", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 200},
+		{"age": 1, "name" : "Hanging Gardens", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 450},
+		{"age": 1, "name" : "Oracle", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 450},
+		{"age": 1, "name" : "Great Wall", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 450},
 
-		{"age": 2, "name" : "Angkor Wat", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 1200},
-		{"age": 2, "name" : "Machu Pichu", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 1200},
-		{"age": 2, "name" : "Forbidden Palace", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 1200},
+		{"age": 2, "name" : "Angkor Wat", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 4000},
+		{"age": 2, "name" : "Machu Pichu", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 4000},
+		{"age": 2, "name" : "Forbidden Palace", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 4000},
 		
 		{"age": 3, "name" : "Taj Mahal", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 6000},
 		{"age": 3, "name" : "Leaning Tower of Pisa", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 6000},

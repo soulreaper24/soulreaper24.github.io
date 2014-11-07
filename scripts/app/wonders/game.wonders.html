@@ -19,5 +19,5 @@
 	</table>
 </div>
 <div class="row">
-	<span class="boxes" ng-repeat="wonder in availableWonders | filter:constructed"><a href="" disabled class="small radius success button">{{wonder.name}}</a></span>
+	<span class="boxes" ng-click="over=!over" ng-repeat="wonder in availableWonders | filter:constructed"><a href="" class="small radius success button"><span ng-show="!over">{{wonder.name}}</span><span ng-show="over" ng-bind-html="wonder.description"></span></a></span>	
 </div>

@@ -26,7 +26,7 @@ angular.module('game')
       GameService.aliens = aliens.data.aliens;
     }
 
-    //DebugService.setDebugAge(8);
+    DebugService.setDebugAge(2);
 
     $scope.getStateName = function() {
       return $state.$current.name;

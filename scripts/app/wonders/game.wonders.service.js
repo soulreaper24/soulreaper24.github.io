@@ -2,12 +2,16 @@
 
 angular.module('game')  
 .service('WondersService', function() {	
-	var service = {};
+	var service = {numAge8Wonders: 1};
 
 	service.setWonderBuilt = function(gameService, wonderName) {
 		if (wonderName !== 'Global Defense Grid') {
 			gameService.wonders.push(wonderName);
+		} else {
+			gameService.wonders.push(wonderName + ' ' + service.numAge8Wonders);
+			service.numAge8Wonders++;
 		}
+
 		if (wonderName === 'Pyramids' || wonderName === 'Hanging Gardens'
 			|| wonderName === 'Angkor Wat' || wonderName === 'Taj Mahal'
 			|| wonderName === 'Leaning Tower of Pisa' || wonderName === 'Big Ben'

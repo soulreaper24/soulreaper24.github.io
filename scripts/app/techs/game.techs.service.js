@@ -2,11 +2,14 @@
 
 angular.module('game')  
 .service('TechsService', function() {	
-	var service = {};
+	var service = {numAge8Techs: 1};
 
 	service.setTechResearched = function(gameService, techName) {
 		if ('Advanced Lasers Weaponry' !== techName) {
 			gameService.techs.push(techName);
+		} else {
+			gameService.techs.push(techName + ' ' + service.numAge8Techs);
+			service.numAge8Techs++;
 		}
 
 		if (techName === 'Mining' || techName === 'Bronze Works') {
@@ -19,8 +22,8 @@ angular.module('game')
 		if (techName === 'Engineering' || techName === 'Iron Works') {
 			gameService.findBuildingWithName('Workshop').multiplier *= 2;
 		}
-		if (techName === 'Philosophy') {
-			gameService.findBuildingWithName('Temple').multiplier *= 4;
+		if (techName === 'Philosophy' || techName === 'Drama & Poetry') {
+			gameService.findBuildingWithName('Temple').multiplier *= 2;
 		}
 
 		if (techName === 'Steel Works' || techName === 'Machinery') {
@@ -40,8 +43,8 @@ angular.module('game')
 		if (techName === 'Industrialization' || techName === 'Steam Power') {
 			gameService.findBuildingWithName('Factory').multiplier *= 2;
 		}
-		if (techName === 'Scientific Theory') {
-			gameService.findBuildingWithName('Public School').multiplier *= 4;
+		if (techName === 'Scientific Theory' || techName === ' Biology') {
+			gameService.findBuildingWithName('Public School').multiplier *= 2;
 		}
 
 		if (techName === 'Replaceable Parts' || techName === 'Plastic') {
@@ -51,8 +54,8 @@ angular.module('game')
 			gameService.findBuildingWithName('Research Lab').multiplier *= 2;
 		}
 
-		if (techName === 'Atomic Theory') {
-			gameService.findBuildingWithName('Nuclear Plant').multiplier *= 4;
+		if (techName === 'Atomic Theory' || techName === 'Nuclear Fission') {
+			gameService.findBuildingWithName('Nuclear Plant').multiplier *= 2;
 		}
 		if (techName === 'Penicillin' || techName === 'Ecology') {
 			gameService.findBuildingWithName('Medical Lab').multiplier *= 2;
@@ -61,7 +64,7 @@ angular.module('game')
 		if (techName === 'Robotics' || techName === 'Globalization') {
 			gameService.findBuildingWithName('Robotic Factory').multiplier *= 2;
 		}
-		if (techName === 'Nanotechnology' || techName === 'Globalization') {
+		if (techName === 'Nanotechnology' || techName === 'Lasers') {
 			gameService.findBuildingWithName('Biotech Lab').multiplier *= 2;
 		}
 
@@ -75,21 +78,16 @@ angular.module('game')
 		if (techName === 'Agriculture' || techName === 'Animal Husbandry'
 			|| techName === 'Currency' || techName === 'Metal Casting'
 			|| techName === 'Banking' || techName === 'Fertilizer'
-			|| techName === 'Electricity' || techName === 'Refrigeration'
-			|| techName === 'Railroad' || techName === 'Eletronics'
-			|| techName === 'Flight' || techName === 'Computers'
-			|| techName === 'The Internet') {
+			|| techName === 'Electricity' || techName === 'Railroad' 
+			|| techName === 'Flight' || techName === 'Computers') {
 			gameService.productionMultiplier *= 1.1;
 		}
 
 		if (techName === 'Mathematics' || techName === 'Physics'
-			|| techName === 'Chemistry' || techName === 'Biology'
-			|| techName === 'Electricity' || techName === 'Eletronics'
-			|| techName === 'Flight' || techName === 'Computers'
-			|| techName === 'Radar' || techName === 'Nuclear Fission'
+			|| techName === 'Chemistry' || techName === 'Archaeology' 
+			|| techName === 'Radio' || techName === 'Radar' 
 			|| techName === 'The Internet' || techName === 'Particle Physics'
-			|| techName === 'Telecommunications' || techName === 'Satellites'
-			|| techName === 'Lasers') {
+			|| techName === 'Telecommunications' || techName === 'Satellites') {
 			gameService.scienceMultiplier *= 1.1;
 		}
 
@@ -98,12 +96,12 @@ angular.module('game')
 			|| techName === 'Rifling' || techName === 'Dynamite'
 			|| techName === 'Combustion' || techName === 'Ballistics'
 			|| techName === 'Rocketry' || techName === 'Nuclear Fission'
-			|| techName === 'Combined Arms' || techName === 'Nuclear Fission') {
+			|| techName === 'Combined Arms' ) {
 			gameService.damageMultiplier *= 1.1;
 		}
 
 		if (techName === 'Advanced Lasers Weaponry') {
-			gameService.damageMultiplier *= 1.5;	
+			gameService.damageMultiplier *= 1.5;
 		}
 	};
 

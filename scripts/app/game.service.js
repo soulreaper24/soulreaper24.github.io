@@ -7,6 +7,7 @@ angular.module('game')
 	var MINIMUM_CONQUEST_REWARD = 20;
 	var ENEMY_MULTIPLIER = 3;
 	var CONQUEST_COEFF = 1.01;
+	var ENEMY_COEFF = 1.05;
 
 	var service = { 
 		GROWTH_COEFF: 1.15,
@@ -183,16 +184,29 @@ angular.module('game')
 			productionWon *= service.GROWTH_COEFF;
 		} 
 
+		var scienceWon = 0;
+		if (ChanceService.smallChance()) {
+			scienceWon = service.getSciencePerTurn();
+			scienceWon = Math.ceil(ChanceService.getRandomInRange(scienceWon * 0.9, scienceWon * 1.1));
+		}
+
 		productionWon = Math.max(productionWon, MINIMUM_CONQUEST_REWARD);
 		productionWon = Math.ceil(ChanceService.getRandomInRange(productionWon * 0.9, productionWon * 1.1));
 
 		LogService.logSuccess('Your army salvaged ' + productionWon + '<i class="fa fa-gavel"></i>.');
 		service.setProduction(service.getProduction() + productionWon);
 		service.totalProd += productionWon;
+		if (scienceWon > 0) {
+			LogService.logSuccess('Your army salvaged ' + scienceWon + '<i class="fa fa-flask"></i>.');
+			service.setScience(service.getScience() + scienceWon);
+			service.totalSci += scienceWon;
+		}
 
 		// increase enemy strength
 		service.conquestsThisAge++;
-		service.enemy[0].count = Math.ceil(service.enemy[0].baseCount * Math.pow(service.GROWTH_COEFF, service.conquestsThisAge));
+
+		service.enemy[0].count = Math.max(Math.ceil(service.enemy[0].baseCount * Math.pow(ENEMY_COEFF, service.conquestsThisAge)),
+			service.enemy[0].baseCount + service.conquestsThisAge);
 	};
 
 	service.conquestLost = function() {
@@ -224,9 +238,9 @@ angular.module('game')
 		if (service.year < -1000) {
 			service.year += 40;
 		} else if (service.year < 500) {
-			service.year += 25;
+			service.year += 30;
 		} else if (service.year < 1000) {
-			service.year += 20;
+			service.year += 25;
 		} else if (service.year < 1500) {
 			service.year += 10;
 		} else if (service.year < 1800) {
