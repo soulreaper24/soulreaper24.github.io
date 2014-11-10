@@ -4,10 +4,14 @@ angular.module('game')
 .service('WondersService', function() {	
 	var service = {numAge8Wonders: 1};
 
-	service.setWonderBuilt = function(gameService, wonderName) {
+	service.setWonderBuilt = function(gameService, wonder) {
+		var wonderName = wonder.name;
 		if (wonderName !== 'Global Defense Grid') {
 			gameService.wonders.push(wonderName);
 		} else {
+			var tempWonder = angular.copy(wonder);
+			tempWonder.name = wonderName + ' ' + service.numAge8Wonders;
+			gameService.availableWonders.push(tempWonder);
 			gameService.wonders.push(wonderName + ' ' + service.numAge8Wonders);
 			service.numAge8Wonders++;
 		}

@@ -4,9 +4,12 @@ angular.module('game')
 .controller('TechsCtrl', function($scope, GameService, TechsService) {	
 	$scope.availableTechs = GameService.availableTechs;
 
-	$scope.getTechCost = function(tech) {
-		console.log(GameService.techsThisAge);
-		return Math.ceil(Math.pow(2, Math.min(GameService.techsThisAge, 4) * tech.cost);
+	$scope.getTechCost = function(tech) {		
+		if (GameService.age < 8) {
+			return Math.ceil(Math.pow(2, Math.min(GameService.techsThisAge, 3)) * tech.cost);
+		} else {
+			return tech.cost;
+		}
 	};
 
 	$scope.researched = function(tech) {
@@ -23,7 +26,7 @@ angular.module('game')
 
 	$scope.research = function(tech) {
 	  GameService.setScience(GameService.getScience() - $scope.getTechCost(tech));
-	  TechsService.setTechResearched(GameService, tech.name);
+	  TechsService.setTechResearched(GameService, tech);
 	  GameService.techsThisAge++;
 	};
 

@@ -2,34 +2,38 @@
 
 angular.module('game')  
 .controller('GameCtrl', function ($scope, $state, $location, $route, $modal, GameService, CombatService, LogService, DebugService, 
-  availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {
+  availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {    
     $scope.totalProd = function (){ return GameService.totalProd;};
     $scope.totalSci = function (){ return GameService.totalSci;};
 
     if (availableBuildings.data) {
       GameService.setAvailableBuildings(availableBuildings.data.buildings);
-    }
+    };
 
     if (availableTechs.data) {
       GameService.availableTechs = availableTechs.data.techs;
-    }
+    };
 
     if (availableWonders.data) {
       GameService.availableWonders = availableWonders.data.wonders;
-    }
+    };
 
     if (availableUnits.data) {
       GameService.setAvailableUnits(availableUnits.data.units);
-    }
+    };
 
     if (aliens.data) {
       GameService.aliens = aliens.data.aliens;
-    }
+    };
 
-    DebugService.setDebugAge(2);
+    //DebugService.setDebugAge(8);
 
     $scope.getStateName = function() {
       return $state.$current.name;
+    };
+
+    $scope.getNumTurns = function() {
+      return GameService.turnsSinceFutureAgeStarts;
     };
 
     $scope.getYear = function() {

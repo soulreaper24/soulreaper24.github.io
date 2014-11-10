@@ -185,7 +185,7 @@ angular.module('game')
 		} 
 
 		var scienceWon = 0;
-		if (ChanceService.smallChance()) {
+		if ((service.age < 6 && ChanceService.smallChance()) || (service.age >=6 && ChanceService.mediumChance()))  {
 			scienceWon = service.getSciencePerTurn();
 			scienceWon = Math.ceil(ChanceService.getRandomInRange(scienceWon * 0.9, scienceWon * 1.1));
 		}
@@ -218,7 +218,7 @@ angular.module('game')
 	        service.negatives[i].turns -= 1;
 	        if (service.negatives[i].turns == 0) {	            
 	            if (service.negatives[i].type === 'Wonder') {
-	            	WondersService.setWonderBuilt(service, service.negatives[i].name);
+	            	WondersService.setWonderBuilt(service, service.findWonderWithName(service.negatives[i].name));
 	            }
 	            service.negatives.splice(i, 1);
 	        }
@@ -235,19 +235,13 @@ angular.module('game')
 	};
 
 	service.handleYear = function() {
-		if (service.year < -1000) {
+		if (service.year < 1800) {
 			service.year += 40;
-		} else if (service.year < 500) {
-			service.year += 30;
-		} else if (service.year < 1000) {
-			service.year += 25;
-		} else if (service.year < 1500) {
-			service.year += 10;
-		} else if (service.year < 1800) {
+		} else if (service.year < 1940) {
 			service.year += 5;
-		} else if (service.year < 1900) {
+		} else if (service.year < 2000) {
 			service.year += 2;
-		} else if (service.year < 2020) {
+		} else if (service.year < 2200) {
 			service.year += 1;
 		} else {
 			service.year += 0.5;

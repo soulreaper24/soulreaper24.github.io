@@ -1,11 +1,11 @@
 <div class="row">
 	<table>
 		<tr ng-repeat="unit in availableUnits | filter:previousAgeFilter ">
-			<td width="100"><h3>{{unit.count}}</h3></td>
+			<td width="100"><h3>{{unit.count | number}}</h3></td>
 			<td>
 				<h4>{{unit.name}}
 					<small>
-						{{getUnitDamage(unit)}} <i class="fa fa-bolt"></i> {{getUnitHp(unit)}} <i class="fa fa-heart"></i>
+						{{getUnitDamage(unit) | number}} <i class="fa fa-bolt"></i> {{getUnitHp(unit) | number}} <i class="fa fa-heart"></i>
 					</small>
 				</h4>				
 			</td>
@@ -14,11 +14,11 @@
 			<td width="300"></td>
 		</tr>
 		<tr ng-repeat="unit in availableUnits | filter:ageFilter ">
-			<td width="100"><h3>{{unit.count}}</h3></td>
+			<td width="100"><h3>{{unit.count | number}}</h3></td>
 			<td>
 				<h4>{{unit.name}}
 					<small>
-						{{getUnitDamage(unit)}} <i class="fa fa-bolt"></i> {{getUnitHp(unit)}} <i class="fa fa-heart"></i>
+						{{getUnitDamage(unit) | number}} <i class="fa fa-bolt"></i> {{getUnitHp(unit) | number}} <i class="fa fa-heart"></i>
 					</small>
 				</h4>				
 			</td>
@@ -32,11 +32,11 @@
 <div class="row">
 	<table>
 		<tr>
-			<td width="100"><h3>{{getEnemy().count}}</h3></td>
+			<td width="100"><h3>{{getEnemy().count | number}}</h3></td>
 			<td>
 				<h4>{{getEnemy().name}}
 					<small>
-						{{getEnemy().damage}} <i class="fa fa-bolt"></i> {{getEnemy().hp}} <i class="fa fa-heart"></i>
+						{{getEnemy().damage | number}} <i class="fa fa-bolt"></i> {{getEnemy().hp | number}} <i class="fa fa-heart"></i>
 					</small>
 				</h4>				
 			</td>			

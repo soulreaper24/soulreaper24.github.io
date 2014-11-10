@@ -4,12 +4,17 @@ angular.module('game')
 .service('TechsService', function() {	
 	var service = {numAge8Techs: 1};
 
-	service.setTechResearched = function(gameService, techName) {
-		if ('Advanced Lasers Weaponry' !== techName) {
+	service.setTechResearched = function(gameService, tech) {
+		var techName = tech.name;
+		if ('Advanced Weaponry' !== techName) {
 			gameService.techs.push(techName);
 		} else {
+			var tempTech = angular.copy(tech);
+			tempTech.name = techName + ' ' + service.numAge8Techs;
+			gameService.availableTechs.push(tempTech);
 			gameService.techs.push(techName + ' ' + service.numAge8Techs);
 			service.numAge8Techs++;
+			tech.cost = Math.ceil(tech.cost * gameService.GROWTH_COEFF);
 		}
 
 		if (techName === 'Mining' || techName === 'Bronze Works') {
@@ -79,14 +84,15 @@ angular.module('game')
 			|| techName === 'Currency' || techName === 'Metal Casting'
 			|| techName === 'Banking' || techName === 'Fertilizer'
 			|| techName === 'Electricity' || techName === 'Railroad' 
-			|| techName === 'Flight' || techName === 'Computers') {
+			|| techName === 'Computers' || techName === 'The Internet') {
 			gameService.productionMultiplier *= 1.1;
 		}
 
 		if (techName === 'Mathematics' || techName === 'Physics'
 			|| techName === 'Chemistry' || techName === 'Archaeology' 
 			|| techName === 'Radio' || techName === 'Radar' 
-			|| techName === 'The Internet' || techName === 'Particle Physics'
+			|| techName === 'Flight' || techName === 'Refrigeration'
+			|| techName === 'Particle Physics'
 			|| techName === 'Telecommunications' || techName === 'Satellites') {
 			gameService.scienceMultiplier *= 1.1;
 		}
@@ -96,11 +102,12 @@ angular.module('game')
 			|| techName === 'Rifling' || techName === 'Dynamite'
 			|| techName === 'Combustion' || techName === 'Ballistics'
 			|| techName === 'Rocketry' || techName === 'Nuclear Fission'
-			|| techName === 'Combined Arms' ) {
+			|| techName === 'Combined Arms' || techName === 'Mobile Tactics'
+			|| techName === 'Advanced Ballistics' || techName === 'Stealth') {
 			gameService.damageMultiplier *= 1.1;
 		}
 
-		if (techName === 'Advanced Lasers Weaponry') {
+		if (techName === 'Advanced Weaponry') {
 			gameService.damageMultiplier *= 1.5;
 		}
 	};
