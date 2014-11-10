@@ -53,8 +53,7 @@ p {
 }
 
 input[type="text"] {
-	margin: 0;
-	padding: 20px 10px;
+	margin: 0;	
 }
 
 button, .button {
