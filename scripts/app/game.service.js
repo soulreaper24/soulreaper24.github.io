@@ -8,8 +8,8 @@ angular.module('game')
 	var ENEMY_MULTIPLIER = 3;
 	var CONQUEST_COEFF = 1.01;
 	var ENEMY_COEFF = 1.05;
-
-	var service = { 
+	var service = {};
+	service.data = { 
 		GROWTH_COEFF: 1.15,
 		totalProd: 0,
 		totalSci: 0,
@@ -65,21 +65,21 @@ angular.module('game')
 	}
 
 	service.getEnemy = function() {
-		return service.enemy;
+		return service.data.enemy;
 	};
 
 	service.findBuildingWithName = function(name) {
-		for (var i = 0; i < service.availableBuildings.length; i++) {
-			if (service.availableBuildings[i].name === name) {
-				return service.availableBuildings[i];
+		for (var i = 0; i < service.data.availableBuildings.length; i++) {
+			if (service.data.availableBuildings[i].name === name) {
+				return service.data.availableBuildings[i];
 			}
 		}
 	};
 
 	service.findWonderWithName = function(name) {
-		for (var i = 0; i < service.availableWonders.length; i++) {
-			if (service.availableWonders[i].name === name) {
-				return service.availableWonders[i];
+		for (var i = 0; i < service.data.availableWonders.length; i++) {
+			if (service.data.availableWonders[i].name === name) {
+				return service.data.availableWonders[i];
 			}
 		}
 	};
@@ -89,7 +89,7 @@ angular.module('game')
 			buildings[i].multiplier = 1;
 			buildings[i].count = 0;
 		}
-		service.availableBuildings = buildings;
+		service.data.availableBuildings = buildings;
 	};
 
 	service.setAvailableUnits = function(units) {
@@ -97,95 +97,95 @@ angular.module('game')
 			units[i].count = 0;
 			units[i].normalName = units[i].name;
 		}
-		service.availableUnits = units;
-		service.enemy[0] = angular.copy(service.availableUnits[0]);
-		service.enemy[0].baseCount = 3;
-		service.enemy[0].count = 3;
+		service.data.availableUnits = units;
+		service.data.enemy[0] = angular.copy(service.data.availableUnits[0]);
+		service.data.enemy[0].baseCount = 3;
+		service.data.enemy[0].count = 3;
 	};
 
 	service.getProduction = function() {
-		return service.production;
+		return service.data.production;
 	};	
 
 	service.setProduction = function(value) {
-		service.production = value;
+		service.data.production = value;
 	};
 
 	var getPositiveProductionPerTurn = function() {
 		var i, total = 0;
-		for (i = 0; i < service.availableBuildings.length; i++) {
-			if (service.availableBuildings[i].productionPerTurn) {
-				total += service.availableBuildings[i].count * service.availableBuildings[i].productionPerTurn * service.availableBuildings[i].multiplier;
+		for (i = 0; i < service.data.availableBuildings.length; i++) {
+			if (service.data.availableBuildings[i].productionPerTurn) {
+				total += service.data.availableBuildings[i].count * service.data.availableBuildings[i].productionPerTurn * service.data.availableBuildings[i].multiplier;
 			}
 		}
-		for (i = 0; i < service.positives.length; i++) {
-			negative += service.positives[i].gainPerTurn;
+		for (i = 0; i < service.data.positives.length; i++) {
+			negative += service.data.positives[i].gainPerTurn;
 		}
 		return total;
 	};
 
 	var getNegativeProductionPerTurn = function() {
 		var negative = 0;
-		for (var i = 0; i < service.negatives.length; i++) {
-			negative += service.negatives[i].lossPerTurn;
+		for (var i = 0; i < service.data.negatives.length; i++) {
+			negative += service.data.negatives[i].lossPerTurn;
 		}
 		return negative;
 	};
 
 	service.getProductionPerTurn = function() {
 		var i, result, positive = getPositiveProductionPerTurn(), negative = getNegativeProductionPerTurn();
-		result = Math.ceil(positive * service.productionMultiplier - negative);
+		result = Math.ceil(positive * service.data.productionMultiplier - negative);
 
 		if (result < 0) {
-			result = Math.ceil(positive * service.productionMultiplier * NEGATIVE_PPT_COEFF - negative);
+			result = Math.ceil(positive * service.data.productionMultiplier * NEGATIVE_PPT_COEFF - negative);
 		}
 
 		return result;
 	};
 
 	service.setProductionPerTurn = function(building) {		
-		service.productionPerTurn += building.productionPerTurn * building.multiplier;
+		service.data.productionPerTurn += building.productionPerTurn * building.multiplier;
 	};
 
 	service.getScience = function() {
-		return service.science;
+		return service.data.science;
 	};
 
 	service.setScience = function(value) {
-		service.science = value;
+		service.data.science = value;
 	};
 
 	service.getSciencePerTurn = function() {
 		var total = 0;
-		for (var i = 0; i < service.availableBuildings.length; i++) {
-			if (service.availableBuildings[i].sciencePerTurn) {
-				total += service.availableBuildings[i].count * service.availableBuildings[i].sciencePerTurn * service.availableBuildings[i].multiplier;
+		for (var i = 0; i < service.data.availableBuildings.length; i++) {
+			if (service.data.availableBuildings[i].sciencePerTurn) {
+				total += service.data.availableBuildings[i].count * service.data.availableBuildings[i].sciencePerTurn * service.data.availableBuildings[i].multiplier;
 			}
 		}
 		if (service.getProductionPerTurn() >= 0) {
-			return Math.ceil(total * service.scienceMultiplier);
+			return Math.ceil(total * service.data.scienceMultiplier);
 		} else {
-			return Math.ceil(total * service.scienceMultiplier * NEGATIVE_PPT_COEFF);
+			return Math.ceil(total * service.data.scienceMultiplier * NEGATIVE_PPT_COEFF);
 		}
 	};
 
 	service.setSciencePerTurn = function(building) {
-		service.sciencePerTurn += Math.ceil(building.sciencePerTurn * building.multiplier); 
+		service.data.sciencePerTurn += Math.ceil(building.sciencePerTurn * building.multiplier); 
 	};	
 
 	service.conquestWon = function() {
 		LogService.logSuccess('Your army won.');
 
 		//handout rewards
-		var productionWon = getPositiveProductionPerTurn() * service.productionMultiplier * Math.pow(CONQUEST_COEFF ,service.conquestsThisAge);
+		var productionWon = getPositiveProductionPerTurn() * service.data.productionMultiplier * Math.pow(CONQUEST_COEFF ,service.data.conquestsThisAge);
 		if (ChanceService.tinyChance()) {
 			productionWon *= 2;
 		} else if (ChanceService.mediumChance()) {
-			productionWon *= service.GROWTH_COEFF;
+			productionWon *= service.data.GROWTH_COEFF;
 		} 
 
 		var scienceWon = 0;
-		if ((service.age < 6 && ChanceService.smallChance()) || (service.age >=6 && ChanceService.mediumChance()))  {
+		if ((service.data.age < 6 && ChanceService.smallChance()) || (service.data.age >=6 && ChanceService.mediumChance()))  {
 			scienceWon = service.getSciencePerTurn();
 			scienceWon = Math.ceil(ChanceService.getRandomInRange(scienceWon * 0.9, scienceWon * 1.1));
 		}
@@ -195,18 +195,18 @@ angular.module('game')
 
 		LogService.logSuccess('Your army salvaged ' + productionWon + '<i class="fa fa-gavel"></i>.');
 		service.setProduction(service.getProduction() + productionWon);
-		service.totalProd += productionWon;
+		service.data.totalProd += productionWon;
 		if (scienceWon > 0) {
 			LogService.logSuccess('Your army salvaged ' + scienceWon + '<i class="fa fa-flask"></i>.');
 			service.setScience(service.getScience() + scienceWon);
-			service.totalSci += scienceWon;
+			service.data.totalSci += scienceWon;
 		}
 
 		// increase enemy strength
-		service.conquestsThisAge++;
+		service.data.conquestsThisAge++;
 
-		service.enemy[0].count = Math.max(Math.ceil(service.enemy[0].baseCount * Math.pow(ENEMY_COEFF, service.conquestsThisAge)),
-			service.enemy[0].baseCount + service.conquestsThisAge);
+		service.data.enemy[0].count = Math.max(Math.ceil(service.data.enemy[0].baseCount * Math.pow(ENEMY_COEFF, service.data.conquestsThisAge)),
+			service.data.enemy[0].baseCount + service.data.conquestsThisAge);
 	};
 
 	service.conquestLost = function() {
@@ -214,53 +214,51 @@ angular.module('game')
 	};
 
 	service.handleNegatives = function() {
-		for (var i = service.negatives.length - 1; i >= 0; i--) {
-	        service.negatives[i].turns -= 1;
-	        if (service.negatives[i].turns == 0) {	            
-	            if (service.negatives[i].type === 'Wonder') {
-	            	WondersService.setWonderBuilt(service, service.findWonderWithName(service.negatives[i].name));
+		for (var i = service.data.negatives.length - 1; i >= 0; i--) {
+	        service.data.negatives[i].turns -= 1;
+	        if (service.data.negatives[i].turns == 0) {	            
+	            if (service.data.negatives[i].type === 'Wonder') {
+	            	WondersService.setWonderBuilt(service, service.findWonderWithName(service.data.negatives[i].name));
 	            }
-	            service.negatives.splice(i, 1);
+	            service.data.negatives.splice(i, 1);
 	        }
 	    }
 	};
 
 	service.handlePositives = function() {
-		for (var i = service.positives.length - 1; i >= 0; i--) {
-	        service.positives[i].turns -= 1;
-	        if (service.positives[i].turns == 0) {	            	            
-	            service.positives.splice(i, 1);
+		for (var i = service.data.positives.length - 1; i >= 0; i--) {
+	        service.data.positives[i].turns -= 1;
+	        if (service.data.positives[i].turns == 0) {	            	            
+	            service.data.positives.splice(i, 1);
 	        }
 	    }
 	};
 
 	service.handleYear = function() {
-		if (service.year < 1800) {
-			service.year += 40;
-		} else if (service.year < 1940) {
-			service.year += 5;
-		} else if (service.year < 2000) {
-			service.year += 2;
-		} else if (service.year < 2200) {
-			service.year += 1;
+		if (service.data.year < 1800) {
+			service.data.year += 40;
+		} else if (service.data.year < 1940) {
+			service.data.year += 5;
+		} else if (service.data.year < 2000) {
+			service.data.year += 2;
 		} else {
-			service.year += 0.5;
-		}
+			service.data.year += 1;
+		} 
 	};
 
 	service.numberOfAvailableTechs = function() {
       var count = 0;
-      for (var i = 0; i < service.availableTechs.length; i++) {
-        if (service.availableTechs[i].age <= service.age) {
+      for (var i = 0; i < service.data.availableTechs.length; i++) {
+        if (service.data.availableTechs[i].age <= service.data.age) {
           count ++;
         }
       }
-      return count - service.techs.length;
+      return count - service.data.techs.length;
     };
 
 	service.endTurn = function() {
-		service.totalProd += service.getProductionPerTurn();
-		service.totalSci += service.getSciencePerTurn();
+		service.data.totalProd += service.getProductionPerTurn();
+		service.data.totalSci += service.getSciencePerTurn();
 	    service.setScience(service.getScience() + service.getSciencePerTurn());
         service.setProduction(service.getProduction() + service.getProductionPerTurn());
         service.handleNegatives();
@@ -271,37 +269,37 @@ angular.module('game')
         }
 
         service.handleYear();        
-        service.currentTurn.numConquests = 0;
+        service.data.currentTurn.numConquests = 0;
 
         LogService.log('--- Turn End ---');
 	};
 
 	service.newAge = function(options) {		
-		service.age += 1;		
+		service.data.age += 1;		
 
 		//combat
-		var oldBaseCount = service.enemy[0].baseCount;
-		if (service.availableUnits[service.age].name === service.availableUnits[service.age].eliteName) {
-			service.availableUnits[service.age].name = service.availableUnits[service.age].normalName;
-			service.availableUnits[service.age].damage = Math.floor(service.availableUnits[service.age].damage / 1.5);
+		var oldBaseCount = service.data.enemy[0].baseCount;
+		if (service.data.availableUnits[service.data.age].name === service.data.availableUnits[service.data.age].eliteName) {
+			service.data.availableUnits[service.data.age].name = service.data.availableUnits[service.data.age].normalName;
+			service.data.availableUnits[service.data.age].damage = Math.floor(service.data.availableUnits[service.data.age].damage / 1.5);
 		}
-		service.enemy[0] = angular.copy(service.availableUnits[service.age]);
-		service.enemy[0].baseCount = oldBaseCount * ENEMY_MULTIPLIER;
-		service.enemy[0].count = service.enemy[0].baseCount;
-		service.maxConquests += 1;
+		service.data.enemy[0] = angular.copy(service.data.availableUnits[service.data.age]);
+		service.data.enemy[0].baseCount = oldBaseCount * ENEMY_MULTIPLIER;
+		service.data.enemy[0].count = service.data.enemy[0].baseCount;
+		service.data.maxConquests += 1;
 
 		if (options.production) {
-			service.productionMultiplier *= 1.1;
+			service.data.productionMultiplier *= 1.1;
 		} else if (options.science) {
-			service.scienceMultiplier *= 1.1;
+			service.data.scienceMultiplier *= 1.1;
 		} else {
-			service.maxConquests += 1;
-			service.availableUnits[service.age + 1].name = service.availableUnits[service.age + 1].eliteName;
-			service.availableUnits[service.age + 1].damage = Math.ceil(1.5 * service.availableUnits[service.age + 1].damage);
+			service.data.maxConquests += 1;
+			service.data.availableUnits[service.data.age + 1].name = service.data.availableUnits[service.data.age + 1].eliteName;
+			service.data.availableUnits[service.data.age + 1].damage = Math.ceil(1.5 * service.data.availableUnits[service.data.age + 1].damage);
 		}
 
-		service.conquestsThisAge = 0;
-		service.techsThisAge = 0;
+		service.data.conquestsThisAge = 0;
+		service.data.techsThisAge = 0;
 	}
 
 	return service;

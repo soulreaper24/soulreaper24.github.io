@@ -8,40 +8,40 @@ angular.module('game')
 
 	service.setDebugAge = function(age) {
 		var i, prodIndex = 0, sciIndex = 0;
-		GameService.age = age;
-		GameService.year = years[age];
-		GameService.availableUnits[age + 1].count = 30000 * age;
-		GameService.production = Math.pow(100, age );
-		GameService.science = Math.pow(10000, age );
-		GameService.productionMultiplier *= Math.pow(1.1, age);
+		GameService.data.age = age;
+		GameService.data.year = 2028;//years[age];
+		GameService.data.availableUnits[age + 1].count = 30000 * age;
+		GameService.data.production = Math.pow(100, age );
+		GameService.data.science = Math.pow(100, age );
+		GameService.data.productionMultiplier *= Math.pow(1.1, age);
 
-		for (i = 0; i < GameService.availableBuildings.length; i++) {
-			if (GameService.availableBuildings[i].age < age) {
-				if (GameService.availableBuildings[i].productionPerTurn) {
-					GameService.availableBuildings[i].count = Math.min(35 + 5 * prodIndex++, 56);
-					GameService.availableBuildings[i].cost *= Math.ceil(Math.pow(GameService.GROWTH_COEFF, GameService.availableBuildings[i].count));
+		for (i = 0; i < GameService.data.availableBuildings.length; i++) {
+			if (GameService.data.availableBuildings[i].age < age) {
+				if (GameService.data.availableBuildings[i].productionPerTurn) {
+					GameService.data.availableBuildings[i].count = Math.min(35 + 5 * prodIndex++, 56);
+					GameService.data.availableBuildings[i].cost *= Math.ceil(Math.pow(GameService.data.GROWTH_COEFF, GameService.data.availableBuildings[i].count));
 				} else {
-					GameService.availableBuildings[i].count = Math.min(35 + 5 * sciIndex++, 56);
-					GameService.availableBuildings[i].cost *= Math.ceil(Math.pow(GameService.GROWTH_COEFF, GameService.availableBuildings[i].count));
+					GameService.data.availableBuildings[i].count = Math.min(35 + 5 * sciIndex++, 56);
+					GameService.data.availableBuildings[i].cost *= Math.ceil(Math.pow(GameService.data.GROWTH_COEFF, GameService.data.availableBuildings[i].count));
 				}
 			}
 		}
 
-		for (i = 0; i < GameService.availableTechs.length; i++) {
-			if (GameService.availableTechs[i].age < age) {
-				TechsService.setTechResearched(GameService, GameService.availableTechs[i]);
+		for (i = 0; i < GameService.data.availableTechs.length; i++) {
+			if (GameService.data.availableTechs[i].age < age) {
+				TechsService.setTechResearched(GameService, GameService.data.availableTechs[i]);
 			}
 		}
 
-		for (i = 0; i < GameService.availableWonders.length; i++) {
-			if (GameService.availableWonders[i].age < age) {
-				WondersService.setWonderBuilt(GameService, GameService.availableWonders[i]);
+		for (i = 0; i < GameService.data.availableWonders.length; i++) {
+			if (GameService.data.availableWonders[i].age < age) {
+				WondersService.setWonderBuilt(GameService, GameService.data.availableWonders[i]);
 			}
 		}
-		GameService.enemy = [angular.copy(GameService.availableUnits[age])];
-		GameService.enemy[0].baseCount = Math.pow(3, age);
-		GameService.enemy[0].count = Math.pow(3, age);
-		GameService.maxConquests += age;
+		GameService.data.enemy = [angular.copy(GameService.data.availableUnits[age])];
+		GameService.data.enemy[0].baseCount = Math.pow(3, age);
+		GameService.data.enemy[0].count = Math.pow(3, age);
+		GameService.data.maxConquests += age;
 	};
 
 	return service;

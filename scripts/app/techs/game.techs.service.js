@@ -7,14 +7,14 @@ angular.module('game')
 	service.setTechResearched = function(gameService, tech) {
 		var techName = tech.name;
 		if ('Advanced Weaponry' !== techName) {
-			gameService.techs.push(techName);
+			gameService.data.techs.push(techName);
 		} else {
 			var tempTech = angular.copy(tech);
 			tempTech.name = techName + ' ' + service.numAge8Techs;
-			gameService.availableTechs.push(tempTech);
-			gameService.techs.push(techName + ' ' + service.numAge8Techs);
+			gameService.data.availableTechs.push(tempTech);
+			gameService.data.techs.push(techName + ' ' + service.numAge8Techs);
 			service.numAge8Techs++;
-			tech.cost = Math.ceil(tech.cost * gameService.GROWTH_COEFF);
+			tech.cost = Math.ceil(tech.cost * gameService.data.GROWTH_COEFF);
 		}
 
 		if (techName === 'Mining' || techName === 'Bronze Works') {
@@ -85,7 +85,7 @@ angular.module('game')
 			|| techName === 'Banking' || techName === 'Fertilizer'
 			|| techName === 'Electricity' || techName === 'Railroad' 
 			|| techName === 'Computers' || techName === 'The Internet') {
-			gameService.productionMultiplier *= 1.1;
+			gameService.data.productionMultiplier *= 1.1;
 		}
 
 		if (techName === 'Mathematics' || techName === 'Physics'
@@ -94,7 +94,7 @@ angular.module('game')
 			|| techName === 'Flight' || techName === 'Refrigeration'
 			|| techName === 'Particle Physics'
 			|| techName === 'Telecommunications' || techName === 'Satellites') {
-			gameService.scienceMultiplier *= 1.1;
+			gameService.data.scienceMultiplier *= 1.1;
 		}
 
 		if (techName === 'Chivalry' || techName === 'Metallurgy'
@@ -104,11 +104,11 @@ angular.module('game')
 			|| techName === 'Rocketry' || techName === 'Nuclear Fission'
 			|| techName === 'Combined Arms' || techName === 'Mobile Tactics'
 			|| techName === 'Advanced Ballistics' || techName === 'Stealth') {
-			gameService.damageMultiplier *= 1.1;
+			gameService.data.damageMultiplier *= 1.1;
 		}
 
 		if (techName === 'Advanced Weaponry') {
-			gameService.damageMultiplier *= 1.5;
+			gameService.data.damageMultiplier *= 1.5;
 		}
 	};
 

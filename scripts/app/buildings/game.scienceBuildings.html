@@ -1,6 +1,6 @@
 <div class="row">		
 	<table>
-		<tr ng-repeat="building in availableBuildings | filter:science ">
+		<tr ng-repeat="building in getAvailableBuildings() | filter:science ">
 			<td width="100"><h3>{{building.count}}</h3></td>
 			<td>
 				<h4>{{building.name}}

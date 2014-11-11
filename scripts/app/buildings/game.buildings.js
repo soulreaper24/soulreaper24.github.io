@@ -2,14 +2,16 @@
 
 angular.module('game')
 .controller('BuildingsCtrl', function($scope, GameService) {
-	$scope.availableBuildings = GameService.availableBuildings;	
+	$scope.getAvailableBuildings = function() {
+		return GameService.data.availableBuildings;	
+	};
 
 	$scope.production = function(building) {
-		return building.age <= GameService.age && building.productionPerTurn;
+		return building.age <= GameService.data.age && building.productionPerTurn;
 	};
 
 	$scope.science = function(building) {
-		return building.age <= GameService.age && building.sciencePerTurn;
+		return building.age <= GameService.data.age && building.sciencePerTurn;
 	};
 
 	$scope.getProduction = function() {
@@ -18,7 +20,7 @@ angular.module('game')
 
 	$scope.build = function(building) {
 	  GameService.setProduction(GameService.getProduction() - building.cost);
-	  building.cost = Math.ceil(building.cost * GameService.GROWTH_COEFF);
+	  building.cost = Math.ceil(building.cost * GameService.data.GROWTH_COEFF);
 	  building.count ++;
 	  if (building.productionPerTurn) {
 	  	GameService.setProductionPerTurn(building);

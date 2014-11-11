@@ -1,6 +1,6 @@
 <div class="row">
 	<table>
-		<tr ng-repeat="wonder in availableWonders | filter:notConstructed">
+		<tr ng-repeat="wonder in getAvailableWonders() | filter:notConstructed">
 			<td width="250">
 				<h4>{{wonder.name}}</h4>
 			</td>
@@ -19,5 +19,5 @@
 	</table>
 </div>
 <div class="row">
-	<span class="boxes" ng-click="over=!over" ng-repeat="wonder in availableWonders | filter:constructed"><a href="" class="small radius success button"><span ng-show="!over">{{wonder.name}}</span><span ng-show="over" ng-bind-html="wonder.description"></span></a></span>	
+	<span class="boxes" ng-click="over=!over" ng-repeat="wonder in getAvailableWonders() | filter:constructed"><a href="" class="small radius success button"><span ng-show="!over">{{wonder.name}}</span><span ng-show="over" ng-bind-html="wonder.description"></span></a></span>	
 </div>

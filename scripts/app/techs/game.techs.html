@@ -1,6 +1,6 @@
 <div class="row">
 	<table>
-		<tr ng-repeat="tech in availableTechs | filter:notResearched">			
+		<tr ng-repeat="tech in getAvailableTechs() | filter:notResearched">			
 			<td width="250">
 				<h4>{{tech.name}}</h4>
 			</td>
@@ -14,5 +14,5 @@
 	</table>
 </div>
 <div class="row">
-	<span class="boxes" ng-click="over=!over" ng-repeat="tech in availableTechs | filter:researched"><a href="" class="tiny radius alert button"><span ng-show="!over">{{tech.name}}</span><span ng-show="over" ng-bind-html="tech.description"></span></a></span>
+	<span class="boxes" ng-click="over=!over" ng-repeat="tech in getAvailableTechs() | filter:researched"><a href="" class="tiny radius alert button"><span ng-show="!over">{{tech.name}}</span><span ng-show="over" ng-bind-html="tech.description"></span></a></span>
 </div>

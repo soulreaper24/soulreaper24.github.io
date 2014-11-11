@@ -2,14 +2,16 @@
 
 angular.module('game')
 .controller('WondersCtrl', function($scope, GameService) {	
-	$scope.availableWonders = GameService.availableWonders;	
+	$scope.getAvailableWonders = function() {
+		return GameService.data.availableWonders;
+	};
 
 	$scope.constructed = function(wonder) {
-		return wonder.age <= GameService.age && GameService.wonders.indexOf(wonder.name) > -1;
+		return wonder.age <= GameService.data.age && GameService.data.wonders.indexOf(wonder.name) > -1;
 	};
 
 	$scope.notConstructed = function(wonder) {
-		return wonder.age <= GameService.age && GameService.wonders.indexOf(wonder.name) === -1;
+		return wonder.age <= GameService.data.age && GameService.data.wonders.indexOf(wonder.name) === -1;
 	};
 
 	$scope.getProduction = function() {
@@ -17,13 +19,13 @@ angular.module('game')
 	}
 
 	$scope.build = function(wonder) {
-	  GameService.negatives.push({name : wonder.name, type: 'Wonder', turns: wonder.turns, lossPerTurn: wonder.lossPerTurn});	  
+	  GameService.data.negatives.push({name : wonder.name, type: 'Wonder', turns: wonder.turns, lossPerTurn: wonder.lossPerTurn});	  
 	}
 
 	$scope.wonderBuilding = function(wonder) {
-		for (var i = 0; i < GameService.negatives.length; i++) {
-			if (GameService.negatives[i].name === wonder.name) {
-				return Math.ceil((wonder.turns - GameService.negatives[i].turns) / wonder.turns * 100);
+		for (var i = 0; i < GameService.data.negatives.length; i++) {
+			if (GameService.data.negatives[i].name === wonder.name) {
+				return Math.ceil((wonder.turns - GameService.data.negatives[i].turns) / wonder.turns * 100);
 			}
 		}
 		return -1;

@@ -11,11 +11,11 @@ angular.module('game')
     };
 
     if (availableTechs.data) {
-      GameService.availableTechs = availableTechs.data.techs;
+      GameService.data.availableTechs = availableTechs.data.techs;
     };
 
     if (availableWonders.data) {
-      GameService.availableWonders = availableWonders.data.wonders;
+      GameService.data.availableWonders = availableWonders.data.wonders;
     };
 
     if (availableUnits.data) {
@@ -23,33 +23,33 @@ angular.module('game')
     };
 
     if (aliens.data) {
-      GameService.aliens = aliens.data.aliens;
+      GameService.data.aliens = aliens.data.aliens;
     };
 
-    //DebugService.setDebugAge(2);
+    //DebugService.setDebugAge(7);
 
     $scope.getStateName = function() {
       return $state.$current.name;
     };
 
     $scope.getNumTurns = function() {
-      return GameService.turnsSinceAlienInvaded;
+      return GameService.data.turnsSinceAlienInvaded;
     };
 
     $scope.getYearNum = function() {
-      return GameService.year;
+      return GameService.data.year;
     };
 
     $scope.getYear = function() {
-      if (GameService.year < 0) {
-        return (0 - GameService.year) + 'BC';
+      if (GameService.data.year < 0) {
+        return (0 - GameService.data.year) + 'BC';
       } else {
-        return GameService.year + 'AD';
+        return GameService.data.year + 'AD';
       }
     };
 
     $scope.getAge = function() {
-      return GameService.getAgeName(GameService.age);
+      return GameService.getAgeName(GameService.data.age);
     };
 
     $scope.getProduction = function() {
@@ -70,30 +70,31 @@ angular.module('game')
 
     $scope.endTurn = function() {
       GameService.endTurn();
-      if (GameService.age < 8 && GameService.numberOfAvailableTechs() === 0) {
+      if (GameService.data.age < 8 && GameService.numberOfAvailableTechs() === 0) {
         $scope.openNewAgeModal();
       }
 
-      if (GameService.year === 2030 && GameService.turnsSinceAlienInvaded === -3) {
-        $scope.openAlienModal();
+      if (GameService.data.year === 2030 && GameService.data.turnsSinceAlienInvaded === -3) {
+        GameService.save = angular.copy(GameService.data);
+        $scope.openAlienModal();        
       }
 
-      if (GameService.age === 8 || GameService.year >= 2030) {
-          GameService.turnsSinceAlienInvaded++;
-          if (GameService.turnsSinceAlienInvaded === 10) {
-            GameService.won = true;
+      if (GameService.data.age === 8 || GameService.data.year >= 2030) {
+          GameService.data.turnsSinceAlienInvaded++;
+          if (GameService.data.turnsSinceAlienInvaded === 10) {
+            GameService.data.won = true;
             $scope.openGameEndModal();
           }
 
-          if (GameService.turnsSinceAlienInvaded > 0) {
-            if (!CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.hpMultiplier, GameService.aliens)) {
+          if (GameService.data.turnsSinceAlienInvaded > 0) {
+            if (!CombatService.conquest(GameService.data.availableUnits, GameService.data.damageMultiplier, GameService.data.hpMultiplier, GameService.data.aliens)) {
               LogService.logAlert('Your army lost.');
-              GameService.won = false;
+              GameService.data.won = false;
               $scope.openGameEndModal();
             } else {
-              for (var i = 0; i < GameService.aliens.length; i++) {
-                GameService.aliens[i].baseCount = Math.ceil(GameService.aliens[i].baseCount * GameService.GROWTH_COEFF);
-                GameService.aliens[i].count = GameService.aliens[i].baseCount;
+              for (var i = 0; i < GameService.data.aliens.length; i++) {
+                GameService.data.aliens[i].baseCount = Math.ceil(GameService.data.aliens[i].baseCount * GameService.data.GROWTH_COEFF);
+                GameService.data.aliens[i].count = GameService.data.aliens[i].baseCount;
               }
             }
           }
@@ -106,9 +107,9 @@ angular.module('game')
             backdrop : 'static',
             controller: function ($scope, $modalInstance, GameService) {
               $scope.options = {production: false, science: false, units: false};
-              $scope.nextAge = GameService.getAgeName(GameService.age + 1);
-              $scope.unit = GameService.availableUnits[GameService.age + 2];
-              $scope.enemyName = GameService.availableUnits[GameService.age + 1].name;
+              $scope.nextAge = GameService.getAgeName(GameService.data.age + 1);
+              $scope.unit = GameService.data.availableUnits[GameService.data.age + 2];
+              $scope.enemyName = GameService.data.availableUnits[GameService.data.age + 1].name;
 
               $scope.openAlienModal = function () {        
                   var modalInstance = $modal.open({
@@ -123,10 +124,10 @@ angular.module('game')
               };
 
               $scope.ok = function () {
-                  $modalInstance.close($scope.options);
-                  console.log(GameService.age);
-                  if (GameService.age === 7) {
-                    GameService.turnsSinceAlienInvaded = -2;
+                  $modalInstance.close($scope.options);                  
+                  if (GameService.data.age === 7) {
+                    GameService.data.turnsSinceAlienInvaded = -2;
+                    GameService.save = angular.copy(GameService.data);           
                     $scope.openAlienModal();
                   }
               };
@@ -146,9 +147,22 @@ angular.module('game')
         var modalInstance = $modal.open({
             templateUrl: 'scripts/app/gameEnd.html',
             backdrop : 'static',
-            controller: function ($scope, $modalInstance, GameService) {
-                $scope.turns = GameService.turnsSinceAlienInvaded;
-                $scope.won = GameService.won;
+            controller: function ($scope, $state, $modalInstance, GameService) {
+                $scope.turns = GameService.data.turnsSinceAlienInvaded;
+                $scope.won = GameService.data.won;
+
+                $scope.load = function() {
+                    GameService.data = angular.copy(GameService.save);
+                    if (GameService.data.year < 2000) {
+                      GameService.data.year -= 2;
+                    } else {
+                      GameService.data.year -= 1;
+                    }
+                    GameService.setProduction(GameService.getProduction() - GameService.getProductionPerTurn());
+                    GameService.setScience(GameService.getScience() - GameService.getSciencePerTurn());
+
+                    $scope.cancel();                    
+                };
 
                 $scope.ok = function (endless) {
                     $modalInstance.close(endless);
@@ -176,7 +190,7 @@ angular.module('game')
                     $modalInstance.dismiss('cancel');
                 };
             }
-        });
+        });        
     };
 
     $scope.getLog = function() {      

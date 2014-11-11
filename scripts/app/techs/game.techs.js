@@ -2,22 +2,24 @@
 
 angular.module('game')
 .controller('TechsCtrl', function($scope, GameService, TechsService) {	
-	$scope.availableTechs = GameService.availableTechs;
+	$scope.getAvailableTechs = function () {
+		return GameService.data.availableTechs;
+	}
 
 	$scope.getTechCost = function(tech) {		
-		if (GameService.age < 8) {
-			return Math.ceil(Math.pow(2, Math.min(GameService.techsThisAge, 3)) * tech.cost);
+		if (GameService.data.age < 8) {
+			return Math.ceil(Math.pow(2, Math.min(GameService.data.techsThisAge, 3)) * tech.cost);
 		} else {
 			return tech.cost;
 		}
 	};
 
 	$scope.researched = function(tech) {
-		return tech.age <= GameService.age && GameService.techs.indexOf(tech.name) > -1;
+		return tech.age <= GameService.data.age && GameService.data.techs.indexOf(tech.name) > -1;
 	};
 
 	$scope.notResearched = function(tech) {
-		return tech.age <= GameService.age && GameService.techs.indexOf(tech.name) === -1;
+		return tech.age <= GameService.data.age && GameService.data.techs.indexOf(tech.name) === -1;
 	};
 
 	$scope.getScience = function() {
@@ -27,11 +29,11 @@ angular.module('game')
 	$scope.research = function(tech) {
 	  GameService.setScience(GameService.getScience() - $scope.getTechCost(tech));
 	  TechsService.setTechResearched(GameService, tech);
-	  GameService.techsThisAge++;
+	  GameService.data.techsThisAge++;
 	};
 
 	$scope.techResearched = function(techName) {
-		return GameService.techs.indexOf(techName) > -1;
+		return GameService.data.techs.indexOf(techName) > -1;
 	};
 })
 .config(function($stateProvider) {

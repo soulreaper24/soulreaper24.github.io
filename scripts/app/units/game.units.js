@@ -3,37 +3,37 @@
 angular.module('game')
 .controller('UnitsCtrl', function($scope, GameService, CombatService) {
 	$scope.toTrain = 1;
-	$scope.availableUnits = GameService.availableUnits;	
+	$scope.availableUnits = GameService.data.availableUnits;	
 	$scope.getTurnsSinceAlienInvaded = function() {
-		return GameService.turnsSinceAlienInvaded;
+		return GameService.data.turnsSinceAlienInvaded;
 	};
 
 	$scope.getAliens = function() {
-		return GameService.aliens;
+		return GameService.data.aliens;
 	}
 
 	$scope.getUnitDamage = function(unit) {
-		return Math.ceil(unit.damage * GameService.damageMultiplier);
+		return Math.ceil(unit.damage * GameService.data.damageMultiplier);
 	};
 
 	$scope.getUnitHp = function(unit) {
-		return Math.ceil(unit.hp * GameService.hpMultiplier);
+		return Math.ceil(unit.hp * GameService.data.hpMultiplier);
 	};
 
 	$scope.getEnemy = function () {
-		return GameService.enemy[0];
+		return GameService.data.enemy[0];
 	};
 
 	$scope.getRemainingConquestsThisTurn = function() {
-		return GameService.maxConquests - GameService.currentTurn.numConquests;
+		return GameService.data.maxConquests - GameService.data.currentTurn.numConquests;
 	};
 
 	$scope.previousAgeFilter = function(unit) {
-		return unit.age > -1 && unit.count > 0 && unit.age < GameService.age;
+		return unit.age > -1 && unit.count > 0 && unit.age < GameService.data.age;
 	};
 
 	$scope.ageFilter = function(unit) {
-		return unit.age === GameService.age;
+		return unit.age === GameService.data.age;
 	};
 
 	$scope.getProduction = function() {
@@ -51,8 +51,8 @@ angular.module('game')
 
 	$scope.canConquest = function() {
 		// 0 is neutral unit Wolf
-		for (var i = 1; i < GameService.availableUnits.length; i++) {
-			if (GameService.availableUnits[i].count > 0) {
+		for (var i = 1; i < GameService.data.availableUnits.length; i++) {
+			if (GameService.data.availableUnits[i].count > 0) {
 				return $scope.getRemainingConquestsThisTurn() > 0;
 			}
 		}
@@ -60,8 +60,8 @@ angular.module('game')
 	};
 
 	$scope.conquest = function() {
-		GameService.currentTurn.numConquests += 1;
-		if (CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.hpMultiplier, GameService.getEnemy())) {
+		GameService.data.currentTurn.numConquests += 1;
+		if (CombatService.conquest(GameService.data.availableUnits, GameService.data.damageMultiplier, GameService.data.hpMultiplier, GameService.getEnemy())) {
 			GameService.conquestWon();
 		} else {
 			GameService.conquestLost();
