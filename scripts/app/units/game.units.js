@@ -4,6 +4,13 @@ angular.module('game')
 .controller('UnitsCtrl', function($scope, GameService, CombatService) {
 	$scope.toTrain = 1;
 	$scope.availableUnits = GameService.availableUnits;	
+	$scope.getTurnsSinceAlienInvaded = function() {
+		return GameService.turnsSinceAlienInvaded;
+	};
+
+	$scope.getAliens = function() {
+		return GameService.aliens;
+	}
 
 	$scope.getUnitDamage = function(unit) {
 		return Math.ceil(unit.damage * GameService.damageMultiplier);

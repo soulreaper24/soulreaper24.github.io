@@ -40,7 +40,25 @@
 					</small>
 				</h4>				
 			</td>			
-			<td width="300"><button ng-disabled="!canConquest()" class="small right expand" ng-click="conquest()">Conquest ({{getRemainingConquestsThisTurn()}})</button></td>
+			<td width="300"><button ng-hide="!canConquest()" class="small right expand" ng-click="conquest()">Conquest ({{getRemainingConquestsThisTurn()}})</button></td>
+		</tr>
+	</table>
+</div>
+
+
+<div ng-show="getTurnsSinceAlienInvaded() > -3" class="row">
+	<h4>Incoming Alien Forces</h4>
+	<table>
+		<tr ng-repeat="alien in getAliens()">
+			<td width="100"><h3>{{alien.count | number}}</h3></td>
+			<td>
+				<h4>{{alien.name}}
+					<small>
+						{{alien.damage | number}} <i class="fa fa-bolt"></i> {{alien.hp | number}} <i class="fa fa-heart"></i>
+					</small>
+				</h4>				
+			</td>			
+			<td width="300"></td>
 		</tr>
 	</table>
 </div>

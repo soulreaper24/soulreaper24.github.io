@@ -36,7 +36,7 @@ angular.module('game')
 		enemy: [],
 		aliens: [],
 
-		turnsSinceFutureAgeStarts: 0
+		turnsSinceAlienInvaded: -3
 	};
 
 	service.getAgeName = function(age) {
@@ -56,7 +56,7 @@ angular.module('game')
                 break;
         case 6: ageName = 'Atomic Age';
                 break;
-        case 7: ageName = 'Infomrmation Age';
+        case 7: ageName = 'Information Age';
                 break;
         case 8: ageName = 'Future Age';
                 break;      

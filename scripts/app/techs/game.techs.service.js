@@ -48,7 +48,7 @@ angular.module('game')
 		if (techName === 'Industrialization' || techName === 'Steam Power') {
 			gameService.findBuildingWithName('Factory').multiplier *= 2;
 		}
-		if (techName === 'Scientific Theory' || techName === ' Biology') {
+		if (techName === 'Scientific Theory' || techName === 'Biology') {
 			gameService.findBuildingWithName('Public School').multiplier *= 2;
 		}
 

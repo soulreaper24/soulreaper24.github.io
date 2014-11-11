@@ -26,14 +26,18 @@ angular.module('game')
       GameService.aliens = aliens.data.aliens;
     };
 
-    //DebugService.setDebugAge(8);
+    //DebugService.setDebugAge(2);
 
     $scope.getStateName = function() {
       return $state.$current.name;
     };
 
     $scope.getNumTurns = function() {
-      return GameService.turnsSinceFutureAgeStarts;
+      return GameService.turnsSinceAlienInvaded;
+    };
+
+    $scope.getYearNum = function() {
+      return GameService.year;
     };
 
     $scope.getYear = function() {
@@ -70,21 +74,27 @@ angular.module('game')
         $scope.openNewAgeModal();
       }
 
-      if (GameService.age === 8) {
-          GameService.turnsSinceFutureAgeStarts++;
-          if (GameService.turnsSinceFutureAgeStarts === 10) {
+      if (GameService.year === 2030 && GameService.turnsSinceAlienInvaded === -3) {
+        $scope.openAlienModal();
+      }
+
+      if (GameService.age === 8 || GameService.year >= 2030) {
+          GameService.turnsSinceAlienInvaded++;
+          if (GameService.turnsSinceAlienInvaded === 10) {
             GameService.won = true;
             $scope.openGameEndModal();
           }
 
-          if (!CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.hpMultiplier, GameService.aliens)) {
-            LogService.logAlert('Your army lost.');
-            GameService.won = false;
-            $scope.openGameEndModal();
-          } else {
-            for (var i = 0; i < GameService.aliens.length; i++) {
-              GameService.aliens[i].baseCount = Math.ceil(GameService.aliens[i].baseCount * GameService.GROWTH_COEFF);
-              GameService.aliens[i].count = GameService.aliens[i].baseCount;
+          if (GameService.turnsSinceAlienInvaded > 0) {
+            if (!CombatService.conquest(GameService.availableUnits, GameService.damageMultiplier, GameService.hpMultiplier, GameService.aliens)) {
+              LogService.logAlert('Your army lost.');
+              GameService.won = false;
+              $scope.openGameEndModal();
+            } else {
+              for (var i = 0; i < GameService.aliens.length; i++) {
+                GameService.aliens[i].baseCount = Math.ceil(GameService.aliens[i].baseCount * GameService.GROWTH_COEFF);
+                GameService.aliens[i].count = GameService.aliens[i].baseCount;
+              }
             }
           }
         }
@@ -100,8 +110,25 @@ angular.module('game')
               $scope.unit = GameService.availableUnits[GameService.age + 2];
               $scope.enemyName = GameService.availableUnits[GameService.age + 1].name;
 
+              $scope.openAlienModal = function () {        
+                  var modalInstance = $modal.open({
+                      templateUrl: 'scripts/app/alien.html',
+                      backdrop : 'static',
+                      controller: function ($scope, $modalInstance, GameService) {
+                          $scope.cancel = function () {
+                              $modalInstance.dismiss('cancel');
+                          };
+                      }
+                  });
+              };
+
               $scope.ok = function () {
                   $modalInstance.close($scope.options);
+                  console.log(GameService.age);
+                  if (GameService.age === 7) {
+                    GameService.turnsSinceAlienInvaded = -2;
+                    $scope.openAlienModal();
+                  }
               };
 
               $scope.cancel = function () {
@@ -120,7 +147,7 @@ angular.module('game')
             templateUrl: 'scripts/app/gameEnd.html',
             backdrop : 'static',
             controller: function ($scope, $modalInstance, GameService) {
-                $scope.turns = GameService.turnsSinceFutureAgeStarts;
+                $scope.turns = GameService.turnsSinceAlienInvaded;
                 $scope.won = GameService.won;
 
                 $scope.ok = function (endless) {
@@ -136,6 +163,18 @@ angular.module('game')
         modalInstance.result.then(function (endless) {
             if (!endless) {
                 window.location = '/';
+            }
+        });
+    };
+
+    $scope.openAlienModal = function () {        
+        var modalInstance = $modal.open({
+            templateUrl: 'scripts/app/alien.html',
+            backdrop : 'static',
+            controller: function ($scope, $modalInstance, GameService) {
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
             }
         });
     };

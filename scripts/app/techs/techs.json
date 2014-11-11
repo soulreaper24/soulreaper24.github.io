@@ -31,8 +31,8 @@
 		{"age": 3, "name" : "Metallurgy", "description" : "+10% All Unit <i class='fa fa-bolt'></i>", "cost" : 5000},
 		{"age": 3, "name" : "Gunpowder", "description" : "+10% All Unit <i class='fa fa-bolt'></i>", "cost" : 5000},
 
-		{"age": 4, "name" : "Industrialization", "description" : "x2 <b>Fatory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 30000},
-		{"age": 4, "name" : "Steam Power", "description" : "x2 <b>Fatory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 30000},
+		{"age": 4, "name" : "Industrialization", "description" : "x2 <b>Factory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 30000},
+		{"age": 4, "name" : "Steam Power", "description" : "x2 <b>Factory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 30000},
 		{"age": 4, "name" : "Scientific Theory", "description" : "x2 <b>Public School</b> <i class='fa fa-flask'></i> per Turn", "cost" : 30000},
 		{"age": 4, "name" : "Biology", "description" : "x2 <b>Public School</b> <i class='fa fa-flask'></i> per Turn", "cost" : 30000},
 		{"age": 4, "name" : "Fertilizer", "description" : "+10% <i class='fa fa-gavel'></i> per Turn", "cost" : 30000},

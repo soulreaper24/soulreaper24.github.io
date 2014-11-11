@@ -1,13 +1,13 @@
 <div ng-show="!won" class="row">
 	<h3 class="red">Game Over! </h3>
-	<p>You lasted <span class="green"><b>{{turns}}</b></span> turns in Future Age. </p>
+	<p>You survived <span class="green"><b>{{turns}}</b></span> waves of Alien invasion. </p>
 	<div class="right">
 	    <button class="strong" ng-click="ok(false);">Start Over</button>	    
 	</div>
 </div>
 <div ng-show="won" class="row">
 	<h3 class="green">Congratulations! You have won the game.</h3>
-	<p> <b>Start Over</b> or <b>Endless Mode</b> facing the Alien horde to see how many turns you can last! </p>
+	<p> <b>Start Over</b>, or <b>Endless Mode</b> to keep facing the Alien horde to see how many waves you can defeat! </p>
 	<br />
 	<div class="right">
 	    <button class="strong" ng-click="ok(false);">Start Over</button>
