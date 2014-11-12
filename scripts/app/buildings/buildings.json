@@ -8,7 +8,7 @@
 	 {"age": 5, "name": "Assembly Line", 	 "productionPerTurn" : 320,		"cost": 2000},
 	 {"age": 6, "name": "Nuclear Plant", 	 "productionPerTurn" : 1000,	"cost": 5960},
 	 {"age": 7, "name": "Robotic Factory",   "productionPerTurn" : 3200,	"cost": 19200},
-	 {"age": 8, "name": "Biofactory", 		 "productionPerTurn" : 10000,	"cost": 55840},
+	 {"age": 8, "name": "Biofactory", 		 "productionPerTurn" : 15000,	"cost": 65840},
 
 
 	 {"age": 0, "name": "Library", 			 "sciencePerTurn" : 1, 		"cost": 15},
@@ -19,7 +19,7 @@
 	 {"age": 5, "name": "Research Lab", 	 "sciencePerTurn" : 320,	"cost": 2000},
 	 {"age": 6, "name": "Medical Lab", 		 "sciencePerTurn" : 1000,	"cost": 5960},
 	 {"age": 7, "name": "Biotech Lab", 		 "sciencePerTurn" : 3200,	"cost": 19200},
-	 {"age": 8, "name": "Genetics Lab", 	 "sciencePerTurn" : 10000,	"cost": 55840}
+	 {"age": 8, "name": "Genetics Lab", 	 "sciencePerTurn" : 15000,	"cost": 65840}
 
 	 ]
 }

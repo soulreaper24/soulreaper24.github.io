@@ -68,18 +68,40 @@ angular.module('game')
       return GameService.getSciencePerTurn();
     };
 
+    var increaseAlienStrength = function() {
+      var i, multiplier = GameService.data.GROWTH_COEFF;
+      if (GameService.data.turnsSinceAlienInvaded % 5 === 0) {
+        multiplier *= 2.5;
+      }
+      for (i = 0; i < GameService.data.aliens.length; i++) {
+        GameService.data.aliens[i].baseCount = Math.ceil(GameService.data.aliens[i].baseCount * multiplier);
+        GameService.data.aliens[i].count = GameService.data.aliens[i].baseCount;
+      }
+      if (GameService.data.turnsSinceAlienInvaded % 10 === 0) {
+        for (i = 0; i < GameService.data.aliens.length; i++) {
+          GameService.data.aliens[i].hp *= 2;        
+        }
+      }
+
+      if (GameService.data.turnsSinceAlienInvaded % 15 === 0) {
+        for (i = 0; i < GameService.data.aliens.length; i++) {
+          GameService.data.aliens[i].damage *= 2;        
+        }
+      }
+    };
+
     $scope.endTurn = function() {
       GameService.endTurn();
       if (GameService.data.age < 8 && GameService.numberOfAvailableTechs() === 0) {
         $scope.openNewAgeModal();
       }
 
-      if (GameService.data.year === 2030 && GameService.data.turnsSinceAlienInvaded === -3) {
+      /*if (GameService.data.year === 2030 && GameService.data.turnsSinceAlienInvaded === -3) {
         GameService.save = angular.copy(GameService.data);
         $scope.openAlienModal();        
-      }
+      }*/
 
-      if (GameService.data.age === 8 || GameService.data.year >= 2030) {
+      if (GameService.data.age === 8/* || GameService.data.year >= 2030*/) {
           GameService.data.turnsSinceAlienInvaded++;
           if (GameService.data.turnsSinceAlienInvaded === 10) {
             GameService.data.won = true;
@@ -92,10 +114,7 @@ angular.module('game')
               GameService.data.won = false;
               $scope.openGameEndModal();
             } else {
-              for (var i = 0; i < GameService.data.aliens.length; i++) {
-                GameService.data.aliens[i].baseCount = Math.ceil(GameService.data.aliens[i].baseCount * GameService.data.GROWTH_COEFF);
-                GameService.data.aliens[i].count = GameService.data.aliens[i].baseCount;
-              }
+              increaseAlienStrength();
             }
           }
         }

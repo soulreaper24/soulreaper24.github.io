@@ -10,7 +10,7 @@ angular.module('game')
 		var i, prodIndex = 0, sciIndex = 0;
 		GameService.data.age = age;
 		GameService.data.year = 2028;//years[age];
-		GameService.data.availableUnits[age + 1].count = 30000 * age;
+		GameService.data.availableUnits[age + 1].count = 1 * age;
 		GameService.data.production = Math.pow(100, age );
 		GameService.data.science = Math.pow(100, age );
 		GameService.data.productionMultiplier *= Math.pow(1.1, age);

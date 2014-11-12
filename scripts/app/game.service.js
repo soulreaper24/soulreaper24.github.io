@@ -218,6 +218,7 @@ angular.module('game')
 	        service.data.negatives[i].turns -= 1;
 	        if (service.data.negatives[i].turns == 0) {	            
 	            if (service.data.negatives[i].type === 'Wonder') {
+	            	LogService.logSuccess('Construction of <i class="fa fa-star"></i> <b>' + service.data.negatives[i].name + '</b> has completed.');
 	            	WondersService.setWonderBuilt(service, service.findWonderWithName(service.data.negatives[i].name));
 	            }
 	            service.data.negatives.splice(i, 1);
@@ -235,9 +236,15 @@ angular.module('game')
 	};
 
 	service.handleYear = function() {
-		if (service.data.year < 1800) {
+		if (service.data.year < -800) {
+			service.data.year += 80;
+		} else if (service.data.year < 800) {
 			service.data.year += 40;
-		} else if (service.data.year < 1940) {
+		} else if (service.data.year < 1550) {
+			service.data.year += 30;
+		} else if (service.data.year < 1775) {
+			service.data.year += 15;
+		} else if (service.data.year < 1950) {
 			service.data.year += 5;
 		} else if (service.data.year < 2000) {
 			service.data.year += 2;

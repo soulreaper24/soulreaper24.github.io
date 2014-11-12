@@ -16,11 +16,20 @@ angular.module('game')
 
 	$scope.getProduction = function() {
 	  return GameService.getProduction();
-	}
+	};
 
 	$scope.build = function(wonder) {
 	  GameService.data.negatives.push({name : wonder.name, type: 'Wonder', turns: wonder.turns, lossPerTurn: wonder.lossPerTurn});	  
-	}
+	};
+
+	$scope.cancel = function(wonder) {
+      for (var i = GameService.data.negatives.length - 1; i >= 0; i--) {
+      	if (GameService.data.negatives[i].name === wonder.name) {
+      	  GameService.data.negatives.splice(i, 1);
+      	  break;
+      	}
+      }
+	};
 
 	$scope.wonderBuilding = function(wonder) {
 		for (var i = 0; i < GameService.data.negatives.length; i++) {
