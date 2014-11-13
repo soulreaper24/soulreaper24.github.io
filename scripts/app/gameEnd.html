@@ -3,7 +3,6 @@
 	<p>You survived <span class="green"><b>{{turns}}</b></span> waves of Alien invasion. </p>
 	<div class="right">
 	    <button class="strong" ng-click="ok(false);">Start Over</button>
-	    <button class="strong" ng-click="load();">Restart Before Invasion</button>
 	</div>
 </div>
 <div ng-show="won" class="row">
@@ -11,7 +10,6 @@
 	<p> <b>Start Over</b>, or <b>Endless Mode</b> to keep facing the Alien horde to see how many waves you can defeat! </p>
 	<br />
 	<div class="right">
-		<button class="strong" ng-click="load();">Restart Before Invasion</button>
 	    <button class="strong" ng-click="ok(false);">Start Over</button>
 	    <button class="strong" ng-click="ok(true);">Endless Mode</button>	    
 	</div>

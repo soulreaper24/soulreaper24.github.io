@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('game')  
-.controller('GameCtrl', function ($scope, $state, $location, $route, $modal, GameService, CombatService, LogService, DebugService, 
-  availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {    
+.controller('GameCtrl', function ($scope, $state, $location, $route, $modal, GameService, CombatService, LogService, DebugService, ChanceService,
+  availableBuildings, availableTechs, availableWonders, availableUnits, aliens) {
+    $scope.getDebug = function() { return GameService.debug;};
     $scope.totalProd = function (){ return GameService.totalProd;};
     $scope.totalSci = function (){ return GameService.totalSci;};
 
@@ -26,8 +27,10 @@ angular.module('game')
       GameService.data.aliens = aliens.data.aliens;
     };
 
-    //DebugService.setDebugAge(7);
-
+    if (GameService.debug) {
+      DebugService.setDebugAge(7);
+    }
+    
     $scope.getStateName = function() {
       return $state.$current.name;
     };
@@ -70,23 +73,41 @@ angular.module('game')
 
     var increaseAlienStrength = function() {
       var i, multiplier = GameService.data.GROWTH_COEFF;
-      if (GameService.data.turnsSinceAlienInvaded % 5 === 0) {
-        multiplier *= 2.5;
-      }
+
       for (i = 0; i < GameService.data.aliens.length; i++) {
-        GameService.data.aliens[i].baseCount = Math.ceil(GameService.data.aliens[i].baseCount * multiplier);
-        GameService.data.aliens[i].count = GameService.data.aliens[i].baseCount;
-      }
-      if (GameService.data.turnsSinceAlienInvaded % 10 === 0) {
-        for (i = 0; i < GameService.data.aliens.length; i++) {
-          GameService.data.aliens[i].hp *= 2;        
+        GameService.data.aliens[i].baseCount = Math.ceil(ChanceService.getRandomInRange(GameService.data.aliens[i].baseCount * multiplier * 0.9, GameService.data.aliens[i].baseCount * multiplier * 1.1));
+        if (!ChanceService.smallChance()) {
+          GameService.data.aliens[i].count = GameService.data.aliens[i].baseCount;
+        } else {
+          GameService.data.aliens[i].count = 10;
         }
       }
 
       if (GameService.data.turnsSinceAlienInvaded % 15 === 0) {
         for (i = 0; i < GameService.data.aliens.length; i++) {
-          GameService.data.aliens[i].damage *= 2;        
+          GameService.data.aliens[i].hp = Math.ceil(multiplier * GameService.data.aliens[i].hp);
         }
+      }
+
+      if (GameService.data.turnsSinceAlienInvaded % 15 === 5) {
+        for (i = 0; i < GameService.data.aliens.length; i++) {
+          GameService.data.aliens[i].damage = Math.ceil(multiplier * GameService.data.aliens[i].damage); 
+        }
+      }
+
+      if (GameService.data.turnsSinceAlienInvaded === 10) {
+        GameService.data.aliens[0].name = 'Evolved Zergling';
+        GameService.data.aliens[0].trait = 'First Strike';
+      }
+
+      if (GameService.data.turnsSinceAlienInvaded === 20) {
+        GameService.data.aliens[1].name = 'Evolved Hydralisk';
+        GameService.data.aliens[1].trait = 'Splash Damage';
+      }
+
+      if (GameService.data.turnsSinceAlienInvaded === 35) {
+        GameService.data.aliens[2].name = 'Evolved Ultralisk';
+        GameService.data.aliens[2].trait = undefined;
       }
     };
 
@@ -96,12 +117,7 @@ angular.module('game')
         $scope.openNewAgeModal();
       }
 
-      /*if (GameService.data.year === 2030 && GameService.data.turnsSinceAlienInvaded === -3) {
-        GameService.save = angular.copy(GameService.data);
-        $scope.openAlienModal();        
-      }*/
-
-      if (GameService.data.age === 8/* || GameService.data.year >= 2030*/) {
+      if (GameService.data.age === 8) {
           GameService.data.turnsSinceAlienInvaded++;
           if (GameService.data.turnsSinceAlienInvaded === 10) {
             GameService.data.won = true;
@@ -110,10 +126,11 @@ angular.module('game')
 
           if (GameService.data.turnsSinceAlienInvaded > 0) {
             if (!CombatService.conquest(GameService.data.availableUnits, GameService.data.damageMultiplier, GameService.data.hpMultiplier, GameService.data.aliens)) {
-              LogService.logAlert('Your army lost.');
+              LogService.logAlert('Your army failed to defend Earth against a wave of Alien invasion. Earth is lost...');
               GameService.data.won = false;
               $scope.openGameEndModal();
             } else {
+              LogService.logSuccess('Your army successfully defended Earth against a wave of Alien invasion. Their forces grow stronger.');
               increaseAlienStrength();
             }
           }

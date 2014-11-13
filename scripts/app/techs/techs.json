@@ -75,6 +75,23 @@
 
 	    {"age": 8, "name" : "Sentient AI", "description" : "x4 <b>Biofactory</b> <i class='fa fa-gavel'></i> per Turn", "cost" : 30000000},
 	    {"age": 8, "name" : "Genetic Engineering", "description" : "x4 <b>Genetic Lab</b> <i class='fa fa-flask'></i> per Turn", "cost" : 30000000},
-	    {"age": 8, "name" : "Advanced Weaponry", "description" : "+50% All Unit <i class='fa fa-bolt'></i>. <b>Repeatable.</b>", "cost" : 30000000}
+	    {"age": 8, "name" : "Neosteel Weapon 1", "turns": 3, "description" : "+10% All Unit <i class='fa fa-bolt'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Weapon 2", "turns": 12, "description" : "+10% All Unit <i class='fa fa-bolt'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Weapon 3", "turns": 21, "description" : "+10% All Unit <i class='fa fa-bolt'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Weapon 4", "turns": 45, "description" : "+10% All Unit <i class='fa fa-bolt'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Weapon 5", "turns": 54, "description" : "+10% All Unit <i class='fa fa-bolt'></i>", "cost" : 30000000},
+
+	    {"age": 8, "name" : "Neosteel Armor 1", "turns": 9, "description" : "+10% All Unit <i class='fa fa-heart'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Armor 2", "turns": 15, "description" : "+10% All Unit <i class='fa fa-heart'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Armor 3", "turns": 24, "description" : "+10% All Unit <i class='fa fa-heart'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Armor 4", "turns": 48, "description" : "+10% All Unit <i class='fa fa-heart'></i>", "cost" : 30000000},
+	    {"age": 8, "name" : "Neosteel Armor 5", "turns": 57, "description" : "+10% All Unit <i class='fa fa-heart'></i>", "cost" : 30000000},
+
+	    {"age": 8, "name" : "Reactor Core 1", "turns": 18, "description" : "-10% Unit cost", "cost" : 30000000},
+	    {"age": 8, "name" : "Reactor Core 2", "turns": 27, "description" : "-10% Unit cost", "cost" : 30000000},
+	    {"age": 8, "name" : "Punisher Missiles", "turns": 33, "description" : "<b>Thor</b> gains <b>Splash Damage</b>", "cost" : 30000000},
+	    {"age": 8, "name" : "Warp Drive", "turns": 42 , "description" : "<b>Battle Cruiser</b> has <b>Normal Initiative</b>", "cost" : 30000000},
+	    {"age": 8, "name" : "Fusion Core 1", "turns": 36, "description" : "-15% Unit cost", "cost" : 30000000},
+	    {"age": 8, "name" : "Fusion Core 2", "turns": 51, "description" : "-15% Unit cost", "cost" : 30000000}
    ]
 }

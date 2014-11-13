@@ -1,11 +1,12 @@
 <div class="row">
+	<h5>Your Army</h5>
 	<table>
-		<tr ng-repeat="unit in availableUnits | filter:previousAgeFilter ">
-			<td width="100"><h3>{{unit.count | number}}</h3></td>
-			<td>
+		<tr ng-repeat="unit in getAvailableUnits() | filter:previousAgeFilter ">
+			<td width="160"><h5>{{unit.count | number}}</h5></td>
+			<td> 
 				<h4>{{unit.name}}
 					<small>
-						{{getUnitDamage(unit) | number}} <i class="fa fa-bolt"></i> {{getUnitHp(unit) | number}} <i class="fa fa-heart"></i>
+						{{getUnitDamage(unit) | number}} <i class="fa fa-bolt"></i> {{getUnitHp(unit) | number}} <i class="fa fa-heart"></i> <span class="red" ng-show="unit.trait">{{unit.trait}}</span>
 					</small>
 				</h4>				
 			</td>
@@ -13,26 +14,27 @@
 			<td width="50"></td>
 			<td width="300"></td>
 		</tr>
-		<tr ng-repeat="unit in availableUnits | filter:ageFilter ">
-			<td width="100"><h3>{{unit.count | number}}</h3></td>
+		<tr ng-repeat="unit in getAvailableUnits() | filter:ageFilter ">
+			<td width="160"><h5>{{unit.count | number}}</h5></td>
 			<td>
 				<h4>{{unit.name}}
 					<small>
-						{{getUnitDamage(unit) | number}} <i class="fa fa-bolt"></i> {{getUnitHp(unit) | number}} <i class="fa fa-heart"></i>
+						{{getUnitDamage(unit) | number}} <i class="fa fa-bolt"></i> {{getUnitHp(unit) | number}} <i class="fa fa-heart"></i> <span class="red" ng-show="unit.trait">{{unit.trait}}</span>
 					</small>
 				</h4>				
 			</td>
-			<td width="120"><input type="text" ng-model="toTrain"></input></td>
+			<td width="120"><input type="text" ng-model="unit.toTrain"></input></td>
 			<td width="50"><button title="Max" class="small right expand" ng-click="max(unit);"><i class="fa fa-step-forward fa-rotate-270"></i></button></td>
-			<td width="300"><button class="small right expand" ng-disabled="toTrain < 0 || getProduction() < toTrain * unit.cost" ng-click="train(unit, toTrain);">Train ({{toTrain * unit.cost | number}} <i class="fa fa-gavel"></i>)</button></td>
+			<td width="300"><button class="small right expand" ng-disabled="unit.toTrain < 0 || getProduction() < unit.toTrain * unit.cost" ng-click="train(unit);">Train ({{unit.toTrain * unit.cost | number}} <i class="fa fa-gavel"></i>)</button></td>
 		</tr>
 	</table>
 </div>
 
 <div class="row">
+	<h5>Conquest Enemy</h5>
 	<table>
 		<tr>
-			<td width="100"><h3>{{getEnemy().count | number}}</h3></td>
+			<td width="160"><h5>{{getEnemy().count | number}}</h5></td>
 			<td>
 				<h4>{{getEnemy().name}}
 					<small>
@@ -47,14 +49,15 @@
 
 
 <div ng-show="getTurnsSinceAlienInvaded() > -3" class="row">
-	<h4>Incoming Alien Forces</h4>
+	<h5>Incoming Alien Forces</h5>
 	<table>
 		<tr ng-repeat="alien in getAliens()">
-			<td width="100"><h3>{{alien.count | number}}</h3></td>
+			<td width="160"><h5>{{alien.count | number}}</h5></td>
 			<td>
 				<h4>{{alien.name}}
 					<small>
 						{{alien.damage | number}} <i class="fa fa-bolt"></i> {{alien.hp | number}} <i class="fa fa-heart"></i>
+						<span class="red" ng-show="alien.trait">{{alien.trait}}</span>
 					</small>
 				</h4>				
 			</td>			

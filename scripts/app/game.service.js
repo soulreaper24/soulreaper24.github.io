@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('game')  
-.service('GameService', function(ChanceService, LogService, WondersService, TechsService, CombatService) {
+.service('GameService', function($filter, ChanceService, LogService, WondersService, TechsService, CombatService) {
 	
 	var NEGATIVE_PPT_COEFF = 0.85;
 	var MINIMUM_CONQUEST_REWARD = 20;
 	var ENEMY_MULTIPLIER = 3;
 	var CONQUEST_COEFF = 1.01;
-	var ENEMY_COEFF = 1.05;
+	var ENEMY_COEFF = 1.03;
 	var service = {};
 	service.data = { 
 		GROWTH_COEFF: 1.15,
@@ -84,6 +84,14 @@ angular.module('game')
 		}
 	};
 
+	service.findUnitWithName = function(name) {
+		for (var i = 0; i < service.data.availableUnits.length; i++) {
+			if (service.data.availableUnits[i].name === name) {
+				return service.data.availableUnits[i];
+			}
+		}
+	};
+
 	service.setAvailableBuildings = function(buildings) {
 		for (var i = 0; i < buildings.length; i++) {
 			buildings[i].multiplier = 1;
@@ -93,7 +101,8 @@ angular.module('game')
 	};
 
 	service.setAvailableUnits = function(units) {
-		for (var i = 0; i < units.length; i++) {			
+		for (var i = 0; i < units.length; i++) {
+			units[i].toTrain = 1;			
 			units[i].count = 0;
 			units[i].normalName = units[i].name;
 		}
@@ -193,11 +202,11 @@ angular.module('game')
 		productionWon = Math.max(productionWon, MINIMUM_CONQUEST_REWARD);
 		productionWon = Math.ceil(ChanceService.getRandomInRange(productionWon * 0.9, productionWon * 1.1));
 
-		LogService.logSuccess('Your army salvaged ' + productionWon + '<i class="fa fa-gavel"></i>.');
+		LogService.logSuccess('Your army salvaged ' + $filter('number')(productionWon) + '<i class="fa fa-gavel"></i>.');
 		service.setProduction(service.getProduction() + productionWon);
 		service.data.totalProd += productionWon;
 		if (scienceWon > 0) {
-			LogService.logSuccess('Your army salvaged ' + scienceWon + '<i class="fa fa-flask"></i>.');
+			LogService.logSuccess('Your army salvaged ' + $filter('number')(scienceWon) + '<i class="fa fa-flask"></i>.');
 			service.setScience(service.getScience() + scienceWon);
 			service.data.totalSci += scienceWon;
 		}

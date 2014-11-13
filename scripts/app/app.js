@@ -5,7 +5,12 @@ angular.module('game', [ 'ui.router', 'mm.foundation', 'ngRoute', 'ngSanitize', 
     $stateProvider
       .state('home', {
         url: '/home',
-        templateUrl: 'scripts/app/home.html'
+        templateUrl: 'scripts/app/home.html',
+        controller: function($scope, GameService) {
+        	$scope.startInFutureAge = function() {
+        		GameService.debug = true;
+        	};
+        }
       });
   })
   .controller('MainCtrl', function($scope, $state) {

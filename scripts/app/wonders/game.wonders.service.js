@@ -36,11 +36,11 @@ angular.module('game')
 			|| wonderName === 'Brandenburg Gate' || wonderName === 'Red Fort'
 			|| wonderName === 'Himeji Castle' || wonderName === 'The Kremlin'
 			|| wonderName === 'Manhattan Project' || wonderName === 'The Pentagon') {
-			gameService.data.hpMultiplier *= 1.2;
+			gameService.data.hpMultiplier *= 1.1;
 		}
 
 		if (wonderName === 'Global Defense Grid') {
-			gameService.data.hpMultiplier *= 1.5;
+			gameService.data.hpMultiplier *= 1.05;
 			var wonder = gameService.findWonderWithName('Global Defense Grid');
 			wonder.lossPerTurn = Math.ceil(wonder.lossPerTurn * gameService.data.GROWTH_COEFF);
 		}

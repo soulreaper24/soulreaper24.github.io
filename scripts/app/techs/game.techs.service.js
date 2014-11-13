@@ -2,20 +2,11 @@
 
 angular.module('game')  
 .service('TechsService', function() {	
-	var service = {numAge8Techs: 1};
+	var service = {};
 
 	service.setTechResearched = function(gameService, tech) {
 		var techName = tech.name;
-		if ('Advanced Weaponry' !== techName) {
-			gameService.data.techs.push(techName);
-		} else {
-			var tempTech = angular.copy(tech);
-			tempTech.name = techName + ' ' + service.numAge8Techs;
-			gameService.data.availableTechs.push(tempTech);
-			gameService.data.techs.push(techName + ' ' + service.numAge8Techs);
-			service.numAge8Techs++;
-			tech.cost = Math.ceil(tech.cost * gameService.data.GROWTH_COEFF);
-		}
+		gameService.data.techs.push(techName);
 
 		if (techName === 'Mining' || techName === 'Bronze Works') {
 			gameService.findBuildingWithName('Mine').multiplier *= 2;
@@ -107,8 +98,34 @@ angular.module('game')
 			gameService.data.damageMultiplier *= 1.1;
 		}
 
-		if (techName === 'Advanced Weaponry') {
-			gameService.data.damageMultiplier *= 1.5;
+		if (techName.indexOf('Neosteel Weapon') === 0) {
+			gameService.data.damageMultiplier *= 1.1;
+		}
+
+		if (techName.indexOf('Neosteel Armor') === 0) {
+			gameService.data.hpMultiplier *= 1.1;
+		}
+
+		if (techName === 'Punisher Missiles') {
+			gameService.findUnitWithName('Thor').trait = 'Splash Damage';
+		}
+
+		if (techName === 'Warp Drive') {
+			gameService.findUnitWithName('Battlecruiser').trait = undefined;	
+		}
+
+		if (techName.indexOf('Reactor Core') === 0) {
+			gameService.findUnitWithName('Space Marine').cost = Math.ceil(gameService.findUnitWithName('Space Marine').cost * 0.9);
+			gameService.findUnitWithName('Reaper').cost = Math.ceil(gameService.findUnitWithName('Reaper').cost * 0.9);
+			gameService.findUnitWithName('Thor').cost = Math.ceil(gameService.findUnitWithName('Thor').cost * 0.9);
+			gameService.findUnitWithName('Battlecruiser').cost = Math.ceil(gameService.findUnitWithName('Battlecruiser').cost * 0.9);
+		}
+
+		if (techName.indexOf('Fusion Core') === 0) {
+			gameService.findUnitWithName('Space Marine').cost = Math.ceil(gameService.findUnitWithName('Space Marine').cost * 0.85);
+			gameService.findUnitWithName('Reaper').cost = Math.ceil(gameService.findUnitWithName('Reaper').cost * 0.85);
+			gameService.findUnitWithName('Thor').cost = Math.ceil(gameService.findUnitWithName('Thor').cost * 0.85);
+			gameService.findUnitWithName('Battlecruiser').cost = Math.ceil(gameService.findUnitWithName('Battlecruiser').cost * 0.85);
 		}
 	};
 

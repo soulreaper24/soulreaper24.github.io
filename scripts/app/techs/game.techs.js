@@ -3,14 +3,25 @@
 angular.module('game')
 .controller('TechsCtrl', function($scope, GameService, TechsService) {	
 	$scope.getAvailableTechs = function () {
-		return GameService.data.availableTechs;
+		if (GameService.data.age === 8) {			
+			var techs = [];
+
+			for (var i = GameService.data.availableTechs.length - 1; i >= 0; i--) {
+				if (!GameService.data.availableTechs[i].turns || GameService.data.availableTechs[i].turns <= GameService.data.turnsSinceAlienInvaded) {
+					techs.push(GameService.data.availableTechs[i]);
+				}
+			}
+			return techs;
+		} else {
+			return GameService.data.availableTechs;
+		}
 	}
 
 	$scope.getTechCost = function(tech) {		
 		if (GameService.data.age < 8) {
 			return Math.ceil(Math.pow(2, Math.min(GameService.data.techsThisAge, 3)) * tech.cost);
 		} else {
-			return tech.cost;
+			return Math.ceil(Math.pow(GameService.data.GROWTH_COEFF, GameService.data.techsThisAge) * tech.cost);
 		}
 	};
 

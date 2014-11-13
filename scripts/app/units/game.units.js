@@ -2,15 +2,28 @@
 
 angular.module('game')
 .controller('UnitsCtrl', function($scope, GameService, CombatService) {
-	$scope.toTrain = 1;
-	$scope.availableUnits = GameService.data.availableUnits;	
+	$scope.getAvailableUnits = function() {
+		if (GameService.data.age === 8) {			
+			var units = [];
+
+			for (var i = GameService.data.availableUnits.length - 1; i >= 0; i--) {
+				if (!GameService.data.availableUnits[i].turns || GameService.data.availableUnits[i].turns <= GameService.data.turnsSinceAlienInvaded) {
+					units.push(GameService.data.availableUnits[i]);
+				}
+			}
+			return units;
+		} else {
+			return GameService.data.availableUnits;
+		}
+	};
+
 	$scope.getTurnsSinceAlienInvaded = function() {
 		return GameService.data.turnsSinceAlienInvaded;
 	};
 
 	$scope.getAliens = function() {
 		return GameService.data.aliens;
-	}
+	};
 
 	$scope.getUnitDamage = function(unit) {
 		return Math.ceil(unit.damage * GameService.data.damageMultiplier);
@@ -41,12 +54,12 @@ angular.module('game')
 	};
 
 	$scope.max = function(unit) {
-		$scope.toTrain = Math.floor($scope.getProduction() / unit.cost);
+		unit.toTrain = Math.floor($scope.getProduction() / unit.cost);
 	};	
 
-	$scope.train = function(unit, toTrain) {
-	  GameService.setProduction(GameService.getProduction() - unit.cost * toTrain);
-	  unit.count += toTrain * 1;
+	$scope.train = function(unit) {
+	  GameService.setProduction(GameService.getProduction() - unit.cost * unit.toTrain);
+	  unit.count += unit.toTrain * 1;
 	};
 
 	$scope.canConquest = function() {

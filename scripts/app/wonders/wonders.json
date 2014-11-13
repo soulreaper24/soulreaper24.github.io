@@ -5,19 +5,19 @@
 
 		{"age": 1, "name" : "Hanging Gardens", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 450},
 		{"age": 1, "name" : "Oracle", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 450},
-		{"age": 1, "name" : "Great Wall", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 450},
+		{"age": 1, "name" : "Great Wall", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 450},
 
 		{"age": 2, "name" : "Angkor Wat", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 4000},
 		{"age": 2, "name" : "Machu Pichu", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 4000},
-		{"age": 2, "name" : "Forbidden Palace", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 4000},
+		{"age": 2, "name" : "Forbidden Palace", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 4000},
 		
 		{"age": 3, "name" : "Taj Mahal", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 6000},
 		{"age": 3, "name" : "Leaning Tower of Pisa", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 6000},
 		{"age": 3, "name" : "Sistine Chapel", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 6000},
 		{"age": 3, "name" : "Porcelain Tower", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 6000},
-		{"age": 3, "name" : "Brandenburg Gate", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 6000},
-		{"age": 3, "name" : "Red Fort", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 6000},
-		{"age": 3, "name" : "Himeji Castle", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 6000},
+		{"age": 3, "name" : "Brandenburg Gate", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 6000},
+		{"age": 3, "name" : "Red Fort", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 6000},
+		{"age": 3, "name" : "Himeji Castle", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 6000},
 
 		{"age": 4, "name" : "Big Ben", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 60000},
 		{"age": 4, "name" : "The Louvre", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 60000},
@@ -26,16 +26,16 @@
 		{"age": 5, "name" : "Cristo Redentor", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 150000},
 		{"age": 5, "name" : "Broadway", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 150000},
 		{"age": 5, "name" : "CN Tower", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 150000},
-		{"age": 5, "name" : "The Kremlin", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 150000},
+		{"age": 5, "name" : "The Kremlin", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 150000},
 
 		{"age": 6, "name" : "Sydney Opera House", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 900000},
 		{"age": 6, "name" : "Apollo Program", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 900000},
-		{"age": 6, "name" : "Manhattan Project", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 900000},
+		{"age": 6, "name" : "Manhattan Project", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 900000},
 
-		{"age": 7, "name" : "United Nations", "description" : "+20% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 5400000},
+		{"age": 7, "name" : "United Nations", "description" : "+10% <i class='fa fa-gavel'></i> per Turn", "turns": 5 , "lossPerTurn": 5400000},
 		{"age": 7, "name" : "International Space Station", "description" : "+20% <i class='fa fa-flask'></i> per Turn", "turns": 5 , "lossPerTurn": 5400000},
-		{"age": 7, "name" : "The Pentagon", "description" : "+20% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 5400000},
+		{"age": 7, "name" : "The Pentagon", "description" : "+10% All Unit <i class='fa fa-heart'></i>", "turns": 5 , "lossPerTurn": 5400000},
 
-		{"age": 8, "name" : "Global Defense Grid", "description" : "+50% All Unit <i class='fa fa-heart'></i>. <b>Repeatable</b>", "turns": 2 , "lossPerTurn": 23000000}
+		{"age": 8, "name" : "Global Defense Grid", "description" : "+5% All Unit <i class='fa fa-heart'></i>. <b>Repeatable</b>", "turns": 3 , "lossPerTurn": 45000000}
 	]
 }
