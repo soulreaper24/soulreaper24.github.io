@@ -122,10 +122,14 @@ angular.module('game')
 		}
 
 		if (techName.indexOf('Fusion Core') === 0) {
-			gameService.findUnitWithName('Space Marine').cost = Math.ceil(gameService.findUnitWithName('Space Marine').cost * 0.85);
-			gameService.findUnitWithName('Reaper').cost = Math.ceil(gameService.findUnitWithName('Reaper').cost * 0.85);
-			gameService.findUnitWithName('Thor').cost = Math.ceil(gameService.findUnitWithName('Thor').cost * 0.85);
-			gameService.findUnitWithName('Battlecruiser').cost = Math.ceil(gameService.findUnitWithName('Battlecruiser').cost * 0.85);
+			gameService.findUnitWithName('Space Marine').cost = Math.ceil(gameService.findUnitWithName('Space Marine').cost * 0.88);
+			gameService.findUnitWithName('Reaper').cost = Math.ceil(gameService.findUnitWithName('Reaper').cost * 0.88);
+			gameService.findUnitWithName('Thor').cost = Math.ceil(gameService.findUnitWithName('Thor').cost * 0.88);
+			gameService.findUnitWithName('Battlecruiser').cost = Math.ceil(gameService.findUnitWithName('Battlecruiser').cost * 0.88);
+		}
+
+		if (techName.indexOf('eMULE') === 0) {
+			gameService.data.productionMultiplier *= 1.2;
 		}
 	};
 

@@ -20,10 +20,10 @@ angular.module('game')
 		for (i = 0; i < GameService.data.availableBuildings.length; i++) {
 			if (GameService.data.availableBuildings[i].age <= age) {
 				if (GameService.data.availableBuildings[i].productionPerTurn) {
-					GameService.data.availableBuildings[i].count = Math.min(35 + 5 * prodIndex++, 56);
+					GameService.data.availableBuildings[i].count = 56;
 					GameService.data.availableBuildings[i].cost *= Math.ceil(Math.pow(GameService.data.GROWTH_COEFF, GameService.data.availableBuildings[i].count));
 				} else {
-					GameService.data.availableBuildings[i].count = Math.min(35 + 5 * sciIndex++, 56);
+					GameService.data.availableBuildings[i].count = 56;
 					GameService.data.availableBuildings[i].cost *= Math.ceil(Math.pow(GameService.data.GROWTH_COEFF, GameService.data.availableBuildings[i].count));
 				}
 			}

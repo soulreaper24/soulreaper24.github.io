@@ -11,7 +11,7 @@
 		{"age": 7,  "name": "Modern Armor",   "eliteName": "K2 Black Panther", "hp": 1000, 	 "damage": 550, 	"cost" : 12000},
 		{"age": 8,  "name": "Space Marine",   "eliteName": "Marauder",   	   "hp": 1500,   "damage": 1200, 	"cost" : 50000},
 		{"age": 8,  "name": "Reaper",         "turns": "6",   	               "hp": 1000,   "damage": 900, 	"cost" : 65000, "trait": "First Strike"},
-		{"age": 8,  "name": "Thor",           "turns": "30",   	               "hp": 10000,  "damage": 2000, 	"cost" : 80000},
-		{"age": 8,  "name": "Battlecruiser",  "turns": "36",   	               "hp": 8000,   "damage": 3500, 	"cost" : 100000, "trait": "Last Strike"}		
+		{"age": 8,  "name": "Thor",           "turns": "30",   	               "hp": 12000,  "damage": 1500, 	"cost" : 80000},
+		{"age": 8,  "name": "Battlecruiser",  "turns": "45",   	               "hp": 8000,   "damage": 3200, 	"cost" : 100000, "trait": "Last Strike"}		
 	]
 }
